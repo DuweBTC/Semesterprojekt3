@@ -1,0 +1,43 @@
+actor "User" as user
+
+participant "Client" as client
+
+participant "Server" as server
+
+participant "Microcontroller" as mc
+
+
+frame UC3 [ADM]
+
+user->client : Scan RFID
+activate client
+client->server : Card ID
+activate server
+server-->client : User
+deactivate server
+client->user : Option 
+user->client : Drink
+client->user : Which drink
+user->client : Select drink
+alt Balance too low 
+client->user : Message too low balance
+client->client : Cancel
+
+else 
+
+client->server : Change balance 
+activate server
+server-->client : Succesful
+deactivate server
+client->mc : Make drink
+activate mc
+deactivate client
+mc -> mc : Process drink
+
+mc-->client : Succesful
+deactivate mc
+activate client
+end 
+
+
+deactivate client

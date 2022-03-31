@@ -1,0 +1,44 @@
+actor "User" as user
+
+participant "Client" as client
+
+participant "Server" as server
+
+actor "Bartender" as bar
+
+frame UC2 [ADM]
+
+user->client : Scan RFID
+activate client
+client->server : Card ID
+activate server
+server-->client : Return User
+deactivate server
+client->user : Option 
+user->client : Insert money
+client->user : How much money
+user->client : Enters money amount
+alt Interrupt
+user->client : Cancel
+end 
+user->bar : Gives Money
+bar->client : Scan card his ID (How do bartebnder do this)
+
+client->server : Card ID
+activate server
+server-->client : Return Bartender
+deactivate server
+
+client->bar : Option
+bar->client : Ok
+
+alt Interrupt
+bar->client : Cancel
+end
+
+client->server : ID money change 
+activate server
+server-->client : Return succesful
+deactivate server
+
+deactivate client

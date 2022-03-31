@@ -1,0 +1,23 @@
+participant "User" as user
+
+participant "Client" as client
+
+participant "Server" as server
+
+frame UC1 [ADM]
+
+user->client : Scan RFID
+activate client
+client->server : Card ID
+deactivate client
+activate server
+server->client : New User
+deactivate server
+activate client
+client->user : Option
+user->client : OK
+alt Interrupt
+user->client : Cancel
+end 
+client->client : Return
+deactivate client
