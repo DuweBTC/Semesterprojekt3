@@ -1,0 +1,29 @@
+actor "Kunde" as user
+
+participant "Client" as client
+
+participant "Server" as server
+
+frame UC6
+
+client->>user: Viser startmenu
+user->client: Vælger at ændre favoritdrink
+activate client
+client->>user: Viser indstillinger
+deactivate client
+alt EX1: Afbryd
+user->client: Afbryd
+activate client
+client->>user: Viser startmenu
+deactivate client
+else 
+user->client: Vælger ny favoritdrink og trykker gem
+activate client
+client->server: Gem ny favorit drink
+activate server
+server-->>client: OK
+deactivate server
+client->>user: Viser startmenu
+
+deactivate client
+end

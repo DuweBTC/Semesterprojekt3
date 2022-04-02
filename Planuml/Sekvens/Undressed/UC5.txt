@@ -1,0 +1,18 @@
+actor "Bartender" as user
+
+participant "Client" as client
+
+frame UC5
+
+user->client : Vælger at ændre indstillinger i menu
+activate client
+client->user: Viser indstillinger
+alt EX1: Afbryd
+user->client: Afbryd
+deactivate client
+else
+activate client
+user->client: indtaster nye konfigurationer og gemmer
+client->client: Opdater menu
+deactivate client
+end
