@@ -2,7 +2,7 @@ actor "Bartender" as user
 
 participant "Client" as client
 
-frame UC5
+frame UC5 [ADM]
 
 user->client : Vælger at ændre indstillinger i menu
 activate client

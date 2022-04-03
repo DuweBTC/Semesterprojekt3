@@ -4,7 +4,7 @@ participant "Client" as client
 
 participant "Server" as server
 
-frame UC6
+frame UC6 [ADM]
 
 client->>user: Viser startmenu
 user->client: Vælger at ændre favoritdrink
