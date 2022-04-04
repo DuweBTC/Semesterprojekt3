@@ -2,43 +2,57 @@ actor "User" as user
 
 participant "Client" as client
 
-participant "Server" as server
+database "Server" as server
 
 actor "Bartender" as bar
 
 frame UC2 [ADM]
 
-user->client : Scan RFID
+
+user->>client : Choose insert money in menu
 activate client
-client->server : Card ID
+client->>user : Request the amount
+deactivate client
+
+alt EX1: Afbryd
+user->>client : Cancels
+else 
+user->>client : Enters money amount
+activate client
+client->bar: Request STAFF ID 
+activate bar
+deactivate client
+
+bar-->>client : Scans STAFF ID
+deactivate bar 
+
+activate client
+client->>server : Card ID
 activate server
-server-->client : Return User
+
+alt EX2: Forkert ID-kort 
+
+server-->>client : OK
 deactivate server
-client->user : Option 
-user->client : Insert money
-client->user : How much money
-user->client : Enters money amount
-alt Interrupt
-user->client : Cancel
-end 
-user->bar : Gives Money
-bar->client : Scan card his ID (How do bartebnder do this)
-
-client->server : Card ID
-activate server
-server-->client : Return Bartender
-deactivate server
-
-client->bar : Option
-bar->client : Ok
-
-alt Interrupt
-bar->client : Cancel
-end
-
-client->server : ID money change 
-activate server
-server-->client : Return succesful
-deactivate server
+client->>user: Saldo opdateret
 
 deactivate client
+
+
+else
+activate server
+server->>client: NOT OK
+deactivate server
+activate client
+client->>user: Error occured, asks to confirm
+deactivate client
+user->>client: Confirm
+
+
+deactivate client
+end
+
+
+end 
+
+

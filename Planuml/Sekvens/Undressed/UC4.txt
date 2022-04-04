@@ -1,6 +1,6 @@
 participant "Client" as client
 
-participant "Mircocontroller" as mc
+participant "Microcontroller" as mc
 
 
 actor "Bartender" as bar

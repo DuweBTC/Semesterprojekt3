@@ -2,39 +2,49 @@ actor "User" as user
 
 participant "Client" as client
 
-participant "Server" as server
+database "Server" as server
 
 participant "Microcontroller" as mc
 
 
 frame UC3 [ADM]
 
-user->client : Scan RFID
+user->>client : Scan RFID
 activate client
-client->server : Card ID
+client->>server : Card ID
 activate server
-server-->client : User
+server-->>client : User
 deactivate server
-client->user : Option 
-user->client : Drink
-client->user : Which drink
-user->client : Select drink
+client->>user : Option 
+deactivate client
+
+user->>client : Drink
+activate client
+client->>user : Which drink
+deactivate client
+user->>client : Select drink
+activate client
 alt Balance too low 
-client->user : Message too low balance
-client->client : Cancel
+client->>client : Cancel
+client->>user : Message too low balance
+deactivate client
 
 else 
+activate client
+
 
 client->server : Change balance 
+deactivate client
 activate server
-server-->client : Succesful
+server-->>client : Succesful
+activate client
 deactivate server
 client->mc : Make drink
 activate mc
 deactivate client
-mc -> mc : Process drink
+mc ->> mc : Process drink
 
-mc-->client : Succesful
+mc-->>client : Succesful
 deactivate mc
 activate client
 end 

@@ -4,15 +4,16 @@ participant "Client" as client
 
 frame UC5 [ADM]
 
-user->client : Vælger at ændre indstillinger i menu
+user->>client : Chooses to edit settings in menu
 activate client
-client->user: Viser indstillinger
-alt EX1: Afbryd
-user->client: Afbryd
+client->>user: Showcases settings
+deactivate client
+alt EX1: Cancel
+user->>client: Cancel
 deactivate client
 else
+user->>client: Edits settings and saves 
 activate client
-user->client: indtaster nye konfigurationer og gemmer
-client->client: Opdater menu
+client->>client: Menu updates
 deactivate client
 end

@@ -6,24 +6,22 @@ participant "Server" as server
 
 frame UC6 [ADM]
 
-client->>user: Viser startmenu
-user->client: Vælger at ændre favoritdrink
+user->>client: Chooses to edit favorite drink
 activate client
-client->>user: Viser indstillinger
+client->>user: Displays settings
 deactivate client
-alt EX1: Afbryd
-user->client: Afbryd
+alt EX1: Cancel 
+user->>client: Cancels
 activate client
-client->>user: Viser startmenu
+client->>user: Displays startmenu
 deactivate client
 else 
-user->client: Vælger ny favoritdrink og trykker gem
+user->>client: Chooses new favorite drink and saves
 activate client
-client->server: Gem ny favorit drink
+client->server: Saves new favorite drink
 activate server
 server-->>client: OK
 deactivate server
-client->>user: Viser startmenu
-
+client->>user: Displays startmenu
 deactivate client
 end
