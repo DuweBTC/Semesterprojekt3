@@ -20,7 +20,9 @@ user->>client: Chooses new favorite drink and saves
 activate client
 client->server: Saves new favorite drink
 activate server
+note right of client: Client waits for server verification
 server-->>client: OK
+
 deactivate server
 client->>user: Displays startmenu
 deactivate client
