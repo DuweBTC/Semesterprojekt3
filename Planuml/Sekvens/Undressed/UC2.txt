@@ -9,13 +9,14 @@ actor "Bartender" as bar
 frame UC2 [ADM]
 
 
-user->>client : Choose insert money in menu
+user->>client : Chooses to insert money in menu
 activate client
-client->>user : Request the amount
+client->>user : Requests the amount 
 deactivate client
 
 alt EX1: Afbryd
 user->>client : Cancels
+
 else 
 user->>client : Enters money amount
 activate client
@@ -27,14 +28,14 @@ bar-->>client : Scans STAFF ID
 deactivate bar 
 
 activate client
-client->>server : Card ID
+client->server : Card ID
 activate server
 
 alt EX2: Forkert ID-kort 
 
 server-->>client : OK
 deactivate server
-client->>user: Saldo opdateret
+client->>user: Saldo updated
 
 deactivate client
 
@@ -47,12 +48,13 @@ activate client
 client->>user: Error occured, asks to confirm
 deactivate client
 user->>client: Confirm
+activate client
 
-
-deactivate client
 end
 
 
 end 
+client->>client: Main menu
+deactivate client
 
 

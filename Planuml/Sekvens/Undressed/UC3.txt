@@ -6,33 +6,40 @@ database "Server" as server
 
 participant "Microcontroller" as mc
 
+participant "Sensor" as sensor
+
 
 frame UC3 [ADM]
 
 user->>client : Scan RFID
 activate client
-client->>server : Card ID
+client->server : Card ID
 activate server
-server-->>client : User
+server-->>client : User found
 deactivate server
-client->>user : Option 
+client->>user : Main menu
 deactivate client
 
-user->>client : Drink
+user->>client : Chooses drink
 activate client
-client->>user : Which drink
+client->>user : Asks for desired drink
 deactivate client
-user->>client : Select drink
+user->>client : Selects drink
 activate client
-alt Balance too low 
+alt EX1: For lav saldo
 client->>client : Cancel
 client->>user : Message too low balance
 deactivate client
 
 else 
+
+client->user: Asks for insertion of glass
 activate client
 
-
+user->sensor: Inserts glass
+activate sensor
+sensor-->>client: Glass inserted
+deactivate sensor
 client->server : Change balance 
 deactivate client
 activate server

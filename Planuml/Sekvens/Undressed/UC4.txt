@@ -1,18 +1,15 @@
-participant "Client" as client
-
 participant "Microcontroller" as mc
 
+participant "Client" as client
 
 actor "Bartender" as bar
 
 frame UC4 [ADM]
 
-activate mc
-mc ->client : Need checking
+mc ->>client : Need checking
 activate client
-deactivate mc
-client -> bar : Need service 
+client ->> bar : Need service 
 deactivate client 
-bar-> mc : Service
-activate mc
+bar->> mc : Service
+
 

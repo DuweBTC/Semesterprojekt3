@@ -8,12 +8,12 @@ frame UC6 [ADM]
 
 user->>client: Chooses to edit favorite drink
 activate client
-client->>user: Displays settings
+client->>user: Showcases options
 deactivate client
 alt EX1: Cancel 
 user->>client: Cancels
 activate client
-client->>user: Displays startmenu
+client->>client: Main menu
 deactivate client
 else 
 user->>client: Chooses new favorite drink and saves
@@ -24,6 +24,6 @@ note right of client: Client waits for server verification
 server-->>client: OK
 
 deactivate server
-client->>user: Displays startmenu
+client->>client: Main menu
 deactivate client
 end

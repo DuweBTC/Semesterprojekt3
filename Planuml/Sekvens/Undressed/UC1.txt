@@ -11,13 +11,24 @@ activate client
 client->>server : Card ID
 deactivate client
 activate server
-server->>client : New User
+server->>client : No identification
 deactivate server
 activate client
-client->>user : Option
-user->>client : OK
-alt Interrupt
+client->>user : Requests registration
+deactivate client
+alt EX1: Afbryd
+
+
 user->>client : Cancel
+else 
+user->>client : OK
+activate client
+client->server : New user
+deactivate client
+activate server
+server-->>client : User registered
+deactivate server
+activate client
 end 
 client->>client : Main menu
 deactivate client

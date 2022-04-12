@@ -4,16 +4,18 @@ participant "Client" as client
 
 frame UC5 [ADM]
 
-user->>client : Chooses to edit settings in menu
+user->>client : Chooses to edit settings in drink menu
 activate client
-client->>user: Showcases settings
+client->>user: Showcases options
 deactivate client
 alt EX1: Cancel
 user->>client: Cancel
 deactivate client
 else
-user->>client: Edits settings and saves 
+user->>client: Edits settings in drink menu and saves 
 activate client
 client->>client: Menu updates
+end 
+client->>client: Main menu
 deactivate client
-end
+
