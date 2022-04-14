@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>440</x>
+      <y>180</y>
+      <w>160</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>valign=center
+halign=center
+&lt;&lt;controller&gt;&gt;
+RFID-Scanner
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>590</x>
+      <y>330</y>
+      <w>160</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>valign=center
+halign=center
+&lt;&lt;boundayr&gt;&gt;
+Client
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>290</x>
+      <y>330</y>
+      <w>160</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>valign=center
+halign=center
+&lt;&lt;boundayr&gt;&gt;
+User
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>360</x>
+      <y>260</y>
+      <w>160</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;70.0;10.0;30.0;140.0;30.0;140.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>520</x>
+      <y>260</y>
+      <w>170</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>150.0;70.0;150.0;30.0;10.0;30.0;10.0;10.0</additional_attributes>
+  </element>
+</diagram>
