@@ -68,4 +68,16 @@ User
     <panel_attributes>lt=-</panel_attributes>
     <additional_attributes>150.0;70.0;150.0;30.0;10.0;30.0;10.0;10.0</additional_attributes>
   </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>210</x>
+      <y>100</y>
+      <w>530</w>
+      <h>320</h>
+    </coordinates>
+    <panel_attributes>*Conceptual Class Diagram*
+Touch Screen</panel_attributes>
+    <additional_attributes/>
+  </element>
 </diagram>

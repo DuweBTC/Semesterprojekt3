@@ -18,8 +18,8 @@ Client</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>660</x>
-      <y>330</y>
+      <x>680</x>
+      <y>180</y>
       <w>160</w>
       <h>90</h>
     </coordinates>
@@ -33,8 +33,8 @@ RFID-scanner
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>220</x>
-      <y>330</y>
+      <x>200</x>
+      <y>180</y>
       <w>160</w>
       <h>90</h>
     </coordinates>
@@ -48,29 +48,29 @@ Touch screen
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>290</x>
-      <y>260</y>
-      <w>190</w>
-      <h>90</h>
+      <x>350</x>
+      <y>210</y>
+      <w>110</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>lt=-</panel_attributes>
-    <additional_attributes>10.0;70.0;10.0;30.0;170.0;30.0;170.0;10.0</additional_attributes>
+    <additional_attributes>10.0;10.0;90.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>570</x>
-      <y>260</y>
-      <w>190</w>
-      <h>90</h>
+      <x>590</x>
+      <y>210</y>
+      <w>110</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>lt=-</panel_attributes>
-    <additional_attributes>170.0;70.0;170.0;30.0;10.0;30.0;10.0;10.0</additional_attributes>
+    <additional_attributes>90.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>440</x>
+      <x>360</x>
       <y>330</y>
       <w>160</w>
       <h>90</h>
@@ -85,12 +85,50 @@ Brew System
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>510</x>
+      <x>430</x>
       <y>260</y>
-      <w>30</w>
+      <w>80</w>
       <h>90</h>
     </coordinates>
     <panel_attributes>lt=-</panel_attributes>
-    <additional_attributes>10.0;70.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;70.0;10.0;30.0;60.0;30.0;60.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>530</x>
+      <y>330</y>
+      <w>160</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>valign=center
+halign=center
+&lt;&lt;domain&gt;&gt;
+Brew System
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>530</x>
+      <y>260</y>
+      <w>90</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>70.0;70.0;70.0;30.0;10.0;30.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>190</x>
+      <y>50</y>
+      <w>670</w>
+      <h>400</h>
+    </coordinates>
+    <panel_attributes>*Conceptual Class Diagram*
+Client</panel_attributes>
+    <additional_attributes/>
   </element>
 </diagram>

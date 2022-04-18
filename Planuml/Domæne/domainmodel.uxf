@@ -183,13 +183,13 @@ Brew System
     <coordinates>
       <x>616</x>
       <y>273</y>
-      <w>49</w>
+      <w>56</w>
       <h>105</h>
     </coordinates>
     <panel_attributes>
 
 
-Has a 
+Writes to 
  v
 m1=1
 
@@ -254,5 +254,16 @@ m2=1</panel_attributes>
     <panel_attributes>Edit settings &gt;
 &lt; Requests card ID and choice</panel_attributes>
     <additional_attributes>10.0;250.0;190.0;250.0;190.0;10.0;240.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>84</x>
+      <y>84</y>
+      <w>924</w>
+      <h>392</h>
+    </coordinates>
+    <panel_attributes>Domain model</panel_attributes>
+    <additional_attributes/>
   </element>
 </diagram>
