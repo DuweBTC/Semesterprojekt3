@@ -77,7 +77,7 @@ Touch screen
     </coordinates>
     <panel_attributes>valign=center
 halign=center
-&lt;&lt;domain&gt;&gt;
+&lt;&lt;Boundary&gt;&gt;
 Brew System
 </panel_attributes>
     <additional_attributes/>
@@ -103,8 +103,8 @@ Brew System
     </coordinates>
     <panel_attributes>valign=center
 halign=center
-&lt;&lt;domain&gt;&gt;
-Brew System
+&lt;&lt;boundary&gt;&gt;
+Server
 </panel_attributes>
     <additional_attributes/>
   </element>
