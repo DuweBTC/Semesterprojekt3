@@ -8,77 +8,77 @@ build_property.PlatformNeutralAssembly =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = BulkyBookWeb
 build_property.RootNamespace = BulkyBookWeb
-build_property.ProjectDir = C:\Users\Bjarke\source\repos\BulkyBook\BulkyBookWeb\
+build_property.ProjectDir = /home/bjarke/Documents/repos/Semesterprojekt3/Database/Eksempel - BulkyBook/BulkyBookWeb/
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = true
-build_property.MSBuildProjectDirectory = C:\Users\Bjarke\source\repos\BulkyBook\BulkyBookWeb
+build_property.MSBuildProjectDirectory = /home/bjarke/Documents/repos/Semesterprojekt3/Database/Eksempel - BulkyBook/BulkyBookWeb
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/Bjarke/source/repos/BulkyBook/BulkyBookWeb/Views/CategoriesTemp/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmllc1RlbXBcQ3JlYXRlLmNzaHRtbA==
+[/home/bjarke/Documents/repos/Semesterprojekt3/Database/Eksempel - BulkyBook/BulkyBookWeb/Views/CategoriesTemp/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2F0ZWdvcmllc1RlbXAvQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Bjarke/source/repos/BulkyBook/BulkyBookWeb/Views/CategoriesTemp/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmllc1RlbXBcRGVsZXRlLmNzaHRtbA==
+[/home/bjarke/Documents/repos/Semesterprojekt3/Database/Eksempel - BulkyBook/BulkyBookWeb/Views/CategoriesTemp/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2F0ZWdvcmllc1RlbXAvRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Bjarke/source/repos/BulkyBook/BulkyBookWeb/Views/CategoriesTemp/Details.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmllc1RlbXBcRGV0YWlscy5jc2h0bWw=
+[/home/bjarke/Documents/repos/Semesterprojekt3/Database/Eksempel - BulkyBook/BulkyBookWeb/Views/CategoriesTemp/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2F0ZWdvcmllc1RlbXAvRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Bjarke/source/repos/BulkyBook/BulkyBookWeb/Views/CategoriesTemp/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmllc1RlbXBcRWRpdC5jc2h0bWw=
+[/home/bjarke/Documents/repos/Semesterprojekt3/Database/Eksempel - BulkyBook/BulkyBookWeb/Views/CategoriesTemp/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2F0ZWdvcmllc1RlbXAvRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Bjarke/source/repos/BulkyBook/BulkyBookWeb/Views/CategoriesTemp/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmllc1RlbXBcSW5kZXguY3NodG1s
+[/home/bjarke/Documents/repos/Semesterprojekt3/Database/Eksempel - BulkyBook/BulkyBookWeb/Views/CategoriesTemp/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2F0ZWdvcmllc1RlbXAvSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Bjarke/source/repos/BulkyBook/BulkyBookWeb/Views/Category/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcQ3JlYXRlLmNzaHRtbA==
+[/home/bjarke/Documents/repos/Semesterprojekt3/Database/Eksempel - BulkyBook/BulkyBookWeb/Views/Category/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2F0ZWdvcnkvQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Bjarke/source/repos/BulkyBook/BulkyBookWeb/Views/Category/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcRGVsZXRlLmNzaHRtbA==
+[/home/bjarke/Documents/repos/Semesterprojekt3/Database/Eksempel - BulkyBook/BulkyBookWeb/Views/Category/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2F0ZWdvcnkvRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Bjarke/source/repos/BulkyBook/BulkyBookWeb/Views/Category/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcRWRpdC5jc2h0bWw=
+[/home/bjarke/Documents/repos/Semesterprojekt3/Database/Eksempel - BulkyBook/BulkyBookWeb/Views/Category/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2F0ZWdvcnkvRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Bjarke/source/repos/BulkyBook/BulkyBookWeb/Views/Category/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcSW5kZXguY3NodG1s
+[/home/bjarke/Documents/repos/Semesterprojekt3/Database/Eksempel - BulkyBook/BulkyBookWeb/Views/Category/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2F0ZWdvcnkvSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Bjarke/source/repos/BulkyBook/BulkyBookWeb/Views/Home/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+[/home/bjarke/Documents/repos/Semesterprojekt3/Database/Eksempel - BulkyBook/BulkyBookWeb/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Bjarke/source/repos/BulkyBook/BulkyBookWeb/Views/Home/Privacy.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+[/home/bjarke/Documents/repos/Semesterprojekt3/Database/Eksempel - BulkyBook/BulkyBookWeb/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Qcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Bjarke/source/repos/BulkyBook/BulkyBookWeb/Views/Shared/Error.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+[/home/bjarke/Documents/repos/Semesterprojekt3/Database/Eksempel - BulkyBook/BulkyBookWeb/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0Vycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Bjarke/source/repos/BulkyBook/BulkyBookWeb/Views/Shared/_Notification.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Ob3RpZmljYXRpb24uY3NodG1s
+[/home/bjarke/Documents/repos/Semesterprojekt3/Database/Eksempel - BulkyBook/BulkyBookWeb/Views/Shared/_Notification.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19Ob3RpZmljYXRpb24uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Bjarke/source/repos/BulkyBook/BulkyBookWeb/Views/Shared/_ValidationScriptsPartial.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+[/home/bjarke/Documents/repos/Semesterprojekt3/Database/Eksempel - BulkyBook/BulkyBookWeb/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Bjarke/source/repos/BulkyBook/BulkyBookWeb/Views/_ViewImports.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+[/home/bjarke/Documents/repos/Semesterprojekt3/Database/Eksempel - BulkyBook/BulkyBookWeb/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Bjarke/source/repos/BulkyBook/BulkyBookWeb/Views/_ViewStart.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+[/home/bjarke/Documents/repos/Semesterprojekt3/Database/Eksempel - BulkyBook/BulkyBookWeb/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Bjarke/source/repos/BulkyBook/BulkyBookWeb/Views/Shared/_Layout.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = b-xaq7ih10jw
+[/home/bjarke/Documents/repos/Semesterprojekt3/Database/Eksempel - BulkyBook/BulkyBookWeb/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-1l9gnwi1j3

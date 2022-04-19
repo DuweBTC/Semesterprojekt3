@@ -9650,31 +9650,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Bjarke\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "/home/bjarke/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Bjarke\\source\\repos\\BulkyBook\\BulkyBookWeb\\BulkyBookWeb.csproj",
+      "projectUniqueName": "/home/bjarke/Documents/repos/Semesterprojekt3/Database/Eksempel - BulkyBook/BulkyBookWeb/BulkyBookWeb.csproj",
       "projectName": "BulkyBookWeb",
-      "projectPath": "C:\\Users\\Bjarke\\source\\repos\\BulkyBook\\BulkyBookWeb\\BulkyBookWeb.csproj",
-      "packagesPath": "C:\\Users\\Bjarke\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Bjarke\\source\\repos\\BulkyBook\\BulkyBookWeb\\obj\\",
+      "projectPath": "/home/bjarke/Documents/repos/Semesterprojekt3/Database/Eksempel - BulkyBook/BulkyBookWeb/BulkyBookWeb.csproj",
+      "packagesPath": "/home/bjarke/.nuget/packages/",
+      "outputPath": "/home/bjarke/Documents/repos/Semesterprojekt3/Database/Eksempel - BulkyBook/BulkyBookWeb/obj/",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Bjarke\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/home/bjarke/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -9734,7 +9727,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.202/RuntimeIdentifierGraph.json"
       }
     }
   }
