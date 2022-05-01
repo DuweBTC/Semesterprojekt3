@@ -1,0 +1,17 @@
+participant "<<Controller>>\n Ændre Favorit" as server
+
+participant "<<Boundary>>\n Client" as client
+
+
+
+participant "<<Domain>>\n Account" as account
+
+
+
+frame UC6 [Server]
+activate client
+client->>server: setFavourite(id): void
+deactivate client
+activate server
+server->>account: setFavourite(id): void
+deactivate server

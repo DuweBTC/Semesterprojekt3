@@ -1,0 +1,49 @@
+participant "<<Controller>>\n Køb Drink" as server
+
+participant "<<Boundary>>\n Client" as client
+
+participant "<<Domain>>\n Drink" as drink
+
+participant "<<Domain>>\n Ingredients" as ingredients
+
+participant "<<Domain>>\n Account" as account
+
+
+
+frame UC3 [Server]
+activate client
+client->server: requestPurchase(float money): bool
+deactivate client
+activate server
+server->account: getMoney(): bool
+deactivate server
+activate account
+alt
+account-->>server: return false
+deactivate account
+activate server
+server-->>client: error(int error): void 
+deactivate server
+else
+activate account
+account-->>server: return true
+deactivate account
+activate server
+server-->>client: successful(): void
+deactivate server
+
+client->server: requestDrink(): guid
+deactivate client
+activate server
+server->drink: getDrink(): guid
+activate drink
+drink->ingredients: getIngredients(): guid
+activate ingredients
+ingredients-->>drink: return guid
+deactivate ingredients
+drink-->>server: return guid
+deactivate drink
+server-->>client: return guid
+deactivate server
+
+end
