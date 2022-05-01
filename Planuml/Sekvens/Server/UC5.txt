@@ -1,0 +1,54 @@
+participant "<<controller>>\nUC5" as controller
+participant "<<boundary>>\nClient" as client
+participant "<<domain>>\nDrink" as drink
+
+
+frame UC5 Server [ADM]
+activate client
+client->controller : requestDrink() : drink[]
+deactivate client
+activate controller
+controller->drink : requestDrink() : drink[]
+activate drink
+drink-->>controller : drink[]
+deactivate drink
+controller-->>client : drink[]
+deactivate controller 
+activate client
+
+client->controller : newDrink(drink) : void
+deactivate client
+
+activate controller
+controller->drink : getDrink(drink): bool
+activate drink
+
+alt
+
+drink-->>controller : false
+deactivate drink
+controller->drink : createDrink(drink): bool
+activate drink
+
+drink-->>controller : return true
+
+deactivate drink
+controller -->>client : succesful()
+activate client
+deactivate controller
+deactivate client
+else Drink already exits
+
+activate drink
+drink-->>controller : true
+deactivate drink
+activate controller
+controller->drink : updateDrink(drink): bool
+activate drink
+drink-->>controller : return true
+deactivate drink
+controller -->>client : succesful()
+activate client
+deactivate controller
+deactivate client
+end 
