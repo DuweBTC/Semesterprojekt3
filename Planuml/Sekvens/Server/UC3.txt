@@ -1,49 +1,41 @@
-participant "<<Controller>>\n Køb Drink" as server
+participant "<<controller>>\n UC3" as server
 
-participant "<<Boundary>>\n Client" as client
+participant "<<boundary>>\n Client" as client
 
-participant "<<Domain>>\n Drink" as drink
+participant "<<domain>>\n Drink" as drink
 
-participant "<<Domain>>\n Ingredients" as ingredients
-
-participant "<<Domain>>\n Account" as account
+participant "<<domain>>\n Account" as account
 
 
 
-frame UC3 [Server]
+frame UC3 Server [ADM]
 activate client
-client->server: requestPurchase(float money): bool
+client->>server: requestPrice(): void
 deactivate client
 activate server
-server->account: getMoney(): bool
-deactivate server
-activate account
-alt
-account-->>server: return false
-deactivate account
-activate server
-server-->>client: error(int error): void 
-deactivate server
-else
-activate account
-account-->>server: return true
-deactivate account
-activate server
-server-->>client: successful(): void
-deactivate server
-
-client->server: requestDrink(): guid
-deactivate client
-activate server
-server->drink: getDrink(): guid
+server->drink: getPrice(): float
 activate drink
-drink->ingredients: getIngredients(): guid
-activate ingredients
-ingredients-->>drink: return guid
-deactivate ingredients
-drink-->>server: return guid
+drink-->>server: Price 
 deactivate drink
-server-->>client: return guid
+server->account: getMoney(): bool
+activate account
+account-->>server: return money
+deactivate account
+alt price > money
+
+
+server->>client: error(int error): void
+deactivate server
+else price <= money
+
+
+
+activate server
+server->drink:getDrink(id): drink
+activate drink
+drink-->>server: return drink
+deactivate drink
+server->>client: makeDrink(drink): void
 deactivate server
 
 end
