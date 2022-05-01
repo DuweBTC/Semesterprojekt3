@@ -1,0 +1,38 @@
+participant "<<controller>>\nUC1" as controller
+participant "<<boundary>>\nClient" as server
+participant "<<domain>>\nAccount" as account
+
+
+frame UC1 Server [ADM]
+activate server
+server->>controller : requestId() : id
+deactivate server
+activate controller
+controller->account : getId() : id
+deactivate controller
+activate account
+alt 
+account-->>controller : return 0
+deactivate account
+activate controller
+controller->server : requestPerson() : person
+activate server
+alt
+server-->>controller : return person
+deactivate server
+
+controller ->account : newAccount(id, person) : void
+activate account
+account-->>controller : return
+deactivate account
+deactivate controller
+else Cancelled
+activate server
+server-->>controller : return none
+deactivate server 
+end
+else Person already exists
+activate account
+account-->>controller : return id
+deactivate account
+end

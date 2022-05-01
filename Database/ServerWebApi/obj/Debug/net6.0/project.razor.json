@@ -1,5 +1,5 @@
 {
-  "FilePath": "/home/bjarke/Documents/repos/Semesterprojekt3/Database/Eksempel - BulkyBook/BulkyBookWeb/BulkyBookWeb.csproj",
+  "FilePath": "/home/bjarke/Documents/repos/Semesterprojekt3/Database/ServerWebApi/ServerWebApi.csproj",
   "Configuration": {
     "ConfigurationName": "MVC-3.0",
     "LanguageVersion": "6.0",
@@ -16295,93 +16295,7 @@
     ],
     "CSharpLanguageVersion": 1000
   },
-  "RootNamespace": "BulkyBookWeb",
-  "Documents": [
-    {
-      "FilePath": "/home/bjarke/Documents/repos/Semesterprojekt3/Database/Eksempel - BulkyBook/BulkyBookWeb/Views/Shared/_Notification.cshtml",
-      "TargetPath": "Views\\Shared\\_Notification.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/home/bjarke/Documents/repos/Semesterprojekt3/Database/Eksempel - BulkyBook/BulkyBookWeb/Views/CategoriesTemp/Delete.cshtml",
-      "TargetPath": "Views\\CategoriesTemp\\Delete.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/home/bjarke/Documents/repos/Semesterprojekt3/Database/Eksempel - BulkyBook/BulkyBookWeb/Views/Shared/_ValidationScriptsPartial.cshtml",
-      "TargetPath": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/home/bjarke/Documents/repos/Semesterprojekt3/Database/Eksempel - BulkyBook/BulkyBookWeb/Views/_ViewImports.cshtml",
-      "TargetPath": "Views\\_ViewImports.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/home/bjarke/Documents/repos/Semesterprojekt3/Database/Eksempel - BulkyBook/BulkyBookWeb/Views/CategoriesTemp/Create.cshtml",
-      "TargetPath": "Views\\CategoriesTemp\\Create.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/home/bjarke/Documents/repos/Semesterprojekt3/Database/Eksempel - BulkyBook/BulkyBookWeb/Views/_ViewStart.cshtml",
-      "TargetPath": "Views\\_ViewStart.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/home/bjarke/Documents/repos/Semesterprojekt3/Database/Eksempel - BulkyBook/BulkyBookWeb/Views/CategoriesTemp/Index.cshtml",
-      "TargetPath": "Views\\CategoriesTemp\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/home/bjarke/Documents/repos/Semesterprojekt3/Database/Eksempel - BulkyBook/BulkyBookWeb/Views/Home/Privacy.cshtml",
-      "TargetPath": "Views\\Home\\Privacy.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/home/bjarke/Documents/repos/Semesterprojekt3/Database/Eksempel - BulkyBook/BulkyBookWeb/Views/CategoriesTemp/Details.cshtml",
-      "TargetPath": "Views\\CategoriesTemp\\Details.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/home/bjarke/Documents/repos/Semesterprojekt3/Database/Eksempel - BulkyBook/BulkyBookWeb/Views/Category/Edit.cshtml",
-      "TargetPath": "Views\\Category\\Edit.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/home/bjarke/Documents/repos/Semesterprojekt3/Database/Eksempel - BulkyBook/BulkyBookWeb/Views/Category/Create.cshtml",
-      "TargetPath": "Views\\Category\\Create.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/home/bjarke/Documents/repos/Semesterprojekt3/Database/Eksempel - BulkyBook/BulkyBookWeb/Views/Category/Index.cshtml",
-      "TargetPath": "Views\\Category\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/home/bjarke/Documents/repos/Semesterprojekt3/Database/Eksempel - BulkyBook/BulkyBookWeb/Views/Category/Delete.cshtml",
-      "TargetPath": "Views\\Category\\Delete.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/home/bjarke/Documents/repos/Semesterprojekt3/Database/Eksempel - BulkyBook/BulkyBookWeb/Views/Shared/_Layout.cshtml",
-      "TargetPath": "Views\\Shared\\_Layout.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/home/bjarke/Documents/repos/Semesterprojekt3/Database/Eksempel - BulkyBook/BulkyBookWeb/Views/Shared/Error.cshtml",
-      "TargetPath": "Views\\Shared\\Error.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/home/bjarke/Documents/repos/Semesterprojekt3/Database/Eksempel - BulkyBook/BulkyBookWeb/Views/Home/Index.cshtml",
-      "TargetPath": "Views\\Home\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/home/bjarke/Documents/repos/Semesterprojekt3/Database/Eksempel - BulkyBook/BulkyBookWeb/Views/CategoriesTemp/Edit.cshtml",
-      "TargetPath": "Views\\CategoriesTemp\\Edit.cshtml",
-      "FileKind": "mvc"
-    }
-  ],
+  "RootNamespace": "ServerWebApi",
+  "Documents": [],
   "SerializationFormat": "0.2"
 }

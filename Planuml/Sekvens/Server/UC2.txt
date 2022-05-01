@@ -1,0 +1,57 @@
+participant "<<controller>>\nUC2" as controller
+participant "<<boundary>>\nClient" as client
+participant "<<domain>>\nAccount" as account
+
+
+frame UC2 Server [ADM]
+activate client
+client->>controller : request(float money) : void
+deactivate client
+activate controller
+controller->client : requestStaffID() : id
+deactivate controller
+activate client
+client-->>controller : return id
+activate controller
+deactivate client
+controller->account : getId() : id
+deactivate controller
+activate account
+
+alt 
+account-->>controller : return id
+deactivate account
+activate controller
+controller->account : changeBalance(float money) : bool
+deactivate controller 
+activate account
+alt 
+account -->>controller : return true
+activate controller
+deactivate account
+
+controller ->>client : succesful() :void
+
+
+deactivate controller
+activate client
+deactivate client
+else Can't insert money
+activate controller
+
+controller->>client : error(int error) : void 
+deactivate controller
+activate client
+deactivate client
+end
+
+else Id is not staff
+activate account
+account-->>controller : return 0
+deactivate account
+activate controller
+controller->>client : error(int error) : void 
+deactivate controller
+activate client
+deactivate client
+end
