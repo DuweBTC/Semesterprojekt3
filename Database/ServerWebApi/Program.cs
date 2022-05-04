@@ -1,8 +1,18 @@
+using Microsoft.EntityFrameworkCore;
+using AccountApi.Models;
+using DrinkApi.Models;
+using ContainerApi.Models;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
+builder.Services.AddDbContext<AccountContext>(opt =>
+    opt.UseInMemoryDatabase("Account"));
+builder.Services.AddDbContext<DrinkContext>(opt =>
+    opt.UseInMemoryDatabase("Drink"));
+builder.Services.AddDbContext<ContainerContext>(opt =>
+    opt.UseInMemoryDatabase("Container"));
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
