@@ -16,6 +16,5 @@ public class AccountItem
 
     public string? favourit { get; set; }
 
-    //public ICollection<PlatformNotSupportedException> Products { get; set; }
 
 }
