@@ -1,0 +1,295 @@
+openapi: 3.0.0
+servers:
+  # Added by API Auto Mocking Plugin
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/BjarkeKarlsen/Server/1.0.0
+info:
+  description: This is a API to Automated Drink Machine
+  version: "1.0.0"
+  title: Server API
+  contact:
+    email: bjarke.k22@gmail.com
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+tags:
+  - name: admins
+    description: Secured Admin-only calls
+  - name: developers
+    description: Operations available to regular developers
+paths:
+  /account:
+    get:
+      tags:
+        - developers
+      summary: searches inventory
+      operationId: searchInventory
+      description: |
+        By passing in the appropriate options, you can search for
+        available inventory in the system
+      parameters:
+        - in: query
+          name: getAccountById
+          description: pass an account with that id from the inventory
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: skip
+          description: number of records to skip for pagination
+          schema:
+            type: integer
+            format: float
+            minimum: 0
+        - in: query
+          name: getBalance
+          description: maximum number of records to return
+          schema:
+            type: number
+            format: int32
+            minimum: 0
+            maximum: 50
+      responses:
+        '200':
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AccountItem'
+        '400':
+          description: bad input parameter
+    post:
+      tags:
+        - admins
+      summary: adds an inventory item
+      operationId: addInventory
+      description: Adds an item to the system
+      responses:
+        '201':
+          description: item created
+        '400':
+          description: 'invalid input, object invalid'
+        '409':
+          description: an existing item already exists
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountItem'
+        description: Inventory item to add
+  /drink:
+    get:
+      tags:
+        - developers
+      summary: searches inventory
+      operationId: searchInventor
+      description: |
+        By passing in the appropriate options, you can search for
+        available inventory in the system
+      parameters:
+        - in: query
+          name: getAccountById
+          description: pass an account with that id from the inventory
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: skip
+          description: number of records to skip for pagination
+          schema:
+            type: integer
+            format: float
+            minimum: 0
+        - in: query
+          name: getBalance
+          description: maximum number of records to return
+          schema:
+            type: number
+            format: int32
+            minimum: 0
+            maximum: 50
+      responses:
+        '200':
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DrinkItem'
+        '400':
+          description: bad input parameter
+    post:
+      tags:
+        - admins
+      summary: adds an inventory item
+      operationId: addInventor
+      description: Adds an item to the system
+      responses:
+        '201':
+          description: item created
+        '400':
+          description: 'invalid input, object invalid'
+        '409':
+          description: an existing item already exists
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DrinkItem'
+        description: Inventory item to add
+        
+  /container:
+    get:
+      tags:
+        - developers
+      summary: searches inventory
+      operationId: searchInvento
+      description: |
+        By passing in the appropriate options, you can search for
+        available inventory in the system
+      parameters:
+        - in: query
+          name: getAccountById
+          description: pass an account with that id from the inventory
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: skip
+          description: number of records to skip for pagination
+          schema:
+            type: integer
+            format: float
+            minimum: 0
+        - in: query
+          name: getBalance
+          description: maximum number of records to return
+          schema:
+            type: number
+            format: int32
+            minimum: 0
+            maximum: 50
+      responses:
+        '200':
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ContainerItem'
+        '400':
+          description: bad input parameter
+    post:
+      tags:
+        - admins
+      summary: adds an inventory item
+      operationId: addInvento
+      description: Adds an item to the system
+      responses:
+        '201':
+          description: item created
+        '400':
+          description: 'invalid input, object invalid'
+        '409':
+          description: an existing item already exists
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContainerItem'
+        description: Inventory item to add
+        
+components:
+  schemas:
+    AccountItem:
+      type: object
+      required:
+        - id
+        - name
+        - releaseDate
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: d290f1ee-6c54-4b01-90e6-d701748f0851
+        name:
+          type: string
+          example: Bjarke Karlsen
+        email:
+          type: string 
+          example: name@gmail.com
+        createdDate:
+          type: string
+          format: date-time
+          example: '2016-08-29T09:12:33.001Z'
+        balance:
+          type: number
+          example: 16.4
+        guid: 
+          type: string
+          format: uuid
+          example: d290f1ee-6c54-4b01-90e6-d701748f0851
+        role: 
+          required:
+          - costumer
+          properties:
+            costumer: 
+              type: boolean
+              example: true
+            staff: 
+              type: boolean
+              example: false
+        favorit:
+          type: string
+          example: mojito
+          
+          
+    DrinkItem:
+      type: object
+      required:
+        - id
+        - titel
+        - description
+        - ingredient
+      properties:
+        id:
+          type: integer
+          example: 1
+        titel:
+          type: string
+          example: mojito
+        description:
+          type: string 
+          example: this drink is a sweet summerdrink
+        ingredients:
+          required:
+          - amount
+          - ingredient
+          properties:
+            amount: 
+              type: integer
+              example: 42
+            ingredient:
+              type: string
+              example: vodka
+            
+    ContainerItem:
+      type: object
+      required:
+        - id
+        - place
+        - ingredient
+      properties:
+        id:
+          type: integer
+          example: 1
+        place:
+          type: integer
+          example: 1
+        ingredient:
+          type: integer
+          example: 42

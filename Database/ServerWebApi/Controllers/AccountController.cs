@@ -100,5 +100,56 @@ public class AccountController : ControllerBase
         return _context.AccountItems.Any(e => e.Id == id);
     }
 
+    // GET: api/Account/{id}/Balance
+    [HttpGet("{id}/Balance")]
+    public async Task<ActionResult<AccountItem>> GetAccountItemBalance(string id)
+    {
+        var accountItem = await _context.AccountItems.FindAsync(id);
+        if (accountItem == null)
+        {
+            return NotFound();
+        }
+
+        return Ok(accountItem.Balance);
+    }
+
+    //PUT: /Account/{id}/Balance/
+    [HttpPut("{id}/Balance/")]
+    public async Task<IActionResult> PutAccountItemBalance(string id, double amount)
+    {
+        var accountItem = await _context.AccountItems.FindAsync(id);
+        if (accountItem == null)
+        {
+            return NotFound();
+        }
+
+        if ((accountItem.Balance + amount) < 0)
+        {
+            return BadRequest();
+        }
+
+        accountItem.Balance = accountItem.Balance + amount;
+
+        _context.Entry(accountItem).State = EntityState.Modified;
+
+        try
+        {
+            await _context.SaveChangesAsync();
+        }
+        catch (DbUpdateConcurrencyException)
+        {
+            if (!AccountItemExists(id))
+            {
+                return NotFound();
+            }
+            else
+            {
+                throw;
+            }
+        }
+
+        return NoContent();
+    }
+
 }
 
