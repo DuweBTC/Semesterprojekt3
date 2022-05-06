@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/bjarke/Documents/repos/Semesterprojekt3/Database/ServerWebApi/ServerWebApi.csproj": {}
+    "/Users/my-thanh/Desktop/Github/Semesterprojekt3/Database/ServerWebApi/ServerWebApi.csproj": {}
   },
   "projects": {
-    "/home/bjarke/Documents/repos/Semesterprojekt3/Database/ServerWebApi/ServerWebApi.csproj": {
+    "/Users/my-thanh/Desktop/Github/Semesterprojekt3/Database/ServerWebApi/ServerWebApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/bjarke/Documents/repos/Semesterprojekt3/Database/ServerWebApi/ServerWebApi.csproj",
+        "projectUniqueName": "/Users/my-thanh/Desktop/Github/Semesterprojekt3/Database/ServerWebApi/ServerWebApi.csproj",
         "projectName": "ServerWebApi",
-        "projectPath": "/home/bjarke/Documents/repos/Semesterprojekt3/Database/ServerWebApi/ServerWebApi.csproj",
-        "packagesPath": "/home/bjarke/.nuget/packages/",
-        "outputPath": "/home/bjarke/Documents/repos/Semesterprojekt3/Database/ServerWebApi/obj/",
+        "projectPath": "/Users/my-thanh/Desktop/Github/Semesterprojekt3/Database/ServerWebApi/ServerWebApi.csproj",
+        "packagesPath": "/Users/my-thanh/.nuget/packages/",
+        "outputPath": "/Users/my-thanh/Desktop/Github/Semesterprojekt3/Database/ServerWebApi/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/bjarke/.nuget/NuGet/NuGet.Config"
+          "/Users/my-thanh/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -65,7 +65,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.202/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.202/RuntimeIdentifierGraph.json"
         }
       }
     }

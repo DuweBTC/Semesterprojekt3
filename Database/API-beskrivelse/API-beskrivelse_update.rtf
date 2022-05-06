@@ -1,0 +1,592 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2513
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 openapi: 3.0.0\
+servers:\
+  - description: SwaggerHub API Auto Mocking\
+info:\
+  description: This is a API to Automated Drink Machine\
+  version: 1.0.0-oas3\
+  title: Server API\
+  contact:\
+    email: bjarke.k22@gmail.com\
+  license:\
+    name: Apache 2.0\
+    url: http://www.apache.org/licenses/LICENSE-2.0.html\
+tags:\
+  - name: admin\
+    description: Secured Admin-only calls\
+\
+paths:\
+  /account:\
+    get:\
+      tags:\
+        - admin\
+      summary: gets all accounts in database\
+      operationId: getAccounts\
+      description: get all the accounts in database when called\
+      responses:\
+        '200':\
+          description: success\
+          content:\
+            application/json:\
+              schema:\
+                type: array\
+                items:\
+                  $ref: '#/components/schemas/AccountItem'\
+\
+    post:\
+      tags:\
+        - admin\
+      summary: Creates an account\
+      operationId: createAccount\
+      description: Creates an account to the system\
+      parameters:\
+        - in: query\
+          name: account-item\
+          description: pass an account-item with the information required\
+          schema:\
+            type: object\
+            properties:\
+              id:\
+               type: string\
+              name:\
+                type: string\
+              balance:\
+                type: number\
+              guid:\
+                type: string\
+              favourite:\
+                type: string\
+      responses:\
+        '201':\
+          description: account created\
+        '400':\
+          description: invalid argument\
+        '409':\
+          description: ID already exist    \
+      requestBody:\
+        content:\
+          application/json:\
+            schema:\
+              $ref: '#/components/schemas/AccountItem'\
+        description: creates an account\
+    \
+  /account/id:\
+    get:\
+      tags:\
+        - admin\
+      summary: gets specific account\
+      operationId: getAccount\
+      description: gets the specific account we request\
+      parameters:\
+        - in: query\
+          name: id\
+          description: pass id to the account you wish to get\
+          schema:\
+            type: string\
+      responses:\
+        '200':\
+          description: success\
+          content:\
+            application/json:\
+              schema:\
+                type: array\
+                items:\
+                  $ref: '#/components/schemas/AccountItem'\
+        '400':\
+          description: invalid argument\
+        '409':\
+          description: ID doest not exist    \
+    put:\
+      tags:\
+        - admin\
+      summary: updates accounts\
+      operationId: updateInventory\
+      description: |\
+        By passing in the appropriate options, you can search for\
+        available inventory in the system\
+      parameters:\
+        - in: query\
+          name: id\
+          description: pass id to the account you wish to update\
+          schema:\
+            type: string\
+        - in: query\
+          name: account-item\
+          description: pass an account-item with the information required\
+          schema:\
+            type: object\
+            properties:\
+              id:\
+               type: string\
+              name:\
+                type: string\
+              balance:\
+                type: number\
+              guid:\
+                type: string\
+              favourite:\
+                type: string\
+          \
+      responses:\
+        '200':\
+          description: success\
+        '400':\
+          description: invalid argument\
+        '409':\
+          description: ID doest not exist    \
+    delete:\
+      tags:\
+        - admin\
+      summary: deletes the specific account from the database\
+      operationId: delAccount\
+      description: deletes the specific account from the database based on given ID\
+      parameters:\
+      - in: query\
+        name: id\
+        description: pass id to the account you wish to delete\
+        schema:\
+          type: string \
+      responses:\
+        '200':\
+          description: success\
+        '409':\
+          description: ID doest not exist    \
+          \
+  /account/id/balance:\
+    get:\
+      tags:\
+        - admin\
+      summary: gets balance from the specific account \
+      operationId: getBalance\
+      description: gets balance from the specific account ID\
+      parameters:\
+        - in: query\
+          name: id\
+          description: pass id to the account you wish to get\
+          schema:\
+            type: string\
+      responses:\
+        '200':\
+          description: success\
+        '409':\
+          description: ID doest not exist    \
+    put:\
+      tags:\
+        - admin\
+      summary: updates balance from the specific account \
+      operationId: updateBalance\
+      description: updates balance from the specific account ID\
+      parameters:\
+        - in: query\
+          name: id\
+          description: pass id to the account you wish to get\
+          schema:\
+            type: string\
+        - in: query\
+          name: amount\
+          description: pass the amount you wish to update\
+          schema:\
+            type: number\
+      responses:\
+        '200':\
+          description: success\
+        '400':\
+          description: invalid argument\
+        '409':\
+          description: ID doest not exist    \
+  \
+  /drink:\
+    get:\
+      tags:\
+        - admin\
+      summary: gets all drinks in database\
+      operationId: getDrinks\
+      description: Will get all drinks from the database\
+      responses:\
+        '200':\
+          description: search results matching criteria\
+          content:\
+            application/json:\
+              schema:\
+                type: array\
+                items:\
+                  $ref: '#/components/schemas/DrinkItem'\
+        '400':\
+          description: invalid argument\
+    post:\
+      tags:\
+        - admin\
+      summary: creates new drink to database\
+      operationId: createDrink\
+      description: creates new drink to database\
+      parameters:\
+        - in: query\
+          name: drinkItem\
+          description: pass the drink name and ingredients  (WIP)\
+          schema:\
+            type: object\
+            properties:\
+              id:\
+                type: number\
+              title:\
+                type: string\
+              description:\
+                type: string\
+              ingredients:\
+                type: array\
+                items:\
+                  type: object\
+                  properties:\
+                    id:\
+                      type: number\
+                    title:\
+                      type: string\
+                  \
+      responses:\
+        '201':\
+          description: item created\
+          content:\
+            application/json:\
+              schema:\
+                type: array\
+                items:\
+                  oneOf:\
+                  - $ref: '#/components/schemas/DrinkItem'\
+                  - $ref: '#/components/schemas/IngredientDoubleTuple'\
+                  - $ref: '#/components/schemas/Ingredient'\
+                  \
+        '400':\
+          description: invalid argument\
+        '409':\
+          description: ID already exists\
+\
+  /drink/id:\
+    get:\
+      tags:\
+        - admin\
+      summary: gets specific drink in database\
+      operationId: getDrink\
+      description: Will get specific drink from the database based on the given ID\
+      parameters: \
+        - in: query\
+          name: id\
+          schema:\
+            type: number\
+      responses:\
+        '200':\
+          description: success\
+          content:\
+            application/json:\
+              schema:\
+                type: array\
+                items:\
+                  $ref: '#/components/schemas/DrinkItem'\
+        '409':\
+          description: ID does not exist\
+    put:\
+        tags:\
+          - admin\
+        summary: updates specific drink in database\
+        operationId: updateDrink\
+        description: update specific drink from the database based on the given ID\
+        parameters:\
+        - in: query\
+          name: id\
+          description: id of the drink \
+          schema:\
+            type: number\
+        - in: query\
+          name: drinkItem\
+          description: pass the drink name and ingredients  (WIP)\
+          schema:\
+            type: object\
+            properties:\
+              id:\
+                type: number\
+              title:\
+                type: string\
+              description:\
+                type: string\
+              ingredients:\
+                type: array\
+                items:\
+                  type: object\
+                  properties:\
+                    id:\
+                      type: number\
+                    title:\
+                      type: string\
+        responses:\
+          '200':\
+            description: success\
+            content:\
+              application/json:\
+                schema:\
+                  type: array\
+                  items:\
+                    $ref: '#/components/schemas/DrinkItem'\
+          '400':\
+            description: invalid argument\
+          '409':\
+            description: ID does not exist\
+    delete:\
+      tags:\
+        - admin\
+      summary: deletes specific drink in database\
+      operationId: delDrink\
+      description: deletes specific drink from the database based on the given ID\
+      parameters: \
+        - in: query\
+          name: id\
+          schema:\
+            type: number\
+      responses:\
+        '200':\
+          description: success\
+          content:\
+            application/json:\
+              schema:\
+                type: array\
+                items:\
+                  $ref: '#/components/schemas/DrinkItem'\
+        '409':\
+          description: ID does not exist\
+  /container:\
+    get:\
+      tags:\
+        - admin\
+      summary: gets all containers in database\
+      operationId: getContainers\
+      description: gets all containers in database\
+      responses:\
+        '200':\
+          description: success\
+          content:\
+            application/json:\
+              schema:\
+                type: array\
+                items:\
+                  $ref: '#/components/schemas/ContainerItem'\
+\
+    post:\
+      tags:\
+        - admin\
+      summary: creates new container to database\
+      operationId: createContainer\
+      description: creates new container to database\
+      parameters:\
+        - in: query\
+          name: containerItem\
+          description: pass the drink name and ingredients  (WIP)\
+          schema:\
+            type: object\
+            properties:\
+              id:\
+                type: number\
+              place:\
+                type: string\
+              ingredients:\
+                type: array\
+                items:\
+                  type: object\
+                  properties:\
+                    id:\
+                      type: number\
+                    title:\
+                      type: string\
+                  \
+      responses:\
+        '201':\
+          description: item created\
+        '400':\
+          description: invalid argument\
+        '409':\
+          description: ID already exists\
+      requestBody:\
+        content:\
+          application/json:\
+            schema:\
+              $ref: '#/components/schemas/ContainerItem'\
+        description: Inventory item to add\
+  /container/id:\
+    get:\
+      tags:\
+        - admin\
+      summary: gets specific drink in database\
+      operationId: getContainer\
+      description: Will get specific container from the database based on the given ID\
+      parameters: \
+        - in: query\
+          name: id\
+          schema:\
+            type: number\
+      responses:\
+        '200':\
+          description: success\
+          content:\
+            application/json:\
+              schema:\
+                type: array\
+                items:\
+                  $ref: '#/components/schemas/ContainerItem'\
+        '409':\
+          description: ID does not exist\
+    put:\
+        tags:\
+          - admin\
+        summary: updates specific container in database\
+        operationId: updateContainer\
+        description: update specific container from the database based on the given ID\
+        parameters:\
+        - in: query\
+          name: id\
+          description: id of the container \
+          schema:\
+            type: number\
+        - in: query\
+          name: containerItem\
+          description: pass the container name and ingredients  (WIP)\
+          schema:\
+            type: object\
+            properties:\
+              id:\
+                type: number\
+              place:\
+                type: number\
+              ingredients:\
+                type: array\
+                items:\
+                  type: object\
+                  properties:\
+                    id:\
+                      type: number\
+                    title:\
+                      type: string\
+        responses:\
+          '200':\
+            description: success\
+          '400':\
+            description: invalid argument\
+          '409':\
+            description: ID does not exist\
+    delete:\
+      tags:\
+        - admin\
+      summary: deletes a specific container in database\
+      operationId: delContainer\
+      description: deletes a specific container from the database based on the given ID\
+      parameters: \
+        - in: query\
+          name: id\
+          schema:\
+            type: number\
+      responses:\
+        '200':\
+          description: success\
+        '409':\
+          description: ID doest not exist     \
+      \
+components:\
+  schemas:\
+    AccountItem:\
+      type: object\
+      required:\
+        - id\
+        - name\
+        - releaseDate\
+      properties:\
+        id:\
+          type: string\
+          format: uuid\
+          example: d290f1ee-6c54-4b01-90e6-d701748f0851\
+        name:\
+          type: string\
+          example: Bjarke Karlsen\
+        balance:\
+          type: number\
+          example: 16.4\
+        guid:\
+          type: string\
+          format: uuid\
+          example: d290f1ee-6c54-4b01-90e6-d701748f0851\
+        role:\
+          required:\
+            - costumer\
+          properties:\
+            costumer:\
+              type: boolean\
+              example: true\
+            staff:\
+              type: boolean\
+              example: false\
+        favorit:\
+          type: string\
+          example: mojito\
+    DrinkItem:\
+      type: object\
+      required:\
+        - id\
+        - titel\
+        - description\
+        - ingredient\
+      properties:\
+        id:\
+          type: integer\
+          example: 1\
+        titel:\
+          type: string\
+          example: mojito\
+        description:\
+          type: string\
+          example: this drink is a sweet summerdrink\
+        ingredients:\
+          required:\
+            - amount\
+            - ingredient\
+          properties:\
+            amount:\
+              type: integer\
+              example: 42\
+            ingredient:\
+              type: string\
+              example: vodka\
+    ContainerItem:\
+      type: object\
+      required:\
+        - id\
+        - place\
+        - ingredient\
+      properties:\
+        id:\
+          type: integer\
+          example: 1\
+        place:\
+          type: integer\
+          example: 1\
+        ingredient:\
+          type: integer\
+          example: 42\
+    Ingredient:\
+      type: object\
+      properties:\
+        id: \
+          type: integer\
+          example: 1\
+        title: \
+          type: string\
+          example: vodka\
+    IngredientDoubleTuple:\
+      type: object\
+      properties:\
+        ingredient:\
+          type: object\
+          example: ingredient\
+        amount:\
+          type: number\
+          example: 50}
