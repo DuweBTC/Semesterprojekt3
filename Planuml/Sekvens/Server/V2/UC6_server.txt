@@ -1,0 +1,38 @@
+participant "<<controller>>\nUC6" as server
+participant "<<boundary>>\nClient" as client
+database "<<domain>>\nDatabase" as database
+
+
+frame UC6 Server [ADM]
+
+
+client->>server: updateAccount(id): void
+activate server
+server->>database: putAccountItem(id, AccountItem): IActionResult
+activate database
+deactivate server
+
+alt 
+database-->>server: ID does not exist
+deactivate database
+activate server
+server->>client: ID does not exist
+deactivate server
+else 
+activate database
+database-->>server: Invalid argument
+deactivate database
+activate server
+server->>client: Invalid argument
+deactivate server
+else 
+activate database
+database-->>server: Success
+deactivate database
+activate server
+server->>client: Success 
+deactivate server
+end 
+
+
+end 

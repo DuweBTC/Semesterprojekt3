@@ -1,0 +1,60 @@
+participant "<<controller>>\n UC3" as server
+
+participant "<<boundary>>\n Client" as client
+
+database "<<domain>>\n database" as database
+
+
+
+
+
+frame UC3 Server [ADM]
+activate client
+client->>server: getDrinks(): void
+deactivate client
+activate server
+server->>database: getDrinkItem(): List<>
+activate database
+deactivate server
+database-->>server: List<DrinkItems>
+deactivate database
+
+client->>server:getDrinks(id):void
+activate server
+server->>database: getDrinkItemPrice(id): DrinkItem
+activate database
+deactivate server
+
+database-->>server: DrinkItem.price
+deactivate database
+client->>server: changeBalance(amount): void
+activate server
+server->>database: putAccountItemBalance(id, amount): IActionResult
+deactivate server
+
+activate database
+alt 
+
+database-->>server: Bad Request
+deactivate database
+activate server
+server->>client: Bad Request
+deactivate server
+else 
+activate database
+database-->>server: Success
+deactivate database
+activate server
+server->>client: Success
+deactivate server
+client->>server: getDrinks(id): void
+activate server
+server->>database: getDrinkItem(id): DrinkItem
+activate database
+deactivate server
+database-->>server: DrinkItem
+deactivate database
+activate server
+server->>client: DrinkItem
+deactivate server
+end 

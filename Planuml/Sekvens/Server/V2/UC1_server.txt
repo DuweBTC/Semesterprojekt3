@@ -1,0 +1,33 @@
+participant "<<controller>>\nUC1" as controller
+participant "<<boundary>>\nClient" as client
+database "<<domain>>\nDatabase" as database
+
+
+frame UC1 Server [ADM]
+activate client
+client->>controller : getId(id): void
+deactivate client
+activate controller
+controller->>database : getAccountItem(id) : AccountItem
+deactivate controller
+activate database
+ 
+database-->>controller : return NotFound();
+activate controller
+deactivate database
+
+controller->>client: return NotFound()
+
+deactivate controller
+activate client
+
+client->>controller : newAccount(accountItem) : void
+activate controller
+deactivate client
+controller->>database: postAccountItem(accountItem)
+deactivate controller
+
+activate database
+database-->>controller: Success
+
+deactivate database

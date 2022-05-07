@@ -1,0 +1,74 @@
+participant "<<controller>>\nUC5" as server
+participant "<<boundary>>\nClient" as client
+database "<<domain>>\nDatabase" as database
+
+
+frame UC5 Server [ADM]
+activate client
+client->>server: getDrinks(): void
+deactivate client
+activate server
+server->>database: getDrinkItem(): List<>
+activate database
+deactivate server
+database-->>server: List<DrinkItems>
+deactivate database
+alt
+activate client
+
+client->>server: updateDrinks(id): void
+deactivate client
+activate server
+server->>database: putDrinkItem(id, DrinkItem): IActionResult
+activate database
+deactivate server
+
+alt 
+database-->>server: ID does not exist
+deactivate database
+activate server
+server->>client: ID does not exist
+deactivate server
+else 
+activate database
+database-->>server: Success
+deactivate database
+activate server
+server->>client: Success 
+deactivate server
+end 
+else 
+activate client
+client->>server: createDrink(): void
+deactivate client
+activate server
+server->>database: postDrinkItem(DrinkItem): ActionResult
+deactivate server
+activate database
+database-->>server: DrinkItem
+deactivate database
+activate server
+server->>client: DrinkItem
+deactivate server
+else 
+activate client
+client->>server: deleteDrink(): void
+deactivate client
+server->>database: deleteDrinkItem(id): IActionResult
+activate database
+alt
+database-->>server: ID does not exist
+deactivate database
+activate server
+server->>client: ID does not exist
+deactivate server
+else 
+activate database
+database-->>server: Success
+deactivate database
+activate server
+server->>client: Success 
+deactivate server
+end 
+
+end 

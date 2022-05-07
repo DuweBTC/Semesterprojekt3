@@ -1,0 +1,42 @@
+participant "<<controller>>\nUC2" as controller
+participant "<<boundary>>\nClient" as client
+database "<<domain>>\nDatabase" as database
+
+frame UC2 Server [ADM]
+
+activate client
+client->>controller: getAccount(id): void
+deactivate client
+activate controller
+controller->>database: getAccountItem(id): accountItem
+deactivate controller
+activate database
+database-->>controller: accountItem
+deactivate database
+activate controller
+controller->>client: accountItem 
+deactivate controller
+
+client->>controller: changeBalance(amount): void
+
+activate controller
+controller->>database: putAccountItemBalance(id, amount)
+deactivate controller 
+activate database
+
+alt 
+database-->>controller: Success
+
+deactivate database
+activate controller
+controller->>client: Success
+deactivate controller
+else 
+activate database
+database-->>controller: invalid argument
+
+deactivate database
+activate controller
+controller->>client: invalid argument
+deactivate controller
+end 
