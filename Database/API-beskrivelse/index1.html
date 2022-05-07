@@ -1,0 +1,1195 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Server API</title>
+    <style type="text/css">
+      body {
+      	font-family: Trebuchet MS, sans-serif;
+      	font-size: 15px;
+      	color: #444;
+      	margin-right: 24px;
+      }
+      
+      h1	{
+      	font-size: 25px;
+      }
+      h2	{
+      	font-size: 20px;
+      }
+      h3	{
+      	font-size: 16px;
+      	font-weight: bold;
+      }
+      hr	{
+      	height: 1px;
+      	border: 0;
+      	color: #ddd;
+      	background-color: #ddd;
+      }
+      
+      .app-desc {
+        clear: both;
+        margin-left: 20px;
+      }
+      .param-name {
+        width: 100%;
+      }
+      .license-info {
+        margin-left: 20px;
+      }
+      
+      .license-url {
+        margin-left: 20px;
+      }
+      
+      .model {
+        margin: 0 0 0px 20px;
+      }
+      
+      .method {
+        margin-left: 20px;
+      }
+      
+      .method-notes	{
+      	margin: 10px 0 20px 0;
+      	font-size: 90%;
+      	color: #555;
+      }
+      
+      pre {
+        padding: 10px;
+        margin-bottom: 2px;
+      }
+      
+      .http-method {
+       text-transform: uppercase;
+      }
+      
+      pre.get {
+        background-color: #0f6ab4;
+      }
+      
+      pre.post {
+        background-color: #10a54a;
+      }
+      
+      pre.put {
+        background-color: #c5862b;
+      }
+      
+      pre.delete {
+        background-color: #a41e22;
+      }
+      
+      .huge	{
+      	color: #fff;
+      }
+      
+      pre.example {
+        background-color: #f3f3f3;
+        padding: 10px;
+        border: 1px solid #ddd;
+      }
+      
+      code {
+        white-space: pre;
+      }
+      
+      .nickname {
+        font-weight: bold;
+      }
+      
+      .method-path {
+        font-size: 1.5em;
+        background-color: #0f6ab4;
+      }
+      
+      .up {
+        float:right;
+      }
+      
+      .parameter {
+        width: 500px;
+      }
+      
+      .param {
+        width: 500px;
+        padding: 10px 0 0 20px;
+        font-weight: bold;
+      }
+      
+      .param-desc {
+        width: 700px;
+        padding: 0 0 0 20px;
+        color: #777;
+      }
+      
+      .param-type {
+        font-style: italic;
+      }
+      
+      .param-enum-header {
+      width: 700px;
+      padding: 0 0 0 60px;
+      color: #777;
+      font-weight: bold;
+      }
+      
+      .param-enum {
+      width: 700px;
+      padding: 0 0 0 80px;
+      color: #777;
+      font-style: italic;
+      }
+      
+      .field-label {
+        padding: 0;
+        margin: 0;
+        clear: both;
+      }
+      
+      .field-items	{
+      	padding: 0 0 15px 0;
+      	margin-bottom: 15px;
+      }
+      
+      .return-type {
+        clear: both;
+        padding-bottom: 10px;
+      }
+      
+      .param-header {
+        font-weight: bold;
+      }
+      
+      .method-tags {
+        text-align: right;
+      }
+      
+      .method-tag {
+        background: none repeat scroll 0% 0% #24A600;
+        border-radius: 3px;
+        padding: 2px 10px;
+        margin: 2px;
+        color: #FFF;
+        display: inline-block;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+  <h1>Server API</h1>
+    <div class="app-desc">This is a API to Automated Drink Machine</div>
+    <div class="app-desc">More information: <a href="https://helloreverb.com">https://helloreverb.com</a></div>
+    <div class="app-desc">Contact Info: <a href="bjarke.k22@gmail.com">bjarke.k22@gmail.com</a></div>
+    <div class="app-desc">Version: 1.0.0-oas3</div>
+    <div class="app-desc">BasePath:/BjarkeKarlsen/Server/1.0.0</div>
+    <div class="license-info">Apache 2.0</div>
+    <div class="license-url">http://www.apache.org/licenses/LICENSE-2.0.html</div>
+  <h2>Access</h2>
+
+  <h2><a name="__Methods">Methods</a></h2>
+  [ Jump to <a href="#__Models">Models</a> ]
+
+  <h3>Table of Contents </h3>
+  <div class="method-summary"></div>
+  <h4><a href="#Admin">Admin</a></h4>
+  <ul>
+  <li><a href="#createAccount"><code><span class="http-method">post</span> /account</code></a></li>
+  <li><a href="#createContainer"><code><span class="http-method">post</span> /container</code></a></li>
+  <li><a href="#createDrink"><code><span class="http-method">post</span> /drink</code></a></li>
+  <li><a href="#delAccount"><code><span class="http-method">delete</span> /account/id</code></a></li>
+  <li><a href="#delContainer"><code><span class="http-method">delete</span> /container/id</code></a></li>
+  <li><a href="#delDrink"><code><span class="http-method">delete</span> /drink/id</code></a></li>
+  <li><a href="#getAccount"><code><span class="http-method">get</span> /account/id</code></a></li>
+  <li><a href="#getAccounts"><code><span class="http-method">get</span> /account</code></a></li>
+  <li><a href="#getBalance"><code><span class="http-method">get</span> /account/id/balance</code></a></li>
+  <li><a href="#getContainer"><code><span class="http-method">get</span> /container/id</code></a></li>
+  <li><a href="#getContainers"><code><span class="http-method">get</span> /container</code></a></li>
+  <li><a href="#getDrink"><code><span class="http-method">get</span> /drink/id</code></a></li>
+  <li><a href="#getDrinks"><code><span class="http-method">get</span> /drink</code></a></li>
+  <li><a href="#updateBalance"><code><span class="http-method">put</span> /account/id/balance</code></a></li>
+  <li><a href="#updateContainer"><code><span class="http-method">put</span> /container/id</code></a></li>
+  <li><a href="#updateDrink"><code><span class="http-method">put</span> /drink/id</code></a></li>
+  <li><a href="#updateInventory"><code><span class="http-method">put</span> /account/id</code></a></li>
+  </ul>
+
+  <h1><a name="Admin">Admin</a></h1>
+  <div class="method"><a name="createAccount"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /account</code></pre></div>
+    <div class="method-summary">Creates an account (<span class="nickname">createAccount</span>)</div>
+    <div class="method-notes">Creates an account to the system</div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body <a href="#AccountItem">AccountItem</a> (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; creates an account </div>
+                </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">account-item (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; pass an account-item with the information required </div>    </div>  <!-- field-items -->
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">201</h4>
+    account created
+        <a href="#"></a>
+    <h4 class="field-label">400</h4>
+    invalid argument
+        <a href="#"></a>
+    <h4 class="field-label">409</h4>
+    ID already exist
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="createContainer"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /container</code></pre></div>
+    <div class="method-summary">creates new container to database (<span class="nickname">createContainer</span>)</div>
+    <div class="method-notes">creates new container to database</div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body <a href="#ContainerItem">ContainerItem</a> (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; Inventory item to add </div>
+                </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">containerItem (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; pass the drink name and ingredients  (WIP) </div>    </div>  <!-- field-items -->
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">201</h4>
+    item created
+        <a href="#"></a>
+    <h4 class="field-label">400</h4>
+    invalid argument
+        <a href="#"></a>
+    <h4 class="field-label">409</h4>
+    ID already exists
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="createDrink"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /drink</code></pre></div>
+    <div class="method-summary">creates new drink to database (<span class="nickname">createDrink</span>)</div>
+    <div class="method-notes">creates new drink to database</div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">drinkItem (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; pass the drink name and ingredients  (WIP) </div>    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      array[null]
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ "", "" ]</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">201</h4>
+    item created
+        <a href="#array[null]">array[null]</a>
+    <h4 class="field-label">400</h4>
+    invalid argument
+        <a href="#"></a>
+    <h4 class="field-label">409</h4>
+    ID already exists
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="delAccount"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /account/id</code></pre></div>
+    <div class="method-summary">deletes the specific account from the database (<span class="nickname">delAccount</span>)</div>
+    <div class="method-notes">deletes the specific account from the database based on given ID</div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">id (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; pass id to the account you wish to delete </div>    </div>  <!-- field-items -->
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    success
+        <a href="#"></a>
+    <h4 class="field-label">409</h4>
+    ID doest not exist
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="delContainer"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /container/id</code></pre></div>
+    <div class="method-summary">deletes a specific container in database (<span class="nickname">delContainer</span>)</div>
+    <div class="method-notes">deletes a specific container from the database based on the given ID</div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">id (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>    </div>  <!-- field-items -->
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    success
+        <a href="#"></a>
+    <h4 class="field-label">409</h4>
+    ID doest not exist
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="delDrink"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /drink/id</code></pre></div>
+    <div class="method-summary">deletes specific drink in database (<span class="nickname">delDrink</span>)</div>
+    <div class="method-notes">deletes specific drink from the database based on the given ID</div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">id (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>    </div>  <!-- field-items -->
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    success
+        <a href="#"></a>
+    <h4 class="field-label">409</h4>
+    ID does not exist
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getAccount"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /account/id</code></pre></div>
+    <div class="method-summary">gets specific account (<span class="nickname">getAccount</span>)</div>
+    <div class="method-notes">gets the specific account we request</div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">id (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; pass id to the account you wish to get </div>    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#AccountItem">AccountItem</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "role" : {
+    "staff" : false,
+    "costumer" : true
+  },
+  "balance" : 16.4,
+  "name" : "Bjarke Karlsen",
+  "guid" : "d290f1ee-6c54-4b01-90e6-d701748f0851",
+  "id" : "d290f1ee-6c54-4b01-90e6-d701748f0851",
+  "favorit" : "mojito"
+}, {
+  "role" : {
+    "staff" : false,
+    "costumer" : true
+  },
+  "balance" : 16.4,
+  "name" : "Bjarke Karlsen",
+  "guid" : "d290f1ee-6c54-4b01-90e6-d701748f0851",
+  "id" : "d290f1ee-6c54-4b01-90e6-d701748f0851",
+  "favorit" : "mojito"
+} ]</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    success
+        
+    <h4 class="field-label">400</h4>
+    invalid argument
+        <a href="#"></a>
+    <h4 class="field-label">409</h4>
+    ID doest not exist
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getAccounts"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /account</code></pre></div>
+    <div class="method-summary">gets all accounts in database (<span class="nickname">getAccounts</span>)</div>
+    <div class="method-notes">get all the accounts in database when called</div>
+
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#AccountItem">AccountItem</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "role" : {
+    "staff" : false,
+    "costumer" : true
+  },
+  "balance" : 16.4,
+  "name" : "Bjarke Karlsen",
+  "guid" : "d290f1ee-6c54-4b01-90e6-d701748f0851",
+  "id" : "d290f1ee-6c54-4b01-90e6-d701748f0851",
+  "favorit" : "mojito"
+}, {
+  "role" : {
+    "staff" : false,
+    "costumer" : true
+  },
+  "balance" : 16.4,
+  "name" : "Bjarke Karlsen",
+  "guid" : "d290f1ee-6c54-4b01-90e6-d701748f0851",
+  "id" : "d290f1ee-6c54-4b01-90e6-d701748f0851",
+  "favorit" : "mojito"
+} ]</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    success
+        
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getBalance"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /account/id/balance</code></pre></div>
+    <div class="method-summary">gets balance from the specific account (<span class="nickname">getBalance</span>)</div>
+    <div class="method-notes">gets balance from the specific account ID</div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">id (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; pass id to the account you wish to get </div>    </div>  <!-- field-items -->
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    success
+        <a href="#"></a>
+    <h4 class="field-label">409</h4>
+    ID doest not exist
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getContainer"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /container/id</code></pre></div>
+    <div class="method-summary">gets specific drink in database (<span class="nickname">getContainer</span>)</div>
+    <div class="method-notes">Will get specific container from the database based on the given ID</div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">id (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#ContainerItem">ContainerItem</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "ingredient" : 42,
+  "id" : 1,
+  "place" : 1
+}, {
+  "ingredient" : 42,
+  "id" : 1,
+  "place" : 1
+} ]</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    success
+        
+    <h4 class="field-label">409</h4>
+    ID does not exist
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getContainers"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /container</code></pre></div>
+    <div class="method-summary">gets all containers in database (<span class="nickname">getContainers</span>)</div>
+    <div class="method-notes">gets all containers in database</div>
+
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#ContainerItem">ContainerItem</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "ingredient" : 42,
+  "id" : 1,
+  "place" : 1
+}, {
+  "ingredient" : 42,
+  "id" : 1,
+  "place" : 1
+} ]</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    success
+        
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getDrink"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /drink/id</code></pre></div>
+    <div class="method-summary">gets specific drink in database (<span class="nickname">getDrink</span>)</div>
+    <div class="method-notes">Will get specific drink from the database based on the given ID</div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">id (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#DrinkItem">DrinkItem</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "titel" : "mojito",
+  "price" : 30,
+  "description" : "this drink is a sweet summerdrink",
+  "ingredients" : {
+    "amount" : 42,
+    "ingredient" : "vodka"
+  },
+  "id" : 1
+}, {
+  "titel" : "mojito",
+  "price" : 30,
+  "description" : "this drink is a sweet summerdrink",
+  "ingredients" : {
+    "amount" : 42,
+    "ingredient" : "vodka"
+  },
+  "id" : 1
+} ]</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    success
+        
+    <h4 class="field-label">409</h4>
+    ID does not exist
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getDrinks"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /drink</code></pre></div>
+    <div class="method-summary">gets all drinks in database (<span class="nickname">getDrinks</span>)</div>
+    <div class="method-notes">Will get all drinks from the database</div>
+
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#DrinkItem">DrinkItem</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "titel" : "mojito",
+  "price" : 30,
+  "description" : "this drink is a sweet summerdrink",
+  "ingredients" : {
+    "amount" : 42,
+    "ingredient" : "vodka"
+  },
+  "id" : 1
+}, {
+  "titel" : "mojito",
+  "price" : 30,
+  "description" : "this drink is a sweet summerdrink",
+  "ingredients" : {
+    "amount" : 42,
+    "ingredient" : "vodka"
+  },
+  "id" : 1
+} ]</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    search results matching criteria
+        
+    <h4 class="field-label">400</h4>
+    invalid argument
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="updateBalance"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /account/id/balance</code></pre></div>
+    <div class="method-summary">updates balance from the specific account (<span class="nickname">updateBalance</span>)</div>
+    <div class="method-notes">updates balance from the specific account ID</div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">id (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; pass id to the account you wish to get </div>      <div class="param">amount (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; pass the amount you wish to update </div>    </div>  <!-- field-items -->
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    success
+        <a href="#"></a>
+    <h4 class="field-label">400</h4>
+    invalid argument
+        <a href="#"></a>
+    <h4 class="field-label">409</h4>
+    ID doest not exist
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="updateContainer"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /container/id</code></pre></div>
+    <div class="method-summary">updates specific container in database (<span class="nickname">updateContainer</span>)</div>
+    <div class="method-notes">update specific container from the database based on the given ID</div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">id (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; id of the container </div>      <div class="param">containerItem (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; pass the container name and ingredients  (WIP) </div>    </div>  <!-- field-items -->
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    success
+        <a href="#"></a>
+    <h4 class="field-label">400</h4>
+    invalid argument
+        <a href="#"></a>
+    <h4 class="field-label">409</h4>
+    ID does not exist
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="updateDrink"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /drink/id</code></pre></div>
+    <div class="method-summary">updates specific drink in database (<span class="nickname">updateDrink</span>)</div>
+    <div class="method-notes">update specific drink from the database based on the given ID</div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">id (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; id of the drink </div>      <div class="param">drinkItem (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; pass the drink name and ingredients  (WIP) </div>    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#DrinkItem">DrinkItem</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "titel" : "mojito",
+  "price" : 30,
+  "description" : "this drink is a sweet summerdrink",
+  "ingredients" : {
+    "amount" : 42,
+    "ingredient" : "vodka"
+  },
+  "id" : 1
+}, {
+  "titel" : "mojito",
+  "price" : 30,
+  "description" : "this drink is a sweet summerdrink",
+  "ingredients" : {
+    "amount" : 42,
+    "ingredient" : "vodka"
+  },
+  "id" : 1
+} ]</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    success
+        
+    <h4 class="field-label">400</h4>
+    invalid argument
+        <a href="#"></a>
+    <h4 class="field-label">409</h4>
+    ID does not exist
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="updateInventory"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /account/id</code></pre></div>
+    <div class="method-summary">updates accounts (<span class="nickname">updateInventory</span>)</div>
+    <div class="method-notes">By passing in the appropriate options, you can search for
+available inventory in the system</div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">id (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; pass id to the account you wish to update </div>      <div class="param">account-item (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; pass an account-item with the information required </div>    </div>  <!-- field-items -->
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    success
+        <a href="#"></a>
+    <h4 class="field-label">400</h4>
+    invalid argument
+        <a href="#"></a>
+    <h4 class="field-label">409</h4>
+    ID doest not exist
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+
+  <h2><a name="__Models">Models</a></h2>
+  [ Jump to <a href="#__Methods">Methods</a> ]
+
+  <h3>Table of Contents</h3>
+  <ol>
+    <li><a href="#AccountItem"><code>AccountItem</code></a></li>
+    <li><a href="#AccountItem_role"><code>AccountItem_role</code></a></li>
+    <li><a href="#ContainerItem"><code>ContainerItem</code></a></li>
+    <li><a href="#DrinkItem"><code>DrinkItem</code></a></li>
+    <li><a href="#DrinkItem_ingredients"><code>DrinkItem_ingredients</code></a></li>
+    <li><a href="#Ingredient"><code>Ingredient</code></a></li>
+    <li><a href="#IngredientDoubleTuple"><code>IngredientDoubleTuple</code></a></li>
+    <li><a href="#accountitem"><code>accountitem</code></a></li>
+    <li><a href="#accountitem_1"><code>accountitem_1</code></a></li>
+    <li><a href="#containerItem"><code>containerItem</code></a></li>
+    <li><a href="#containerItem_1"><code>containerItem_1</code></a></li>
+    <li><a href="#drinkItem"><code>drinkItem</code></a></li>
+    <li><a href="#drinkItem_1"><code>drinkItem_1</code></a></li>
+    <li><a href="#drink_ingredients"><code>drink_ingredients</code></a></li>
+  </ol>
+
+  <div class="model">
+    <h3><a name="AccountItem"><code>AccountItem</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">id </div><div class="param-desc"><span class="param-type"><a href="#UUID">UUID</a></span>  format: uuid</div>
+          <div class="param-desc"><span class="param-type">example: d290f1ee-6c54-4b01-90e6-d701748f0851</span></div>
+<div class="param">name </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: Bjarke Karlsen</span></div>
+<div class="param">balance (optional)</div><div class="param-desc"><span class="param-type"><a href="#BigDecimal">BigDecimal</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: 16.4</span></div>
+<div class="param">guid (optional)</div><div class="param-desc"><span class="param-type"><a href="#UUID">UUID</a></span>  format: uuid</div>
+          <div class="param-desc"><span class="param-type">example: d290f1ee-6c54-4b01-90e6-d701748f0851</span></div>
+<div class="param">role (optional)</div><div class="param-desc"><span class="param-type"><a href="#AccountItem_role">AccountItem_role</a></span>  </div>
+<div class="param">favorit (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: mojito</span></div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="AccountItem_role"><code>AccountItem_role</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">costumer </div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: true</span></div>
+<div class="param">staff (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: false</span></div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="ContainerItem"><code>ContainerItem</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">id </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: 1</span></div>
+<div class="param">place </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: 1</span></div>
+<div class="param">ingredient </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: 42</span></div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="DrinkItem"><code>DrinkItem</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">id </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: 1</span></div>
+<div class="param">titel </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: mojito</span></div>
+<div class="param">description </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: this drink is a sweet summerdrink</span></div>
+<div class="param">price </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: 30</span></div>
+<div class="param">ingredients (optional)</div><div class="param-desc"><span class="param-type"><a href="#DrinkItem_ingredients">DrinkItem_ingredients</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="DrinkItem_ingredients"><code>DrinkItem_ingredients</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">amount </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: 42</span></div>
+<div class="param">ingredient </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: vodka</span></div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Ingredient"><code>Ingredient</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: 1</span></div>
+<div class="param">title (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: vodka</span></div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="IngredientDoubleTuple"><code>IngredientDoubleTuple</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">ingredient (optional)</div><div class="param-desc"><span class="param-type"><a href="#object">Object</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: ingredient</span></div>
+<div class="param">amount (optional)</div><div class="param-desc"><span class="param-type"><a href="#BigDecimal">BigDecimal</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: 50</span></div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="accountitem"><code>accountitem</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">balance (optional)</div><div class="param-desc"><span class="param-type"><a href="#BigDecimal">BigDecimal</a></span>  </div>
+<div class="param">guid (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">favourite (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="accountitem_1"><code>accountitem_1</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">balance (optional)</div><div class="param-desc"><span class="param-type"><a href="#BigDecimal">BigDecimal</a></span>  </div>
+<div class="param">guid (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">favourite (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="containerItem"><code>containerItem</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#BigDecimal">BigDecimal</a></span>  </div>
+<div class="param">place (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">ingredients (optional)</div><div class="param-desc"><span class="param-type"><a href="#drink_ingredients">array[drink_ingredients]</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="containerItem_1"><code>containerItem_1</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#BigDecimal">BigDecimal</a></span>  </div>
+<div class="param">place (optional)</div><div class="param-desc"><span class="param-type"><a href="#BigDecimal">BigDecimal</a></span>  </div>
+<div class="param">ingredients (optional)</div><div class="param-desc"><span class="param-type"><a href="#drink_ingredients">array[drink_ingredients]</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="drinkItem"><code>drinkItem</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#BigDecimal">BigDecimal</a></span>  </div>
+<div class="param">title (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">description (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">price (optional)</div><div class="param-desc"><span class="param-type"><a href="#BigDecimal">BigDecimal</a></span>  </div>
+<div class="param">ingredients (optional)</div><div class="param-desc"><span class="param-type"><a href="#drink_ingredients">array[drink_ingredients]</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="drinkItem_1"><code>drinkItem_1</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#BigDecimal">BigDecimal</a></span>  </div>
+<div class="param">title (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">description (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">price (optional)</div><div class="param-desc"><span class="param-type"><a href="#BigDecimal">BigDecimal</a></span>  </div>
+<div class="param">ingredients (optional)</div><div class="param-desc"><span class="param-type"><a href="#drink_ingredients">array[drink_ingredients]</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="drink_ingredients"><code>drink_ingredients</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#BigDecimal">BigDecimal</a></span>  </div>
+<div class="param">title (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  </body>
+</html>
