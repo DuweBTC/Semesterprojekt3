@@ -8,6 +8,7 @@
 \f0\fs24 \cf0 openapi: 3.0.0\
 servers:\
   - description: SwaggerHub API Auto Mocking\
+    url: https://virtserver.swaggerhub.com/BjarkeKarlsen/Server/1.0.0\
 info:\
   description: This is a API to Automated Drink Machine\
   version: 1.0.0-oas3\
@@ -238,6 +239,8 @@ paths:\
                 type: string\
               description:\
                 type: string\
+              price:\
+                type: number\
               ingredients:\
                 type: array\
                 items:\
@@ -313,6 +316,8 @@ paths:\
                 type: string\
               description:\
                 type: string\
+              price:\
+                type: number\
               ingredients:\
                 type: array\
                 items:\
@@ -349,12 +354,7 @@ paths:\
       responses:\
         '200':\
           description: success\
-          content:\
-            application/json:\
-              schema:\
-                type: array\
-                items:\
-                  $ref: '#/components/schemas/DrinkItem'\
+\
         '409':\
           description: ID does not exist\
   /container:\
@@ -535,6 +535,7 @@ components:\
         - titel\
         - description\
         - ingredient\
+        - price\
       properties:\
         id:\
           type: integer\
@@ -545,6 +546,9 @@ components:\
         description:\
           type: string\
           example: this drink is a sweet summerdrink\
+        price:\
+          type: integer\
+          example: 30\
         ingredients:\
           required:\
             - amount\
