@@ -1,7 +1,6 @@
-participant "<<controller>>\n UC3" as server
 
 participant "<<boundary>>\n Client" as client
-
+participant "<<controller>>\n UC3" as server
 database "<<domain>>\n database" as database
 
 

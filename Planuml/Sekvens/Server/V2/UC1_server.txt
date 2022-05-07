@@ -1,5 +1,5 @@
-participant "<<controller>>\nUC1" as controller
 participant "<<boundary>>\nClient" as client
+participant "<<controller>>\nUC1" as controller
 database "<<domain>>\nDatabase" as database
 
 

@@ -1,5 +1,5 @@
-participant "<<controller>>\nUC2" as controller
 participant "<<boundary>>\nClient" as client
+participant "<<controller>>\nUC2" as controller
 database "<<domain>>\nDatabase" as database
 
 frame UC2 Server [ADM]
