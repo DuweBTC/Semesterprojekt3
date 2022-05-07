@@ -20,7 +20,7 @@ deactivate controller
 client->>controller: changeBalance(amount): void
 
 activate controller
-controller->>database: putAccountItemBalance(id, amount)
+controller->>database: putAccountItemBalance(id, amount): IActionResult
 deactivate controller 
 activate database
 
