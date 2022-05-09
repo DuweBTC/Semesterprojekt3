@@ -32,7 +32,7 @@ paths:\
       description: get all the accounts in database when called\
       responses:\
         '200':\
-          description: success\
+          description: Success\
           content:\
             application/json:\
               schema:\
@@ -64,12 +64,12 @@ paths:\
               favourite:\
                 type: string\
       responses:\
-        '201':\
-          description: account created\
+        '200':\
+          description: Success\
         '400':\
-          description: invalid argument\
-        '409':\
-          description: ID already exist    \
+          description: Invalid argument\
+        '410':\
+          description: ID already exists    \
       requestBody:\
         content:\
           application/json:\
@@ -92,7 +92,7 @@ paths:\
             type: string\
       responses:\
         '200':\
-          description: success\
+          description: Success\
           content:\
             application/json:\
               schema:\
@@ -100,9 +100,9 @@ paths:\
                 items:\
                   $ref: '#/components/schemas/AccountItem'\
         '400':\
-          description: invalid argument\
+          description: Invalid argument\
         '409':\
-          description: ID doest not exist    \
+          description: ID does not exist    \
     put:\
       tags:\
         - admin\
@@ -136,9 +136,9 @@ paths:\
           \
       responses:\
         '200':\
-          description: success\
+          description: Success\
         '400':\
-          description: invalid argument\
+          description: Invalid argument\
         '409':\
           description: ID doest not exist    \
     delete:\
@@ -155,7 +155,7 @@ paths:\
           type: string \
       responses:\
         '200':\
-          description: success\
+          description: Success\
         '409':\
           description: ID doest not exist    \
           \
@@ -174,7 +174,7 @@ paths:\
             type: string\
       responses:\
         '200':\
-          description: success\
+          description: Success\
         '409':\
           description: ID doest not exist    \
     put:\
@@ -196,9 +196,9 @@ paths:\
             type: number\
       responses:\
         '200':\
-          description: success\
+          description: Success\
         '400':\
-          description: invalid argument\
+          description: Invalid argument\
         '409':\
           description: ID doest not exist    \
   \
@@ -219,7 +219,7 @@ paths:\
                 items:\
                   $ref: '#/components/schemas/DrinkItem'\
         '400':\
-          description: invalid argument\
+          description: Invalid argument\
     post:\
       tags:\
         - admin\
@@ -252,8 +252,8 @@ paths:\
                       type: string\
                   \
       responses:\
-        '201':\
-          description: item created\
+        '200':\
+          description: Success\
           content:\
             application/json:\
               schema:\
@@ -265,8 +265,8 @@ paths:\
                   - $ref: '#/components/schemas/Ingredient'\
                   \
         '400':\
-          description: invalid argument\
-        '409':\
+          description: Invalid argument\
+        '410':\
           description: ID already exists\
 \
   /drink/id:\
@@ -283,7 +283,7 @@ paths:\
             type: number\
       responses:\
         '200':\
-          description: success\
+          description: Success\
           content:\
             application/json:\
               schema:\
@@ -329,7 +329,7 @@ paths:\
                       type: string\
         responses:\
           '200':\
-            description: success\
+            description: Success\
             content:\
               application/json:\
                 schema:\
@@ -353,7 +353,7 @@ paths:\
             type: number\
       responses:\
         '200':\
-          description: success\
+          description: Success\
 \
         '409':\
           description: ID does not exist\
@@ -366,7 +366,7 @@ paths:\
       description: gets all containers in database\
       responses:\
         '200':\
-          description: success\
+          description: Success\
           content:\
             application/json:\
               schema:\
@@ -402,11 +402,11 @@ paths:\
                       type: string\
                   \
       responses:\
-        '201':\
-          description: item created\
+        '200':\
+          description: Success\
         '400':\
-          description: invalid argument\
-        '409':\
+          description: Invalid argument\
+        '410':\
           description: ID already exists\
       requestBody:\
         content:\
@@ -428,7 +428,7 @@ paths:\
             type: number\
       responses:\
         '200':\
-          description: success\
+          description: Success\
           content:\
             application/json:\
               schema:\
@@ -470,9 +470,9 @@ paths:\
                       type: string\
         responses:\
           '200':\
-            description: success\
+            description: Success\
           '400':\
-            description: invalid argument\
+            description: Invalid argument\
           '409':\
             description: ID does not exist\
     delete:\
@@ -488,7 +488,7 @@ paths:\
             type: number\
       responses:\
         '200':\
-          description: success\
+          description: Success\
         '409':\
           description: ID doest not exist     \
       \
