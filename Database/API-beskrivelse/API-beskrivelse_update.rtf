@@ -64,12 +64,12 @@ paths:\
               favourite:\
                 type: string\
       responses:\
-        '200':\
-          description: Success\
+        '201':\
+          description: Created\
         '400':\
-          description: Invalid argument\
-        '410':\
-          description: ID already exists    \
+          description: BadRequest\
+        '405':\
+          description: MethodNotAllowed   \
       requestBody:\
         content:\
           application/json:\
@@ -100,9 +100,9 @@ paths:\
                 items:\
                   $ref: '#/components/schemas/AccountItem'\
         '400':\
-          description: Invalid argument\
-        '409':\
-          description: ID does not exist    \
+          description: BadRequest\
+        '404':\
+          description: Not Found    \
     put:\
       tags:\
         - admin\
@@ -138,9 +138,9 @@ paths:\
         '200':\
           description: Success\
         '400':\
-          description: Invalid argument\
-        '409':\
-          description: ID doest not exist    \
+          description: BadRequest\
+        '404':\
+          description: Not Found    \
     delete:\
       tags:\
         - admin\
@@ -156,8 +156,8 @@ paths:\
       responses:\
         '200':\
           description: Success\
-        '409':\
-          description: ID doest not exist    \
+        '404':\
+          description: Not Found  \
           \
   /account/id/balance:\
     get:\
@@ -175,8 +175,8 @@ paths:\
       responses:\
         '200':\
           description: Success\
-        '409':\
-          description: ID doest not exist    \
+        '404':\
+          description: Not Found   \
     put:\
       tags:\
         - admin\
@@ -198,9 +198,9 @@ paths:\
         '200':\
           description: Success\
         '400':\
-          description: Invalid argument\
-        '409':\
-          description: ID doest not exist    \
+          description: BadRequest\
+        '404':\
+          description: Not Found  \
   \
   /drink:\
     get:\
@@ -219,7 +219,7 @@ paths:\
                 items:\
                   $ref: '#/components/schemas/DrinkItem'\
         '400':\
-          description: Invalid argument\
+          description: BadRequest\
     post:\
       tags:\
         - admin\
@@ -252,8 +252,8 @@ paths:\
                       type: string\
                   \
       responses:\
-        '200':\
-          description: Success\
+        '201':\
+          description: Created\
           content:\
             application/json:\
               schema:\
@@ -265,9 +265,9 @@ paths:\
                   - $ref: '#/components/schemas/Ingredient'\
                   \
         '400':\
-          description: Invalid argument\
-        '410':\
-          description: ID already exists\
+          description: BadRequest\
+        '405':\
+          description: MethodNotAllowed\
 \
   /drink/id:\
     get:\
@@ -290,8 +290,8 @@ paths:\
                 type: array\
                 items:\
                   $ref: '#/components/schemas/DrinkItem'\
-        '409':\
-          description: ID does not exist\
+        '404':\
+          description: Not Found\
     put:\
         tags:\
           - admin\
@@ -337,9 +337,9 @@ paths:\
                   items:\
                     $ref: '#/components/schemas/DrinkItem'\
           '400':\
-            description: invalid argument\
-          '409':\
-            description: ID does not exist\
+            description: BadRequest\
+          '404':\
+            description: Not Found\
     delete:\
       tags:\
         - admin\
@@ -355,8 +355,8 @@ paths:\
         '200':\
           description: Success\
 \
-        '409':\
-          description: ID does not exist\
+        '404':\
+          description: Not Found\
   /container:\
     get:\
       tags:\
@@ -402,12 +402,12 @@ paths:\
                       type: string\
                   \
       responses:\
-        '200':\
-          description: Success\
+        '201':\
+          description: Created\
         '400':\
-          description: Invalid argument\
-        '410':\
-          description: ID already exists\
+          description: BadRequest\
+        '405':\
+          description: MethodNotAllowed\
       requestBody:\
         content:\
           application/json:\
@@ -435,8 +435,8 @@ paths:\
                 type: array\
                 items:\
                   $ref: '#/components/schemas/ContainerItem'\
-        '409':\
-          description: ID does not exist\
+        '404':\
+          description: Not Found\
     put:\
         tags:\
           - admin\
@@ -472,9 +472,9 @@ paths:\
           '200':\
             description: Success\
           '400':\
-            description: Invalid argument\
-          '409':\
-            description: ID does not exist\
+            description: BadRequest\
+          '404':\
+            description: Not Found\
     delete:\
       tags:\
         - admin\
@@ -489,8 +489,8 @@ paths:\
       responses:\
         '200':\
           description: Success\
-        '409':\
-          description: ID doest not exist     \
+        '404':\
+          description: Not Found    \
       \
 components:\
   schemas:\
