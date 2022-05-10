@@ -41,7 +41,7 @@ public class ContainerController : ControllerBase
     [HttpPut("{id}")]
     public async Task<IActionResult> PutContainerItem(Guid id, ContainerItem ContainerItem)
     {
-        if (id != ContainerItem.Id)
+        if (id != ContainerItem.ContainerId)
         {
             return BadRequest();
         }
@@ -74,7 +74,7 @@ public class ContainerController : ControllerBase
         _context.ContainerItems.Add(ContainerItem);
         await _context.SaveChangesAsync();
 
-        return CreatedAtAction(nameof(GetContainerItem), new { id = ContainerItem.Id }, ContainerItem);
+        return CreatedAtAction(nameof(GetContainerItem), new { id = ContainerItem.ContainerId }, ContainerItem);
 
     }
 
@@ -97,7 +97,7 @@ public class ContainerController : ControllerBase
 
     private bool ContainerItemExists(Guid id)
     {
-        return _context.ContainerItems.Any(e => e.Id == id);
+        return _context.ContainerItems.Any(e => e.ContainerId == id);
     }
 
 }

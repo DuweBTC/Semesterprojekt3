@@ -41,7 +41,7 @@ public class AccountController : ControllerBase
     [HttpPut("{id}")]
     public async Task<IActionResult> PutAccountItem(Guid id, AccountItem accountItem)
     {
-        if (id != accountItem.Id)
+        if (id != accountItem.AccountId)
         {
             return BadRequest();
         }
@@ -74,7 +74,7 @@ public class AccountController : ControllerBase
         _context.AccountItems.Add(accountItem);
         await _context.SaveChangesAsync();
 
-        return CreatedAtAction(nameof(GetAccountItem), new { id = accountItem.Id }, accountItem);
+        return CreatedAtAction(nameof(GetAccountItem), new { id = accountItem.AccountId }, accountItem);
 
     }
 
@@ -97,7 +97,7 @@ public class AccountController : ControllerBase
 
     private bool AccountItemExists(Guid id)
     {
-        return _context.AccountItems.Any(e => e.Id == id);
+        return _context.AccountItems.Any(e => e.AccountId == id);
     }
 
     // GET: api/Account/{id}/Balance

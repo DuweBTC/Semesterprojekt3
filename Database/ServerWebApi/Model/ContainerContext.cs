@@ -12,4 +12,10 @@ public class ContainerContext : DbContext
 
     public DbSet<ContainerItem> ContainerItems { get; set; } = null!;
 
+    // protected override void OnModelCreating(ModelBuilder model)
+    // {
+    //     model.Entity<ContainerItem>()
+    //         .Property(b => b.ingredient)
+    //         .IsRequired();
+    // }
 }

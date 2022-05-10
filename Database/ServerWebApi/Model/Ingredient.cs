@@ -2,8 +2,8 @@ namespace Ingredient.Model;
 using DrinkApi.Models;
 public class Ingredient
 {
-    public int Id { get; set; }
-    public string? titel { get; set; }
+    public int IngredientId { get; set; }
+    public string? Titel { get; set; }
 
     //public DrinkItem DrinkItem { get; set; }
 

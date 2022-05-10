@@ -5,13 +5,13 @@ using Ingredient.Model;
 //[Keyless]
 public class DrinkItem
 {
-    public Guid titel { get; set; }
+    public Guid Titel { get; set; }
 
-    public int Id { get; set; }
+    public int DrinkId { get; set; }
 
-    public string? description { get; set; }
+    public string? Description { get; set; }
 
-    public double price { get; set; }
+    public double Price { get; set; }
 
     // Initialize to prevent NullReferenceException
     public List<RecipeItem> ingredients { get; set; } = new List<RecipeItem>();

@@ -3,11 +3,11 @@ namespace ContainerApi.Models;
 using Ingredient.Model;
 public class ContainerItem
 {
-    public Guid Id { get; set; }
+    public Guid ContainerId { get; set; }
 
-    public int place { get; set; }
+    public int Place { get; set; }
 
-    public Ingredient ingredient { get; set; } = default!;
+    public Ingredient Ingredient { get; set; } = default!;
 
 
     //public List<Ingredient>[] ingredient { get; set; } = default!;

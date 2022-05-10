@@ -41,7 +41,7 @@ public class DrinkController : ControllerBase
     [HttpPut("{id}")]
     public async Task<IActionResult> PutDrinkItem(int id, DrinkItem DrinkItem)
     {
-        if (id != DrinkItem.Id)
+        if (id != DrinkItem.DrinkId)
         {
             return BadRequest();
         }
@@ -76,7 +76,7 @@ public class DrinkController : ControllerBase
         _context.DrinkItems.Add(DrinkItem);
         await _context.SaveChangesAsync();
 
-        return CreatedAtAction(nameof(GetDrinkItem), new { id = DrinkItem.Id }, DrinkItem);
+        return CreatedAtAction(nameof(GetDrinkItem), new { id = DrinkItem.DrinkId }, DrinkItem);
 
     }
 
@@ -99,7 +99,7 @@ public class DrinkController : ControllerBase
 
     private bool DrinkItemExists(int id)
     {
-        return _context.DrinkItems.Any(e => e.Id == id);
+        return _context.DrinkItems.Any(e => e.DrinkId == id);
     }
 
 

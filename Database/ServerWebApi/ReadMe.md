@@ -29,7 +29,8 @@ After that you can run the Server with the command
 dotnet ServerWebApi.dll
 ```
 The IP-adress for the Server is:
-https://10.77.77.77:5001/{Endpoint}/{Action]
+https://{host}:{port}/{Endpoint}/{Action]
+https://10.77.77.77:5001/Account
 
 Endpoint: 
 * Account
