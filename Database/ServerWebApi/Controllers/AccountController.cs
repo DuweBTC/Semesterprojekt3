@@ -39,7 +39,7 @@ public class AccountController : ControllerBase
 
     //PUT: api/Account/5
     [HttpPut("{id}")]
-    public async Task<IActionResult> PutAccountItem(string id, AccountItem accountItem)
+    public async Task<IActionResult> PutAccountItem(Guid id, AccountItem accountItem)
     {
         if (id != accountItem.Id)
         {
@@ -95,7 +95,7 @@ public class AccountController : ControllerBase
     }
 
 
-    private bool AccountItemExists(string id)
+    private bool AccountItemExists(Guid id)
     {
         return _context.AccountItems.Any(e => e.Id == id);
     }
@@ -115,7 +115,7 @@ public class AccountController : ControllerBase
 
     //PUT: /Account/{id}/Balance/
     [HttpPut("{id}/Balance/")]
-    public async Task<IActionResult> PutAccountItemBalance(string id, double amount)
+    public async Task<IActionResult> PutAccountItemBalance(Guid id, double amount)
     {
         var accountItem = await _context.AccountItems.FindAsync(id);
         if (accountItem == null)

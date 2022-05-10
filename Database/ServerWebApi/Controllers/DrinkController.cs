@@ -71,6 +71,8 @@ public class DrinkController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<DrinkItem>> PostDrinkItem(DrinkItem DrinkItem)
     {
+
+        //var Ingredient = Tuple.Create(drinkItem.ingredients.Item1, drinkItem.ingredients.Item2));
         _context.DrinkItems.Add(DrinkItem);
         await _context.SaveChangesAsync();
 
@@ -99,6 +101,7 @@ public class DrinkController : ControllerBase
     {
         return _context.DrinkItems.Any(e => e.Id == id);
     }
+
 
 }
 

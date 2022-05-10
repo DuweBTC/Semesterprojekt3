@@ -1,20 +1,12 @@
 namespace AccountApi.Models;
-
+using DrinkApi.Models;
 public class AccountItem
 {
-    public string? Id { get; set; }
+    public Guid Id { get; set; }
 
-    public string? Name { get; set; }
-
-    public string? Email { get; set; }
+    public string Name { get; set; } = String.Empty;
     public double Balance { get; set; }
 
-    public string? dateCreated { get; set; }
-
-    public string? guid { get; set; }
-
-
-    public string? favourit { get; set; }
-
+    public DrinkItem? favourit { get; set; }
 
 }
