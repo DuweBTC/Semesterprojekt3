@@ -20,14 +20,18 @@ public class RecipeController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<IEnumerable<RecipeItem>>> GetRecipeItem()
     {
-        return await _context.RecipeItems.ToListAsync();
+        return await _context.RecipeItems
+                                .Include(item => item.Ingredient)
+                                .ToListAsync();
     }
 
     // GET: api/Recipe/5
     [HttpGet("{id}")]
-    public async Task<ActionResult<RecipeItem>> GetRecipeItem(string id)
+    public async Task<ActionResult<RecipeItem>> GetRecipeItem(int id)
     {
-        var RecipeItem = await _context.RecipeItems.FindAsync(id);
+        var RecipeItem = await _context.RecipeItems
+                                            .Include(item => item.Ingredient)
+                                            .FirstOrDefaultAsync(item => item.RecipeItemId == id);
 
         if (RecipeItem == null)
         {
@@ -46,7 +50,7 @@ public class RecipeController : ControllerBase
         _context.RecipeItems.Add(RecipeItem);
         await _context.SaveChangesAsync();
 
-        return CreatedAtAction(nameof(GetRecipeItem), new { ingredients = RecipeItem.Ingredients }, RecipeItem);
+        return CreatedAtAction(nameof(GetRecipeItem), new { ingredients = RecipeItem.Ingredient }, RecipeItem);
 
     }
     /*

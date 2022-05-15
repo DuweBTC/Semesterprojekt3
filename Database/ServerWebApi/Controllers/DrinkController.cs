@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using DrinkApi.Models;
+using RecipeApi.Models;
 
 namespace DrinkApi.Controllers;
 
@@ -20,7 +21,7 @@ public class DrinkController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<IEnumerable<DrinkItem>>> GetDrinkItem()
     {
-        return await _context.DrinkItems.ToListAsync();
+        return await _context.DrinkItems.Include(item => item.ingredients).ToListAsync();
     }
 
     // GET: api/Drink/5

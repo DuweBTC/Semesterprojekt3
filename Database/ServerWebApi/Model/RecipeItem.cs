@@ -3,14 +3,14 @@ using Ingredient.Model;
 
 public class RecipeItem
 {
-    public int RecipeId { get; set; }
-    public List<Ingredient> Ingredients { get; set; } = new();
+
+    public int RecipeItemId { get; set; }
+    public IngredientItem? Ingredient { get; set; }
     public double Amount { get; set; }
 
-    /*
-    public RecipeItem(Ingredient ingredient, double amount)
-    {
-        Ingredient = ingredient;
-        Amount = amount;
-    }*/
+    // public RecipeItem(Ingredient ingredient, double amount)
+    // {
+    //     Ingredient = ingredient;
+    //     Amount = amount;
+    // }
 };

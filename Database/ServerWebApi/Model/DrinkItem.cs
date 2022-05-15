@@ -5,7 +5,7 @@ using Ingredient.Model;
 //[Keyless]
 public class DrinkItem
 {
-    public Guid Titel { get; set; }
+    public string Titel { get; set; } = default!;
 
     public int DrinkId { get; set; }
 
