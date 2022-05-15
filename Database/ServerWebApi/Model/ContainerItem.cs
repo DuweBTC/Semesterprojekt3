@@ -7,7 +7,7 @@ public class ContainerItem
 
     public int Place { get; set; }
 
-    public Ingredient Ingredient { get; set; } = default!;
+    public IngredientItem Ingredient { get; set; } = default!;
 
 
     //public List<Ingredient>[] ingredient { get; set; } = default!;

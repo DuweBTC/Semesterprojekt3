@@ -22,19 +22,14 @@ public class DrinkContext : DbContext
                                                      //.HasForeignKey(c => c.Id);
     }
     */
-    /*
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder
             .Entity<DrinkItem>(
-                eb =>
+                item =>
                 {
-                    eb.HasNoKey();
-                    eb.IndexerProperty<int>("Id");
-                    eb.IndexerProperty<string>("titel").IsRequired();
-                    //eb.ToView("View_BlogPostCounts");
-                    //eb.Property(v => v.BlogName).HasColumnName("Name");
+                    item.HasKey("DrinkId");
                 });
     }
-    */
 }
