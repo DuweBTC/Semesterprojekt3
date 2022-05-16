@@ -12,4 +12,21 @@
 
 #include "LiquidSensor.h"
 
+void LiquidLED()
+{
+    
+}
+void spiWarning()
+{
+    
+}
+
+CY_ISR(ISR_LiquidSensor_handler)
+{
+    UART_1_PutString("Liquid Sensor Interrupt Happened");
+    /* Kode til LED her */
+    
+    /* SPI kode til at skrive til client her */ 
+}
+
 /* [] END OF FILE */

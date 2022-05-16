@@ -13,7 +13,6 @@
 #include "project.h"
 #include "LiquidSensor.h"
 
-CY_ISR_PROTO(ISR_LiquidSensor_handler);
 CY_ISR_PROTO(ISR_UART_rx_handler);
 
 int main(void)
@@ -29,11 +28,6 @@ int main(void)
     {
         /* Place your application code here. */
     }
-}
-
-CY_ISR(ISR_LiquidSensor_handler)
-{
-    UART_1_PutString("Interrupt Happened");
 }
 
 // Interrupt funcation for writing in terminal

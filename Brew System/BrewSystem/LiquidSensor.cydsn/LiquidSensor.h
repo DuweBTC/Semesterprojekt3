@@ -12,9 +12,9 @@
 #pragma once
 #include "project.h"
 
+CY_ISR_PROTO(ISR_LiquidSensor_handler);
 
-
-
-
+void LiquidLED();
+void spiWarning();
 
 /* [] END OF FILE */
