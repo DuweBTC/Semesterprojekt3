@@ -1,0 +1,18 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>Baggrund_Interface.qml</file>
+        <file>Studiekort.qml</file>
+        <file>MainScreen.qml</file>
+        <file>billeder/cocktail.jfif</file>
+        <file>billeder/gintonic.jfif</file>
+        <file>billeder/hej.png</file>
+        <file>billeder/romcola.jpg</file>
+        <file>Add_Funds.qml</file>
+        <file>DispensererDrink.qml</file>
+        <file>INSUFFICIENT_FUNDS.qml</file>
+        <file>DrinkDone.qml</file>
+    </qresource>
+    <qresource prefix="/files"/>
+    <qresource prefix="/filer"/>
+</RCC>
