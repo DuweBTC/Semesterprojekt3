@@ -15,9 +15,10 @@
 
 /* Public Functions */
 void openValveNr(int valveNumber);
-void closeValveNr(int valveNumber);
+void closeValveNr();
 
 /* Private Functions */
+
 
 
 /* [] END OF FILE */

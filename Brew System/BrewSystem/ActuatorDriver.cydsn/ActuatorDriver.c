@@ -16,16 +16,45 @@ void openValveNr(int valveNumber)
 {
     switch(valveNumber)
     {
-        
+        case '1':
+        {
+            v1_Write(1);
+            v2_Write(0);
+            v3_Write(0);
+            v4_Write(0);
+        }
+        case '2':
+        {
+            v1_Write(0);
+            v2_Write(1);
+            v3_Write(0);
+            v4_Write(0);
+        }
+        case '3':
+        {
+            v1_Write(0);
+            v2_Write(0);
+            v3_Write(1);
+            v4_Write(0);
+        }
+        case '4':
+        {
+            v1_Write(0);
+            v2_Write(0);
+            v3_Write(0);
+            v4_Write(1);
+        }
     }
 }
 
-void closeValveNr(int valveNumber)
+void closeValveNr()
 {
-    switch(valveNumber)
-    {
-        
-    }   
+    v1_Write(0);
+    v2_Write(0);
+    v3_Write(0);
+    v4_Write(0);
 }
+
+
 
 /* [] END OF FILE */
