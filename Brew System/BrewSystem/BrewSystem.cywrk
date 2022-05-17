@@ -3,7 +3,7 @@
 <!--This file is machine generated and read. It is not intended to be edited by hand.-->
 <!--Due to this, there is no schema for this file.-->
 <CyGuid_2867d519-54d2-4c01-9830-c51cb08bc3dd type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtWorkspaceSerialize" version="5" xml_contents_version="3" name="BrewSystem" persistent="BrewSystem.cywrk" platform="NOT_USED">
-<current_project name=".\TestBrewSystem.cydsn\TestBrewSystem.cyprj" />
+<current_project name=".\WeightSensor.cydsn\WeightSensor.cyprj" />
 <wrkspc_folders />
 <files />
 <projects>
@@ -11,6 +11,7 @@
 <v>.\MergedBrewSystem.cydsn\MergedBrewSystem.cyprj</v>
 <v>.\ActuatorDriver.cydsn\ActuatorDriver.cyprj</v>
 <v>.\TestBrewSystem.cydsn\TestBrewSystem.cyprj</v>
+<v>.\WeightSensor.cydsn\WeightSensor.cyprj</v>
 </projects>
 <workspace_id v="f3dff450-1715-49b9-a61e-4bef60c0534d" />
 <WriteAppVersionLastSavedWith v="4.4.0.80" />
