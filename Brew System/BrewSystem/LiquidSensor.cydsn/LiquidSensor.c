@@ -12,6 +12,11 @@
 
 #include "LiquidSensor.h"
 
+/* Prototyper */
+static void LiquidLEDOn();
+static void LiquidLEDoff();
+static void spiWarning();
+
 bool checkLiquid()
 {
     bool checkLiquid = false;
@@ -26,8 +31,16 @@ bool checkLiquid()
     if (liquid == 0)
     {
         UART_1_PutString("Empty\n");
+        LiquidLEDOn();
         checkLiquid = false ;
     }
+    
+    while ( LiquidSensorInput_Read() != 1 )
+    {
+        /* Do nothing just wait */
+    }
+    
+    LiquidLEDoff();
     
     return checkLiquid;
 }
@@ -35,7 +48,12 @@ bool checkLiquid()
 
 static void LiquidLEDOn()
 {
-    //LED_Pin_Write(1);
+    LiquidLED_Write(1); // Turn on warning LED
+}
+
+static void LiquidLEDoff()
+{
+    LiquidLED_Write(0); // Turn off warning LED
 }
 
 static void spiWarning()
