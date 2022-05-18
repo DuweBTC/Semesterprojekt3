@@ -17,7 +17,6 @@ CY_ISR_PROTO(ISR_LiquidSensor_handler);
 /* Public Functions */
 
 /* Private Functions */
-static void LiquidLED(); // function for turn on warning LED.
-static void spiWarning(); // funtion for spi warning to client.
+
 
 /* [] END OF FILE */

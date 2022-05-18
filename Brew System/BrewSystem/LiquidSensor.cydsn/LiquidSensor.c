@@ -12,9 +12,9 @@
 
 #include "LiquidSensor.h"
 
-static void LiquidLED()
+static void LiquidLEDOn()
 {
-    
+    LED_Pin_Write(1);
 }
 
 static void spiWarning()
@@ -25,7 +25,7 @@ static void spiWarning()
 CY_ISR(ISR_LiquidSensor_handler)
 {
     UART_1_PutString("Liquid Sensor Interrupt Happened");
-    LiquidLED();    // turn on warning led.
+    LiquidLEDOn();    // turn on warning led.
     spiWarning();   // send warning message to client.
 }
 
