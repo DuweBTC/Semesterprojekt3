@@ -6,8 +6,8 @@ Brew System består af nogle delsystem disse delsystemer og deres overordnet fun
 | Delsystem navn | Funktionalitet |
 |----------------|----------------|
 | ActuatorDriver | ActuatorDriver har til formål at åbne og lukke for vores ventiler. |
-| LiquidSensor | LiquidSensors formål er at holde øje med om der er væske i alkohol/blanding beholderne. |
-| WeightSensor | WeightSensor har til formål at se om der er blevet placeret et glas af brugeren, sådan vi ikke starter med at blande en drink uden der er et glas |
+| LiquidSensor   | LiquidSensors formål er at holde øje med om der er væske i alkohol/blanding beholderne. |
+| WeightSensor   | WeightSensor har til formål at se om der er blevet placeret et glas af brugeren, sådan vi ikke starter med at blande en drink uden der er et glas |
 
 ## ActuatorDriver
 ### Funktioner
@@ -16,6 +16,7 @@ Brew System består af nogle delsystem disse delsystemer og deres overordnet fun
 |---------------|------------|------------|------------------|
 | openValveNr | void | int valveNumber | formålet med denne funktion er at kunne åbne for en bestemt ventil |
 | CloseValve | void | | Formålet med denne funktion er at lukke alle valves |
+
 #### Private funktioner
 |Funktions navn | Retur Type | Parametere | Funktions formål |
 |---------------|------------|------------|------------------|
@@ -32,6 +33,8 @@ Hardwareen der skal bruges til ActuatorDriver delen, 4 x WPM422 - Water Valve, 8
 #### Private funktioner
 |Funktions navn | Retur Type | Parametere | Funktions formål |
 |---------------|------------|------------|------------------|
+| LiquidLEDOn | void | | Denne funktion har til formål at tænde for en advarsel LED som indikere at der er en beholder der er tom |
+| LiquidLEDoff | void | | Denne funktion har til formål at slukke for advarsels LED'en. | 
 
 ### Hardware
 Hardwaren til LiquidSensor er Non-contact Liquid Level Sensor XKC Y25-T12V SKU SEN0204. Dem skal der bruges 4 af (I forbindellse med udarbejdelsen af projekt bliver der kun brugt 1, da de er små dyre, og derfor bruger vi en til at implemtere og teste, og derefter ville det være let at tilføjde de sidste 3 sensore).
@@ -41,6 +44,7 @@ Hardwaren til LiquidSensor er Non-contact Liquid Level Sensor XKC Y25-T12V SKU S
 #### Public Funktioner
 |Funktions navn | Retur Type | Parametere | Funktions formål |
 |---------------|------------|------------|------------------|
+
 #### Private funktioner
 |Funktions navn | Retur Type | Parametere | Funktions formål |
 |---------------|------------|------------|------------------|
