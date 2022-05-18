@@ -11,11 +11,10 @@
 */
 #pragma once
 #include "project.h"
-
-CY_ISR_PROTO(ISR_LiquidSensor_handler);
+#include <stdbool.h>
 
 /* Public Functions */
-
+bool checkLiquid();
 /* Private Functions */
 
 

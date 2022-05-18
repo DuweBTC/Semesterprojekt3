@@ -13,12 +13,15 @@
 #include "project.h"
 #include "LiquidSensor.h"
 
+void testBrew();
+void handleByteReceived(uint8_t byteReceived);
+
 CY_ISR_PROTO(ISR_UART_rx_handler);
 
 int main(void)
 {
     CyGlobalIntEnable; /* Enable global interrupts. */
-    ISR_LiquidSensor_StartEx(ISR_LiquidSensor_handler);
+    //ISR_LiquidSensor_StartEx(ISR_LiquidSensor_handler);
     isr_uart_rx_StartEx(ISR_UART_rx_handler);
     UART_1_Start();
 
@@ -39,8 +42,28 @@ CY_ISR(ISR_UART_rx_handler)
         uint8_t byteReceived = UART_1_ReadRxData();
         UART_1_WriteTxData(byteReceived); // echo back
         
+        handleByteReceived(byteReceived);
+        
         bytesToRead--;
     }
+}
+
+void handleByteReceived(uint8_t byteReceived)
+{
+    switch(byteReceived)
+    {
+        case 'b' :
+        {
+            testBrew();
+        }
+        break;
+    }
+}
+
+void testBrew()
+{
+    UART_1_PutString("blander, blander blander \n");
+    checkLiquid();
 }
 
 /* [] END OF FILE */

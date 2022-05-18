@@ -12,21 +12,35 @@
 
 #include "LiquidSensor.h"
 
+bool checkLiquid()
+{
+    bool checkLiquid = false;
+
+    int liquid = LiquidSensorInput_Read();
+    
+    if (liquid == 1)
+    {
+        UART_1_PutString("Full\n");
+        checkLiquid = true;
+    }
+    if (liquid == 0)
+    {
+        UART_1_PutString("Empty\n");
+        checkLiquid = false ;
+    }
+    
+    return checkLiquid;
+}
+
+
 static void LiquidLEDOn()
 {
-    LED_Pin_Write(1);
+    //LED_Pin_Write(1);
 }
 
 static void spiWarning()
 {
     
-}
-
-CY_ISR(ISR_LiquidSensor_handler)
-{
-    UART_1_PutString("Liquid Sensor Interrupt Happened");
-    LiquidLEDOn();    // turn on warning led.
-    spiWarning();   // send warning message to client.
 }
 
 /* [] END OF FILE */
