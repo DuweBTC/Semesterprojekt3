@@ -46,3 +46,4 @@ Hardwaren til LiquidSensor er Non-contact Liquid Level Sensor XKC Y25-T12V SKU S
 |---------------|------------|------------|------------------|
 
 ### Hardware
+Hardwaren til WeightSensor er en 1 kg load cell (fra GFV på 2. semester). Denne load cell, skal brgues til at registere om der står et glas til at blande drink i eller ej. Til load cell'en skal der også bruges et amplifier circuit (igen fra GFV på 2. semester).
