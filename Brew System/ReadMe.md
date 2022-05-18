@@ -1,53 +1,53 @@
 # ReadMe
 ## Brew System
-Brew System er den del af projektet som står for at brygge de forskellige drinks, som brugeren beder som.
-Brew System består af nogle delsystem disse delsystemer og deres overordnet funktionalitet er følgende;
+Brew system is a part of the project. Brew system has the overall task of brewing/mixing the drinks, that the user is requesting.
+Brew System is made up of modules. These modules and their overall functions is as following;
 
-| Delsystem navn | Funktionalitet |
+| Module name | Funcionality |
 |----------------|----------------|
-| ActuatorDriver | ActuatorDriver har til formål at åbne og lukke for vores ventiler. |
-| LiquidSensor   | LiquidSensors formål er at holde øje med om der er væske i alkohol/blanding beholderne. |
-| WeightSensor   | WeightSensor har til formål at se om der er blevet placeret et glas af brugeren, sådan vi ikke starter med at blande en drink uden der er et glas |
+| ActuatorDriver | ActuatorDrivers function is to open and close the valves in the system |
+| LiquidSensor   | LiquidSensor's purpos is to see if there still is liquid in the containers. |
+| WeightSensor   | WeightSensor's purpos is to see if there is a glass placed, so that the machine dosn't start to pour a drink without a glass to pour into. |
 
 ## ActuatorDriver
-### Funktioner
-#### Public Funktioner
-|Funktions navn | Retur Type | Parametere | Funktions formål |
+### Functions
+#### Public Function
+| Function name | Return type | Parameters | Function decription |
 |---------------|------------|------------|------------------|
-| openValveNr | void | int valveNumber | formålet med denne funktion er at kunne åbne for en bestemt ventil |
-| CloseValve | void | | Formålet med denne funktion er at lukke alle valves |
+| openValveNr | void | int valveNumber | The purpos of this function is to open a valve, specified in the parameter. |
+| CloseValve | void | | The purpos of this function is to close the valves. |
 
-#### Private funktioner
-|Funktions navn | Retur Type | Parametere | Funktions formål |
+#### Private Functions
+| Function name | Return type | Parameters | Function decription |
 |---------------|------------|------------|------------------|
 
 ### Hardware
-Hardwareen der skal bruges til ActuatorDriver delen, 4 x WPM422 - Water Valve, 8mm, 8bar, 12V, Velleman. Dette er nogle ventiler, som man kan åbne ved at tilføre spædning og strøm. Når der bliver tilført strøm til dem åbner de, når der ikke er noget strøm lukker de, altså er de normal closed. Disse skal der som nævnt bruges 4 af (Når man bruger 4 beholdere).
+The hardware used for ActuatorDriver is 4 x WPM422 - Water Valve, 8mm, 8bar, 12V, Velleman. This is valves, that you can open if you give them 12V and 0.4A. When power is applied to them, they open, so that liquid can flow though them. When power is not applied they are closed, therefore they are what's called normally closed.
 
 ## LiquidSensor
-### Funktioner
-#### Public Funktioner
-|Funktions navn | Retur Type | Parametere | Funktions formål |
+### Functions
+#### Public Functions
+| Function name | Return type | Parameters | Function decription |
 |---------------|------------|------------|------------------|
-| checkLiquid | bool | | Formålet med denne funktion er at kontrollere om der er væske i beholderne. | 
-#### Private funktioner
-|Funktions navn | Retur Type | Parametere | Funktions formål |
+| checkLiquid | bool | | The purpos of this function is to look for whetere or not there is liquid in the containers. | 
+#### Private Functions
+| Function name | Return type | Parameters | Function decription |
 |---------------|------------|------------|------------------|
-| LiquidLEDOn | void | | Denne funktion har til formål at tænde for en advarsel LED som indikere at der er en beholder der er tom |
-| LiquidLEDoff | void | | Denne funktion har til formål at slukke for advarsels LED'en. | 
+| LiquidLEDOn | void | | This function turns on a warning LED to indicate that there is an empty container. |
+| LiquidLEDoff | void | | This function turns off the warning LED. | 
 
 ### Hardware
-Hardwaren til LiquidSensor er Non-contact Liquid Level Sensor XKC Y25-T12V SKU SEN0204. Dem skal der bruges 4 af (I forbindellse med udarbejdelsen af projekt bliver der kun brugt 1, da de er små dyre, og derfor bruger vi en til at implemtere og teste, og derefter ville det være let at tilføjde de sidste 3 sensore).
+The hardware used for Liquid sensor is a Non-contact Liquid Level Sensor XKC Y25-T12V SKU SEN0204. For 4 containers there should be used 4 of those sensors (for the project, there is used one, as they are pricy, and you can prove the concept for testing purpos with only one).
 
 ## WeightSensor
-### Funktioner
-#### Public Funktioner
-|Funktions navn | Retur Type | Parametere | Funktions formål |
+### Functions
+#### Public Functions
+| Function name | Return type | Parameters | Function decription |
 |---------------|------------|------------|------------------|
 
-#### Private funktioner
-|Funktions navn | Retur Type | Parametere | Funktions formål |
+#### Private Functions
+| Function name | Return type | Parameters | Function decription |
 |---------------|------------|------------|------------------|
 
 ### Hardware
-Hardwaren til WeightSensor er en 1 kg load cell (fra GFV på 2. semester). Denne load cell, skal brgues til at registere om der står et glas til at blande drink i eller ej. Til load cell'en skal der også bruges et amplifier circuit (igen fra GFV på 2. semester).
+The hardware for WeightSensor is a 1 kg load cell (the one from GFV on 2. semester). This loadcell also needs an amplifier circuit (Also from GFV 2. Semester). The load cell is used to see if there is a glass placed.
