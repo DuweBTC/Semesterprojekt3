@@ -1,5 +1,6 @@
 # ReadMe
 ## Brew System
+Brew System er den del af projektet som står for at brygge de forskellige drinks, som brugeren beder som.
 Brew System består af nogle delsystem disse delsystemer og deres overordnet funktionalitet er følgende;
 
 | Delsystem navn | Funktionalitet |
@@ -19,6 +20,9 @@ Brew System består af nogle delsystem disse delsystemer og deres overordnet fun
 |Funktions navn | Retur Type | Parametere | Funktions formål |
 |---------------|------------|------------|------------------|
 
+### Hardware
+Hardwareen der skal bruges til ActuatorDriver delen, 4 x WPM422 - Water Valve, 8mm, 8bar, 12V, Velleman. Dette er nogle ventiler, som man kan åbne ved at tilføre spædning og strøm. Når der bliver tilført strøm til dem åbner de, når der ikke er noget strøm lukker de, altså er de normal closed. Disse skal der som nævnt bruges 4 af (Når man bruger 4 beholdere).
+
 ## LiquidSensor
 ### Funktioner
 #### Public Funktioner
@@ -29,6 +33,9 @@ Brew System består af nogle delsystem disse delsystemer og deres overordnet fun
 |Funktions navn | Retur Type | Parametere | Funktions formål |
 |---------------|------------|------------|------------------|
 
+### Hardware
+Hardwaren til LiquidSensor er Non-contact Liquid Level Sensor XKC Y25-T12V SKU SEN0204. Dem skal der bruges 4 af (I forbindellse med udarbejdelsen af projekt bliver der kun brugt 1, da de er små dyre, og derfor bruger vi en til at implemtere og teste, og derefter ville det være let at tilføjde de sidste 3 sensore).
+
 ## WeightSensor
 ### Funktioner
 #### Public Funktioner
@@ -37,3 +44,5 @@ Brew System består af nogle delsystem disse delsystemer og deres overordnet fun
 #### Private funktioner
 |Funktions navn | Retur Type | Parametere | Funktions formål |
 |---------------|------------|------------|------------------|
+
+### Hardware
