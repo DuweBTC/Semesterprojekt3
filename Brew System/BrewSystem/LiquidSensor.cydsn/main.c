@@ -63,7 +63,7 @@ void handleByteReceived(uint8_t byteReceived)
 void testBrew()
 {
     UART_1_PutString("blander, blander blander \n");
-    checkLiquid();
+    checkLiquid_1();
 }
 
 /* [] END OF FILE */

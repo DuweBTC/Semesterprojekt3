@@ -23,11 +23,9 @@ bool checkLiquid_1()
     
     if (liquid == 1)
     {
-        UART_1_PutString("Full\n");
         LiquidLEDoff();
         return true;
     } else {
-        UART_1_PutString("Empty\n");
         LiquidLEDOn();
         return false;
     }
