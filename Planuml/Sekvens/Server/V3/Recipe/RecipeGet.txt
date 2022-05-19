@@ -1,0 +1,39 @@
+frame RecipeController - GET
+
+participant "RecipeController" as controller
+participant "RecipeContext" as context
+participant "RecipeItem" as Item
+
+
+activate controller
+==HttpGet==
+
+
+controller->context: GetRecipeItem()
+activate context
+context->Item: ToListAsync()
+activate Item
+deactivate context
+Item-->>context: RecipeItem[]
+deactivate Item
+activate context
+context-->>controller: RecipeItem[]
+deactivate context
+
+==HttpGet(id)==
+
+controller->context:GetRecipeItem(id)
+activate context
+context->Item: _context.RecipeItems.FindAsync(id)
+activate Item
+Item-->>context: RecipeItem
+deactivate Item
+
+alt if(RecipeItem==null)
+context-->>controller: NotFound()
+deactivate context
+else 
+activate context
+context-->>controller: RecipeItem
+deactivate context
+end 

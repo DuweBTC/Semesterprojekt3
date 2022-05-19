@@ -50,10 +50,11 @@ context->Item: AccountItems.FindAsync(id)
 activate Item
 Item-->>context: AccountItem
 deactivate Item
-opt if(accountItem==null)
+alt if(accountItem==null)
 context-->>controller: NotFound()
 deactivate context
-end 
+else
 activate context
 context-->>controller: Ok(accountItem.Balance)
 deactivate context
+end

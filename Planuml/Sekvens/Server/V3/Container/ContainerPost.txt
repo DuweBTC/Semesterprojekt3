@@ -1,0 +1,20 @@
+frame ContainerController - POST
+
+participant "ContainerController" as controller
+participant "ContainerContext" as context
+participant "ContainerItem" as Item
+
+
+
+==HttpPost==
+
+activate controller
+
+controller->context: PostContainerItem(ContainerItem)
+activate context
+context->Item: ContainerItems.Add(ContainerItem)
+activate Item
+Item-->>context: ContainerItem
+deactivate Item
+context-->>controller: ContainerItem
+deactivate context

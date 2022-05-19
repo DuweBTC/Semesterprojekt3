@@ -1,0 +1,32 @@
+frame IngredientController - DELETE
+
+participant "IngredientController" as controller
+participant "IngredientContext" as context
+participant "IngredientItem" as Item
+
+
+
+==HttpDelete(id)==
+activate controller
+
+controller->context: DeleteIngredientItem(id)
+activate context
+context->Item: IngredientItems.FindAsync(id)
+activate Item
+Item-->>context: IngredientItem
+deactivate Item
+alt if(IngredientItem==null)
+context-->>controller: NotFound()
+deactivate context
+else
+
+activate context
+context->Item: _context.IngredientItems.Remove(IngredientItem)
+activate Item
+Item-->>context: Success
+deactivate Item
+context-->>controller: NoContent()
+deactivate context
+deactivate controller
+end 
+

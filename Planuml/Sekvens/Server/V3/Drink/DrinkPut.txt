@@ -1,0 +1,43 @@
+frame DrinkController - PUT
+
+participant "DrinkController" as controller
+participant "DrinkContext" as context
+participant "DrinkItem" as Item
+
+
+
+==HttpPut(id)==
+
+activate controller
+
+controller->context: PutDrinkItem(id, drinkItem)
+activate context
+
+alt id != drinkItem.AccountId
+context-->>controller: BadRequest()
+deactivate context
+else 
+
+activate context
+context->Item:_context.Entry(drinkItem).State
+activate Item
+
+
+Item-->>context: Success
+deactivate Item
+alt Pass
+context-->>controller: NoContent()
+deactivate context
+else Catch
+alt if(!drinkItemExists(id)
+activate context
+context-->>controller: NotFound()
+deactivate context
+else 
+activate context
+context-->>controller: throw
+deactivate context
+deactivate controller
+end 
+end 
+end 

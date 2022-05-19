@@ -1,0 +1,32 @@
+frame ContainerController - DELETE
+
+participant "ContainerController" as controller
+participant "ContainerContext" as context
+participant "ContainerItem" as Item
+
+
+
+==HttpDelete(id)==
+activate controller
+
+controller->context: DeleteContainerItem(id)
+activate context
+context->Item: ContainerItems.FindAsync(id)
+activate Item
+Item-->>context: ContainerItem
+deactivate Item
+alt if(drinktItem==null)
+context-->>controller: NotFound()
+deactivate context
+else
+
+activate context
+context->Item: _context.ContainerItems.Remove(ContainerItem)
+activate Item
+Item-->>context: Success
+deactivate Item
+context-->>controller: NoContent()
+deactivate context
+deactivate controller
+end 
+

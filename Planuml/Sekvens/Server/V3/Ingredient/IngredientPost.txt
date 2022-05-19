@@ -1,0 +1,20 @@
+frame IngredientController - POST
+
+participant "IngredientController" as controller
+participant "IngredientContext" as context
+participant "IngredientItem" as Item
+
+
+
+==HttpPost==
+
+activate controller
+
+controller->context: PostIngredientItem(IngredientItem)
+activate context
+context->Item: IngredientItems.Add(IngredientItem)
+activate Item
+Item-->>context: IngredientItem
+deactivate Item
+context-->>controller: IngredientItem
+deactivate context

@@ -1,0 +1,32 @@
+frame RecipeController - DELETE
+
+participant "RecipeController" as controller
+participant "RecipeContext" as context
+participant "RecipeItem" as Item
+
+
+
+==HttpDelete(id)==
+activate controller
+
+controller->context: DeleteRecipeItem(id)
+activate context
+context->Item: RecipetItems.FindAsync(id)
+activate Item
+Item-->>context: RecipeItem
+deactivate Item
+alt if(IngredienttItem==null)
+context-->>controller: NotFound()
+deactivate context
+else
+
+activate context
+context->Item: _context.RecipeItems.Remove(RecipeItem)
+activate Item
+Item-->>context: Success
+deactivate Item
+context-->>controller: NoContent()
+deactivate context
+deactivate controller
+end 
+

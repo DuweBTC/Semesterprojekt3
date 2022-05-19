@@ -1,0 +1,20 @@
+frame DrinkController - POST
+
+participant "DrinkController" as controller
+participant "DrinkContext" as context
+participant "DrinkItem" as Item
+
+
+
+==HttpPost==
+
+activate controller
+
+controller->context: PostDrinkItem(drinkItem)
+activate context
+context->Item: DrinkItems.Add(drinkItem)
+activate Item
+Item-->>context: DrinkItem
+deactivate Item
+context-->>controller: drinkItem
+deactivate context

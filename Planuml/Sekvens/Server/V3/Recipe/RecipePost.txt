@@ -1,0 +1,20 @@
+frame RecipeController - POST
+
+participant "RecipeController" as controller
+participant "RecipeContext" as context
+participant "RecipeItem" as Item
+
+
+
+==HttpPost==
+
+activate controller
+
+controller->context: PostRecipeItem(RecipeItem)
+activate context
+context->Item: RecipeItems.Add(RecipeItem)
+activate Item
+Item-->>context: RecipeItem
+deactivate Item
+context-->>controller: RecipeItem
+deactivate context

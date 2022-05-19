@@ -1,0 +1,43 @@
+frame ContainerController - PUT
+
+participant "ContainerController" as controller
+participant "ContainerContext" as context
+participant "ContainerItem" as Item
+
+
+
+==HttpPut(id)==
+
+activate controller
+
+controller->context: PutContainerItem(id, containerItem)
+activate context
+
+alt id != ContainerItem.ContainerId
+context-->>controller: BadRequest()
+deactivate context
+else 
+
+activate context
+context->Item:_context.Entry(ContainerItem).State
+activate Item
+
+
+Item-->>context: Success
+deactivate Item
+alt Pass
+context-->>controller: NoContent()
+deactivate context
+else Catch
+alt if(!ContainerItemExists(id)
+activate context
+context-->>controller: NotFound()
+deactivate context
+else 
+activate context
+context-->>controller: throw
+deactivate context
+deactivate controller
+end 
+end 
+end 

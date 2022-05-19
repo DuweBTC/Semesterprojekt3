@@ -7,17 +7,17 @@ participant "AccountItem" as Item
 
 ==HttpDelete(id)==
 
-controller->>controller:
+activate controller
 controller->context: DeleteAccountItem(id)
 activate context
 context->Item: AccountItems.FindAsync(id)
 activate Item
 Item-->>context: AccountItem
 deactivate Item
-opt if(accountItem==null)
+alt if(accountItem==null)
 context-->>controller: NotFound()
 deactivate context
-end 
+else 
 activate context
 context->Item: _context.AccountItems.Remove(accountItem)
 activate Item
@@ -25,3 +25,5 @@ Item-->>context: Success
 deactivate Item
 context-->>controller: NoContent()
 deactivate context
+deactivate controller
+end 

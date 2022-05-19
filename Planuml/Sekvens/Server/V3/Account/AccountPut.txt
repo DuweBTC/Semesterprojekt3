@@ -7,14 +7,14 @@ participant "AccountItem" as Item
 
 ==HttpPut(id)==
 
-
+activate controller
 controller->context: PutAccountItem(id, accountItem)
 activate context
 
-opt id != accountItem.AccountId
+alt id != accountItem.AccountId
 context-->>controller: BadRequest()
 deactivate context
-end 
+else 
 activate context
 context->Item:_context.Entry(accountItem).State
 activate Item
@@ -37,24 +37,23 @@ deactivate context
 deactivate controller
 end 
 end 
-
+end 
 ==HttpPut(id/balance)==
-
+activate controller
 controller->context: PutAccountItemBalance(id, amount)
 activate context
 context->Item: AccountItems.FindAsync(id)
 activate Item
 Item-->>context: AccountItem
 deactivate Item
-opt if(accountItem==null)
+alt  if(accountItem==null)
 context-->>controller: NotFound()
 deactivate context
-end 
+else if(accountItem.Balance + amount)<0)
 activate context
-opt if(accountItem.Balance + amount)<0)
 context-->>controller: BadRequest()
 deactivate context
-end
+else
 activate context
 context->Item: _context.Entry(accountItem).State
 activate Item
@@ -76,3 +75,4 @@ deactivate context
 deactivate controller
 end
 end 
+end

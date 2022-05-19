@@ -1,0 +1,39 @@
+frame DrinkController - GET
+
+participant "DrinkController" as controller
+participant "DrinkContext" as context
+participant "DrinkItem" as Item
+
+
+activate controller
+==HttpGet==
+
+
+controller->context: GetDrinkItem()
+activate context
+context->Item: ToListAsync()
+activate Item
+deactivate context
+Item-->>context: drinkItem[]
+deactivate Item
+activate context
+context-->>controller: drinkItem[]
+deactivate context
+
+==HttpGet(id)==
+
+controller->context:GetDrinkItem(id)
+activate context
+context->Item: _context.DrinkItems.FindAsync(id)
+activate Item
+Item-->>context: drinkItem
+deactivate Item
+
+alt if(drinkItem==null)
+context-->>controller: NotFound()
+deactivate context
+else 
+activate context
+context-->>controller: drinkItem
+deactivate context
+end 

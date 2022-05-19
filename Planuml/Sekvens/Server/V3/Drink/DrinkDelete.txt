@@ -1,0 +1,31 @@
+frame DrinkController - DELETE
+
+participant "DrinkController" as controller
+participant "DrinkContext" as context
+participant "DrinkItem" as Item
+
+
+
+==HttpDelete(id)==
+activate controller
+controller->context: DeleteDrinkItem(id)
+activate context
+context->Item: DrinkItems.FindAsync(id)
+activate Item
+Item-->>context: drinkItem
+deactivate Item
+alt if(drinktItem==null)
+context-->>controller: NotFound()
+deactivate context
+else
+
+activate context
+context->Item: _context.drinkItems.Remove(drinkItem)
+activate Item
+Item-->>context: Success
+deactivate Item
+context-->>controller: NoContent()
+deactivate context
+deactivate controller
+end 
+
