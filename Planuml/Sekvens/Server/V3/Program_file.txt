@@ -1,0 +1,64 @@
+frame Program file
+
+participant "Program" as program
+
+participant "WebApplication" as web
+
+//participant "Account\n Context" as account
+//participant "Drink\n Context" as drink
+//participant "Container\n Context" as container
+//participant "Recipe\n Context" as recipe
+//participant "Ingredient\n Context" as ingredient
+
+
+activate program
+program->>web: CreateBuilder(args)
+activate web
+web->>*Builder: Create
+deactivate web
+program->>Builder: Services.AddControllers()
+activate Builder
+program->>Builder: Services.AddDbContext(<AccountContext>)
+Builder->>Builder: opt.UseInMemoryDatabase("Account")
+deactivate Builder
+program->>Builder: Services.AddDbContext(<DrinkContext>)
+activate Builder
+Builder->>Builder: opt.UseInMemoryDatabase("Drink")
+deactivate Builder
+
+program->>Builder: Services.AddDbContext(<ContainerContext>)
+activate Builder
+Builder->>Builder: opt.UseInMemoryDatabase("Container")
+deactivate Builder
+
+
+program->>Builder: Services.AddDbContext(<RecipeContext>)
+activate Builder
+Builder->>Builder: opt.UseInMemoryDatabase("Recipe")
+deactivate Builder
+
+program->>Builder: Services.AddDbContext(<IngredientContext>)
+
+activate Builder
+Builder->>Builder: opt.UseInMemoryDatabase("Ingredient")
+deactivate Builder
+
+program->>Builder: Services.AddEndpointsApiExplorer()
+activate Builder
+program->>Builder: Services.AddSwaggerGen()
+deactivate Builder
+
+program->>Builder: build()
+activate Builder
+Builder->>*app: Create
+deactivate Builder
+
+opt if(app.Environment.IsDevelopment()==true
+program->>app: UseSwagger()
+program->>app: UseSwaggerUI()
+end 
+
+program->>app: UseHttpsRedirection()
+program->>app: UseAuthorization()
+program->>app: MapControllers()
+program->>app: Run()

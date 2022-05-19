@@ -1,0 +1,19 @@
+frame AccountController - POST
+
+participant "AccountController" as controller
+participant "AccountContext" as context
+participant "AccountItem" as Item
+
+
+==HttpPost==
+
+activate controller
+
+controller->context: PostAccountItem(accountItem)
+activate context
+context->Item: AccountItems.Add(accountItem)
+activate Item
+Item-->>context: AccountItem
+deactivate Item
+context-->>controller: AccountItem
+deactivate context

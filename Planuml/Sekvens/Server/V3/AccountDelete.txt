@@ -1,0 +1,27 @@
+frame AccountController - DELETE
+
+participant "AccountController" as controller
+participant "AccountContext" as context
+participant "AccountItem" as Item
+
+
+==HttpDelete(id)==
+
+controller->>controller:
+controller->context: DeleteAccountItem(id)
+activate context
+context->Item: AccountItems.FindAsync(id)
+activate Item
+Item-->>context: AccountItem
+deactivate Item
+opt if(accountItem==null)
+context-->>controller: NotFound()
+deactivate context
+end 
+activate context
+context->Item: _context.AccountItems.Remove(accountItem)
+activate Item
+Item-->>context: Success
+deactivate Item
+context-->>controller: NoContent()
+deactivate context
