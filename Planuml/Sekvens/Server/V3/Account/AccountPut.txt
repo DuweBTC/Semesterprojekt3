@@ -60,10 +60,10 @@ activate Item
 
 Item-->>context: Status
 deactivate Item
-alt Pass
+alt Status == success
 context-->>controller: NoContent()
 deactivate context
-else Catch
+else Status == error
 activate context
 alt if (!AccountItemExists(id))
 context-->>controller: NotFound()
