@@ -25,10 +25,10 @@ activate Item
 
 Item-->>context: Success
 deactivate Item
-alt Pass
+alt Status == success
 context-->>controller: NoContent()
 deactivate context
-else Catch
+else Status == error
 alt if(!drinkItemExists(id)
 activate context
 context-->>controller: NotFound()
