@@ -10,7 +10,7 @@
  * ========================================
 */
 #include "project.h"
-
+#include "I2C.h"
 int main(void)
 {
     CyGlobalIntEnable; /* Enable global interrupts. */
@@ -20,6 +20,17 @@ int main(void)
     for(;;)
     {
         /* Place your application code here. */
+        if(I2C_1_SlaveStatus() & I2C_1_SSTAT_RD_CMPLT)
+        {
+            int byteToBeSent;
+            byteToBeSent = I2C_1_SlaveGetReadBufSize(); // number of bytes to be read
+            
+            if(byteToBeSent == I2C_1_slRdBufSize) // Check if Master has finished reading all the bytes from the rdBuf
+            {
+                I2C_1_SlaveClearReadStatus();
+                writeI2C();
+            }
+        }
     }
 }
 
