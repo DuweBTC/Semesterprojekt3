@@ -11,8 +11,57 @@
 */
 
 #include "ActuatorDriver.h"
+#include <stdbool.h>
 
-void openValveNr(int valveNumber)
+static void openValveNr(int valveNumber);
+static void closeValves();
+
+int CONTAINER;
+int AMOUNT;
+
+bool DONE = false;
+
+
+CY_ISR(timer_inter_handler)
+{
+    DONE = true;
+}
+
+int pour()
+{
+    float time;
+    float timerVariabel = 0.00004267;
+    float x = 10; // skal ændres når ventiler er blevet testet.
+    
+    DONE = false;
+    
+    time = timerVariabel * x; // Calculate time with amount
+    
+    Pour_Timer_WriteCounter(0); // makes sure timer counter is 0
+    Pour_Timer_WritePeriod(time); // Writes periode to timer
+    
+    openValveNr(CONTAINER); // Opens valve for specific container
+    
+    Pour_Timer_Start();
+    while (DONE != true)
+    {
+        /* Waiting for time until pour is done */
+    }
+    
+    closeValves(); // Close all valves
+    
+    Pour_Timer_Stop(); // Stops timer;
+        
+    return 0; // Success
+}
+
+void setIngredient(int _container, int _amount)
+{
+    CONTAINER = _container;
+    AMOUNT = _amount;
+}
+
+static void openValveNr(int valveNumber)
 {
     switch(valveNumber)
     {
@@ -47,14 +96,12 @@ void openValveNr(int valveNumber)
     }
 }
 
-void closeValveNr()
+static void closeValves()
 {
     v1_Write(0);
     v2_Write(0);
     v3_Write(0);
     v4_Write(0);
 }
-
-
 
 /* [] END OF FILE */

@@ -13,9 +13,11 @@
 #pragma once
 #include "project.h"
 
+CY_ISR_PROTO(timer_inter_handler);
+
 /* Public Functions */
-void openValveNr(int valveNumber);
-void closeValveNr();
+void setIngredient(int _container, int _amount);
+int pour();
 
 /* Private Functions */
 
