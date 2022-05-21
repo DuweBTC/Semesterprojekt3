@@ -1,0 +1,35 @@
+#ifndef MAINWINDOW_H
+#define MAINWINDOW_H
+
+#include <QMainWindow>
+#include <QNetworkAccessManager> // To make requests and so on
+#include <QNetworkReply>
+#include <qpixmap.h>
+
+
+QT_BEGIN_NAMESPACE
+namespace Ui { class MainWindow; }
+QT_END_NAMESPACE
+
+class MainWindow : public QMainWindow
+{
+    Q_OBJECT
+
+public:
+    MainWindow(QWidget *parent = nullptr);
+    ~MainWindow();
+
+private:
+    Ui::MainWindow *ui;
+    QString myURL = "http://127.0.0.1:8080/";
+//    Account acount;
+//    Drink drink[100];
+//    DatabaseDriver dbDriver;
+
+private slots:
+    void downloadFinished(QNetworkReply*);
+    void getWeatherStation(QNetworkReply * reply);
+    void on_pushButton_clicked();
+
+};
+#endif // MAINWINDOW_H
