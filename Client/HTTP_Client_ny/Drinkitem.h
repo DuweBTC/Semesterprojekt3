@@ -7,13 +7,13 @@ class DrinkItem
 {
 public:
     DrinkItem(QString Titel = "", int DrinkId = 0, QString Description = "", double Price = 0);
-    QString getTitel()const;
+    QString getTitel() const;
     void setTitel(QString Titel);
-    int getDrinkId()const;
+    int getDrinkId() const;
     void setDrinkId(int DrinkId);
-    QString getDescription()const;
+    QString getDescription() const;
     void setDescription(QString Description);
-    double getPrice()const;
+    double getPrice() const;
     void setPrice(double Price);
 
 private:
@@ -21,7 +21,6 @@ private:
     int _DrinkId;
     QString _Description;
     double _Price;
-
 };
 
 #endif // DRINKITEM_H

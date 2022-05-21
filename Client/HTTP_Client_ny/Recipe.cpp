@@ -6,7 +6,7 @@ Recipe::Recipe(double Amount, int RecipeItemId)
     setRecipeItemId(RecipeItemId);
 }
 
-double Recipe::getAmount()const
+double Recipe::getAmount() const
 {
     return _Amount;
 }
@@ -16,7 +16,7 @@ void Recipe::setAmount(double Amount)
     _Amount = Amount;
 }
 
-int Recipe::getRecipeItemId()const
+int Recipe::getRecipeItemId() const
 {
     return _RecipeItemId;
 }

@@ -13,11 +13,9 @@ private:
 
 public:
     void setName(string name);
-    QString getName()const;
+    QString getName() const;
     void setBalance(double balance);
-    QString getBalance()const;
+    QString getBalance() const;
 };
 
 #endif // ACCOUNTITEM_H
-
-

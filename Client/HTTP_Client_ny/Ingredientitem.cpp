@@ -2,8 +2,8 @@
 
 IngredientItem::IngredientItem(int IngredientItemId, QString Titel)
 {
-   setIngredientItemId(IngredientItemId);
-   setTitel(Titel);
+    setIngredientItemId(IngredientItemId);
+    setTitel(Titel);
 }
 
 int IngredientItem::getIngredientItemId() const

@@ -43,7 +43,6 @@ public:
 
 private:
     const QString _url = "url";
-
 };
 
 #endif // DATABASEDRIVER_H

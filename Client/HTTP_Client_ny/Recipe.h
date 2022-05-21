@@ -15,7 +15,6 @@ public:
 private:
     int _RecipeItemId;
     double _Amount;
-
 };
 
 #endif // RECIPE_H

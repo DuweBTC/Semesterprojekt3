@@ -11,9 +11,11 @@
 #include "Ingredientitem.h"
 #include "databasedriver.h"
 
-
 QT_BEGIN_NAMESPACE
-namespace Ui { class MainWindow; }
+namespace Ui
+{
+    class MainWindow;
+}
 QT_END_NAMESPACE
 
 class MainWindow : public QMainWindow
@@ -33,18 +35,17 @@ private:
     IngredientItem ingredientItem;
     ContainerItem containerItem;
     DatabaseDriver dbDriver;
-//    Drink drink[100];
-//    DatabaseDriver dbDriver;
+    //    Drink drink[100];
+    //    DatabaseDriver dbDriver;
 
 private slots:
-//    void downloadFinished(QNetworkReply*);
-//    void getWeatherStation(QNetworkReply * reply);
-//    void on_pushButton_clicked();
-      void AccountButton();
-      void RecipeButton();
-      void DrinkButton();
-      void IngredientButton();
-      void ContainerButton();
-
+    //    void downloadFinished(QNetworkReply*);
+    //    void getWeatherStation(QNetworkReply * reply);
+    //    void on_pushButton_clicked();
+    void AccountButton();
+    void RecipeButton();
+    void DrinkButton();
+    void IngredientButton();
+    void ContainerButton();
 };
 #endif // MAINWINDOW_H

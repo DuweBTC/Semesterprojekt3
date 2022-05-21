@@ -7,9 +7,9 @@ class ContainerItem
 {
 public:
     ContainerItem(QString ContainerId = "", int Place = 0);
-    QString getContainerId()const;
+    QString getContainerId() const;
     void setContainerId(QString ContainerId);
-    int getPlace()const;
+    int getPlace() const;
     void setPlace(int Place);
 
 private:
