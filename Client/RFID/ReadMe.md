@@ -17,6 +17,7 @@
 1. Start by updating your Raspberry Pi. 
    `sudo apt-get update`
    `sudo apt-get upgrade`
+   
 2. Install python and pip:
    `sudo apt-get install python3-dev python3-pip`
 
