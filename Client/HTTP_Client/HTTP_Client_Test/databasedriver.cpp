@@ -1,49 +1,30 @@
-#include "mainwindow.h"
+#include "databasedriver.h"
 #include <QCoreApplication>
 #include <QDebug>
 #include <QApplication>
-//#include <QtWebKitWidgets/QWebFrame>
-//#include <QtWebKitWidgets/QWebPage>
-//#include <QtWebKitWidgets/QWebView>
 #include <QNetworkAccessManager>
 #include <QNetworkRequest>
 #include <QNetworkReply>
 #include <QUrl>
 #include <QUrlQuery>
-//#include <QWebSettings>
 #include <QVariant>
 #include <QJsonValue>
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QVariantMap>
 #include <QJsonArray>
+#include "mainwindow.h"
 
-void sendRequest();
-void postWeather();
-void putWeather(QString index);
-void deleteWeather(QString index);
 
-//int main(int argc, char *argv[])
-//{
-//    QApplication a(argc, argv);
-//    MainWindow w;
-//    w.show();
-//    return a.exec();
-//}
-int main(int argc, char *argv[])
+DatabaseDriver::DatabaseDriver()
 {
-    QCoreApplication a(argc, argv);
-    //sendRequest();
-    //postWeather();
-    //putWeather(index);
-    QString index = "2";
-    deleteWeather(index);
-    return a.exec();
+
 }
 
-void sendRequest(){
+Account DatabaseDriver::getAccount(){
     // create custom temporary event loop on stack
         QEventLoop eventLoop;
+        Account account_local;
 
         // "quit()" the event-loop, when the network request "finished()"
         QNetworkAccessManager mgr;
@@ -65,16 +46,14 @@ void sendRequest(){
             QJsonArray json_array = jsonResponse.array();
 
                 foreach (const QJsonValue &value, json_array) {
-                    QJsonObject json_obj = value.toObject();
-                    QJsonObject json_obj2 = json_obj.value("place").toObject();
-                    qDebug() << json_obj["id"].toString();
-                    qDebug() << json_obj["date"].toString();
-                    qDebug() << json_obj["time"].toString();
-                    qDebug() << json_obj2["placeName"].toString();
-                    qDebug() << json_obj2["lat"].toDouble();
-                    qDebug() << json_obj2["lon"].toDouble();
-                    qDebug() << json_obj["temperature"].toDouble();
-                    qDebug() << json_obj["humidity"].toInt();
+                    QJsonObject json_account_obj = value.toObject();
+                    //QJsonObject json_account_obj = json_obj.value("place").toObject();
+                    qDebug() << json_account_obj["AccountId"].toString();
+                    qDebug() << json_account_obj["Name"].toString();
+                    qDebug() << json_account_obj["Balance"].toDouble();
+                    //Account account_local(json_accont_obj["AccountId"].toString(),json_account_obj["AccountId"].toString(), json_account_obj["Balance"].toDouble() );
+                    account_local.setName(json_account_obj["AccountId"].toString());
+                    account_local.setBalance(json_account_obj["Balance"].toDouble());
 
                 }
 
@@ -85,20 +64,14 @@ void sendRequest(){
             qDebug() << "Failure" <<reply->errorString();
             delete reply;
         }
-    }
 
+        return account_local;
+}
 
-
-void postWeather()
+void DatabaseDriver::postAccount(Account *account )
 {
-//    QNetworkAccessManager *mgr = new QNetworkAccessManager(this);
-//    const QUrl url(QStringLiteral("http://127.0.0.1:8080/"));
-//    QNetworkRequest request(url);
-
-    // create custom temporary event loop on stack
-    //QEventLoop eventLoop;
-
     // "quit()" the event-loop, when the network request "finished()"
+     //Account account_local;
     QNetworkAccessManager *mgr = new QNetworkAccessManager;
     //QObject::connect(&mgr, SIGNAL(finished(QNetworkReply*)), &eventLoop, SLOT(quit()));
 
@@ -107,23 +80,25 @@ void postWeather()
     QNetworkRequest request(url);
 
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
-    QJsonObject place_t;
-    place_t["placeName"] = "Aarhus N";
-    place_t["lat"] = 19;
-    place_t["lon"] = 12;
+    QJsonObject account_local;
+    account_local["Name"] = account->getName();
+    account_local["Balance"] = account->getBalance();
+    account_local["AccountId"] = account->getAccountId();
 
-    QJsonObject obj;
+
+
+    /*QJsonObject obj;
     obj["id"] = "value1";
     obj["date"] = "value2";
     obj["time"] = "value3";
     obj["place"] = place_t;
     obj["temperature"] = 20;
-    obj["humidity"] = 69;
+    obj["humidity"] = 69;*/
 
-    QJsonDocument doc(obj);
+    QJsonDocument doc(account_local);
     QByteArray data = doc.toJson();
     // or
-    // QByteArray data("{\"key1\":\"value1\",\"key2\":\"value2\"}");
+    // QByteArray data("{\"Name\":\"account->getName()\",\"key2\":\"value2\"}");
     QNetworkReply *reply = mgr->post(request, data);
 
     QObject::connect(reply, &QNetworkReply::finished, [=](){
@@ -140,7 +115,8 @@ void postWeather()
 
 }
 
-void putWeather(QString index){
+void DatabaseDriver::putAccount(Account *account)
+{
     // "quit()" the event-loop, when the network request "finished()"
     QNetworkAccessManager *mgr = new QNetworkAccessManager;
     //QObject::connect(&mgr, SIGNAL(finished(QNetworkReply*)), &eventLoop, SLOT(quit()));
@@ -152,20 +128,14 @@ void putWeather(QString index){
     QNetworkRequest request(url);
 
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
-    QJsonObject place_t;
-    place_t["placeName"] = "Aarhus N";
-    place_t["lat"] = 1;
-    place_t["lon"] = 1;
+    QJsonObject account_local;
+    account_local["Name"] = account->getName();
+    account_local["Balance"] = account->getBalance();
+    account_local["AccountId"] = account->getAccountId();
 
-    QJsonObject obj;
-    obj["id"] = "value1";
-    obj["date"] = "value2";
-    obj["time"] = "value3";
-    obj["place"] = place_t;
-    obj["temperature"] = 0;
-    obj["humidity"] = 9;
 
-    QJsonDocument doc(obj);
+
+    QJsonDocument doc(account_local);
     QByteArray data = doc.toJson();
     // or
     // QByteArray data("{\"key1\":\"value1\",\"key2\":\"value2\"}");
@@ -183,9 +153,12 @@ void putWeather(QString index){
         reply->deleteLater();
     });
 
+
+
 }
 
-void deleteWeather(QString index){
+void deleteAccount(QString index)
+{
     // "quit()" the event-loop, when the network request "finished()"
     QNetworkAccessManager *mgr = new QNetworkAccessManager;
     //QObject::connect(&mgr, SIGNAL(finished(QNetworkReply*)), &eventLoop, SLOT(quit()));
@@ -212,4 +185,13 @@ void deleteWeather(QString index){
         }
         reply->deleteLater();
     });
+
 }
+
+
+
+
+
+
+
+
