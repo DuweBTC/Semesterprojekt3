@@ -38,3 +38,13 @@ void Account::setAccountId(int AccountId)
 {
     _accountId = AccountId;
 }
+
+void Account::operator =(const Account &temp){
+    _accountId = temp.getAccountId();
+    _balance = temp.getBalance();
+    _name = temp.getName();
+}
+
+Account::~Account(){
+
+}

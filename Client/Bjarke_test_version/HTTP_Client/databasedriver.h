@@ -13,7 +13,7 @@ public:
     DatabaseDriver();
     // For Account
     QJsonArray getAccountList();
-    Account getAccount(QString id);
+    Account* getAccount(QString id, Account *);
     void postAccount(Account *account);
     void putAccount(Account *account);
     void deleteAccount(QString index);
@@ -47,7 +47,7 @@ public:
     void deleteContainer(QString index);
 
 private:
-    const QString _url = "http://localhost:5123";
+    const QString _url = "http://localhost:5123/";
 };
 
 #endif // DATABASEDRIVER_H

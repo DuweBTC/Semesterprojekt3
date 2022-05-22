@@ -61,16 +61,19 @@ private:
 
 private slots:
     // Event handling programning
+    void startscreen();
     int scanStudentCard();
     void mainWindow();
     void newUserWindow();
     void on_buttonBalanceMenu_clicked();
+    void on_pushKontoMenu_clicked();
 
-    void on_PostAccountButton_clicked();
-    void on_GetAccountButton_clicked();
+//    void on_PostAccountButton_clicked();
+//    void on_GetAccountButton_clicked();
 
     void DrinkButton();
     void IngredientButton();
     void ContainerButton();
+    void RecipeButton();
 };
 #endif // MAINWINDOW_H

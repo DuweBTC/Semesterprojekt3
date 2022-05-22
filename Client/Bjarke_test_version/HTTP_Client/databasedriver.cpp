@@ -46,19 +46,19 @@ QJsonArray DatabaseDriver::getAccountList()
 
         json_array = jsonResponse.array();
 
-//        foreach (const QJsonValue &value, json_array)
-//        {
-//            QJsonObject json_account_obj = value.toObject();
-//            // QJsonObject json_account_obj = json_obj.value("place").toObject();
-//            qDebug() << json_account_obj["accountItemId"].toInt();
-//            qDebug() << json_account_obj["name"].toString();
-//            qDebug() << json_account_obj["balance"].toDouble();
+        //        foreach (const QJsonValue &value, json_array)
+        //        {
+        //            QJsonObject json_account_obj = value.toObject();
+        //            // QJsonObject json_account_obj = json_obj.value("place").toObject();
+        //            qDebug() << json_account_obj["accountItemId"].toInt();
+        //            qDebug() << json_account_obj["name"].toString();
+        //            qDebug() << json_account_obj["balance"].toDouble();
 
-//            // Set the variables on local Account
-//            account_local.setAccountId(json_account_obj["accountItemId"].toInt());
-//            account_local.setName(json_account_obj["name"].toString());
-//            account_local.setBalance(json_account_obj["balance"].toDouble());
-//        }
+        //            // Set the variables on local Account
+        //            account_local.setAccountId(json_account_obj["accountItemId"].toInt());
+        //            account_local.setName(json_account_obj["name"].toString());
+        //            account_local.setBalance(json_account_obj["balance"].toDouble());
+        //        }
 
         delete reply;
     }
@@ -72,13 +72,13 @@ QJsonArray DatabaseDriver::getAccountList()
     return json_array;
 }
 
-Account DatabaseDriver::getAccount(QString id)
+Account* DatabaseDriver::getAccount(QString id, Account *account)
 {
     // create custom temporary event loop on stack
     QEventLoop eventLoop;
-    Account account_local;
+    //Account account_local;
 
-    // "quit()" the event-loop, when the network request "finished()"
+    // "quit()" thes event-loop, when the network request "finished()"
     QNetworkAccessManager mgr;
     QObject::connect(&mgr, SIGNAL(finished(QNetworkReply *)), &eventLoop, SLOT(quit()));
     const QString endpoint = "Account/";
@@ -98,17 +98,18 @@ Account DatabaseDriver::getAccount(QString id)
         QJsonDocument jsonResponse = QJsonDocument::fromJson(strReply.toUtf8());
 
         QJsonArray json_array = jsonResponse.array();
+        foreach (const QJsonValue &value, json_array) {
+            QJsonObject json_account_obj = value.toObject();
 
-        QJsonObject json_account_obj =  QJsonValue(json_array).toObject();
-        // QJsonObject json_account_obj = json_obj.value("place").toObject();
-        qDebug() << json_account_obj["accountItemId"].toString();
-        qDebug() << json_account_obj["name"].toString();
-        qDebug() << json_account_obj["balance"].toDouble();
-        // Account account_local(json_accont_obj["AccountId"].toString(),json_account_obj["AccountId"].toString(), json_account_obj["Balance"].toDouble() );
-        account_local.setAccountId(json_account_obj["accountItemId"].toInt());
-        account_local.setName(json_account_obj["name"].toString());
-        account_local.setBalance(json_account_obj["balance"].toDouble());
-
+            // QJsonObject json_account_obj = json_obj.value("place").toObject();
+            qDebug() << json_account_obj["accountItemId"].toString();
+            qDebug() << json_account_obj["name"].toString();
+            qDebug() << json_account_obj["balance"].toDouble();
+            // Account account_local(json_accont_obj["AccountId"].toString(),json_account_obj["AccountId"].toString(), json_account_obj["Balance"].toDouble() );
+            account->setAccountId(json_account_obj["accountItemId"].toInt());
+            account->setName(json_account_obj["name"].toString());
+            account->setBalance(json_account_obj["balance"].toDouble());
+        }
         delete reply;
     }
     else
@@ -118,7 +119,7 @@ Account DatabaseDriver::getAccount(QString id)
         delete reply;
     }
 
-    return account_local;
+    return account;
 }
 
 void DatabaseDriver::postAccount(Account *account)
@@ -461,7 +462,6 @@ DrinkItem DatabaseDriver::getDrink(QString id)
 
         QJsonArray json_array = jsonResponse.array();
 
-
         QJsonObject json_drink_obj = QJsonValue(json_array).toObject();
         // QJsonObject json_account_obj = json_obj.value("place").toObject();
         qDebug() << json_drink_obj["Titel"].toString();
@@ -473,7 +473,6 @@ DrinkItem DatabaseDriver::getDrink(QString id)
         drink_local.setDrinkId(json_drink_obj["Amount"].toInt());
         drink_local.setDescription(json_drink_obj["Amount"].toString());
         drink_local.setPrice(json_drink_obj["Amount"].toDouble());
-
 
         delete reply;
     }
@@ -647,7 +646,7 @@ IngredientItem DatabaseDriver::getIngredient(QString id)
 
         foreach (const QJsonValue &value, json_array)
         {
-            QJsonObject json_ingredient_local_obj = value.toObject();        
+            QJsonObject json_ingredient_local_obj = value.toObject();
             ingredient_local.setIngredientItemId(json_ingredient_local_obj["IngredientItemId"].toInt());
             ingredient_local.setTitel(json_ingredient_local_obj["Titel"].toString());
         }

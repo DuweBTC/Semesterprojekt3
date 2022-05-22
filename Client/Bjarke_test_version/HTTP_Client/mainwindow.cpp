@@ -7,15 +7,14 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
-    ui->GetAccountButton->setVisible(false);
-    ui->PostAccountButton->setVisible(false);
-    ui->buttonBalanceMenu->setVisible(false);
+    ui->textStartScreen->setVisible(true);
+//   startscreen();
+    ui->textKontoMenu->setVisible(false);
 
 
     // Initializes list object for latter use
-    makeDrinkList(dbDriver.getDrinkList());
-    makeContainerList(dbDriver.getContainerList());
+//    makeDrinkList(dbDriver.getDrinkList());
+//    makeContainerList(dbDriver.getContainerList());
 
     // We have to make a event loop or idk how, but have a funktion to scan student card
     // Initializes the RFID here
@@ -29,17 +28,32 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::startscreen(){
+    ui->textStartScreen->setVisible(true);
+    ui->pushAddDrink->setVisible(false);
+    ui->pushBalanceMenu->setVisible(false);
+    ui->pushFavoritsMenu->setVisible(false);
+    ui->pushKatalogMenu->setVisible(false);
+    ui->pushKontoMenu->setVisible(false);
+    ui->textKontoInformation->setVisible(false);
+    ui->pushKontoMenu->setVisible(false);
+
+}
+
 int MainWindow::scanStudentCard(){
     int state = NO_CARD;
     int cardValue = 0;
 
     while (state == NO_CARD){
         // Call function for student card here
-
+        //cardValue is just tested here
+        cardValue = 1;
 
         if (cardValue != 0){
             ui->textStartScreen->setVisible(false);
-            account = dbDriver.getAccount(QString::number(cardValue));
+            Account *accountPtr = &account;
+            accountPtr = dbDriver.getAccount(QString::number(cardValue), accountPtr);
+            qDebug() << accountPtr->getName();
             if (account.getAccountId() == cardValue){
                 mainWindow();
             } else {
@@ -56,7 +70,11 @@ int MainWindow::scanStudentCard(){
 }
 
 void MainWindow::mainWindow(){
-    ui->buttonBalanceMenu->setVisible(true);
+    ui->pushAddDrink->setVisible(true);
+    ui->pushBalanceMenu->setVisible(true);
+    ui->pushFavoritsMenu->setVisible(true);
+    ui->pushKatalogMenu->setVisible(true);
+    ui->pushKontoMenu->setVisible(true);
 }
 
 void MainWindow::newUserWindow(){
@@ -67,35 +85,28 @@ void MainWindow::on_buttonBalanceMenu_clicked(){
 
 }
 
+void MainWindow::on_pushKontoMenu_clicked(){
+    ui->pushKontoMenu->setVisible(true);
+    //makeAccountList(dbDriver.getAccountList());
+
+//    account = dbDriver.getAccount("1", account);
+    qDebug() << account.getName();
+    ui->textKontoInformation->setText(account.getName() + "\n " + QString::number(account.getBalance()) );
+//    //Create an iterator of std::list
+//    std::list<Account>::iterator it;
 
 
-void MainWindow::on_GetAccountButton_clicked(){
-    account.setAccountId(1);
-    //account = dbDriver.getAccount(QString::number(account.getAccountId()));
-    makeAccountList(dbDriver.getAccountList());
+//    for (it = accountList.begin(); it != accountList.end(); it++)
+//    {
+//        // Access the object through iterator
+//        ui->textKontoInformation->append("Name: " + it->getName());
+//        qDebug() << it->getAccountId();
+//    }
 
-    //Create an iterator of std::list
-    std::list<Account>::iterator it;
+//    account = dbDriver.getAccount("1");
+//    ui->textKontoInformation->setVisible(true);
+//    ui->textKontoInformation->append(account.getName() + "\n " + QString::number(account.getBalance()) );
 
-    for (unsigned long i = 0; i < sizeof(accountList); i++){
-
-    for (it = accountList.begin(); it != accountList.end(); it++)
-    {
-        // Access the object through iterator
-        ui->textBrowser->append(it->getName());
-        qDebug() << it->getAccountId();
-    }
-    }
-
-}
-
-
-
-void MainWindow::on_PostAccountButton_clicked(){
-    account.setName("Duwe");
-    account.setAccountId(1);
-    account.setBalance(30000);
-    dbDriver.postAccount(&account);
 }
 
 void MainWindow::RecipeButton()
@@ -179,3 +190,31 @@ void MainWindow::makeIngredienttList(QJsonArray ingredientJsonFormat){
 }
 
 
+//void MainWindow::on_GetAccountButton_clicked(){
+//    account.setAccountId(1);
+//    //account = dbDriver.getAccount(QString::number(account.getAccountId()));
+//    makeAccountList(dbDriver.getAccountList());
+
+//    //Create an iterator of std::list
+//    std::list<Account>::iterator it;
+
+//    for (unsigned long i = 0; i < sizeof(accountList); i++){
+
+//    for (it = accountList.begin(); it != accountList.end(); it++)
+//    {
+//        // Access the object through iterator
+//        ui->textKontoInformation->append(it->getName());
+//        qDebug() << it->getAccountId();
+//    }
+//    }
+
+//}
+
+
+
+//void MainWindow::on_PostAccountButton_clicked(){
+//    account.setName("Duwe");
+//    account.setAccountId(1);
+//    account.setBalance(30000);
+//    dbDriver.postAccount(&account);
+//}

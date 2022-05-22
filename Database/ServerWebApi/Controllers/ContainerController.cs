@@ -39,7 +39,7 @@ public class ContainerController : ControllerBase
 
     //PUT: api/Container/5
     [HttpPut("{id}")]
-    public async Task<IActionResult> PutContainerItem(Guid id, ContainerItem ContainerItem)
+    public async Task<IActionResult> PutContainerItem(int id, ContainerItem ContainerItem)
     {
         if (id != ContainerItem.ContainerItemId)
         {
@@ -95,7 +95,7 @@ public class ContainerController : ControllerBase
     }
 
 
-    private bool ContainerItemExists(Guid id)
+    private bool ContainerItemExists(int id)
     {
         return _context.ContainerItems.Any(e => e.ContainerItemId == id);
     }

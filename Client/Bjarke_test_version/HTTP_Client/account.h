@@ -13,6 +13,8 @@ public:
     double getBalance() const;
     int getAccountId() const;
     void setAccountId(int AccountId);
+    void operator =(const Account &temp);
+    ~Account();
 
 private:
     QString _name;
