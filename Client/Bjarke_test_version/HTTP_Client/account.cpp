@@ -1,0 +1,40 @@
+#include "account.h"
+using namespace std;
+
+Account::Account(int AccountId, QString name, double balance)
+//: _accountId(AccountId)
+{
+    setBalance(balance);
+    setName(name);
+    setAccountId(AccountId);
+}
+
+double Account::getBalance() const
+{
+    return _balance;
+}
+
+void Account::setBalance(double balance)
+{
+    _balance = balance;
+}
+
+void Account::setName(QString name)
+{
+    _name = name;
+}
+
+QString Account::getName() const
+{
+    return _name;
+}
+
+int Account::getAccountId() const
+{
+    return _accountId;
+}
+
+void Account::setAccountId(int AccountId)
+{
+    _accountId = AccountId;
+}

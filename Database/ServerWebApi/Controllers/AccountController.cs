@@ -15,7 +15,9 @@ public class AccountController : ControllerBase
     {
         _context = context;
     }
-
+    /**
+     @ breif
+    */
     // GET: api/Account
     [HttpGet]
     public async Task<ActionResult<IEnumerable<AccountItem>>> GetAccountItem()
@@ -25,7 +27,7 @@ public class AccountController : ControllerBase
 
     // GET: api/Account/5
     [HttpGet("{id}")]
-    public async Task<ActionResult<AccountItem>> GetAccountItem(string id)
+    public async Task<ActionResult<AccountItem>> GetAccountItem(int id)
     {
         var accountItem = await _context.AccountItems.FindAsync(id);
 
@@ -39,7 +41,7 @@ public class AccountController : ControllerBase
 
     //PUT: api/Account/5
     [HttpPut("{id}")]
-    public async Task<IActionResult> PutAccountItem(Guid id, AccountItem accountItem)
+    public async Task<IActionResult> PutAccountItem(int id, AccountItem accountItem)
     {
         if (id != accountItem.AccountItemId)
         {
@@ -95,7 +97,7 @@ public class AccountController : ControllerBase
     }
 
 
-    private bool AccountItemExists(Guid id)
+    private bool AccountItemExists(int id)
     {
         return _context.AccountItems.Any(e => e.AccountItemId == id);
     }
@@ -115,7 +117,7 @@ public class AccountController : ControllerBase
 
     //PUT: /Account/{id}/Balance/
     [HttpPut("{id}/Balance/")]
-    public async Task<IActionResult> PutAccountItemBalance(Guid id, double amount)
+    public async Task<IActionResult> PutAccountItemBalance(int id, double amount)
     {
         var accountItem = await _context.AccountItems.FindAsync(id);
         if (accountItem == null)
