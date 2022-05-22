@@ -3,7 +3,7 @@ namespace ContainerApi.Models;
 using Ingredient.Model;
 public class ContainerItem
 {
-    public Guid ContainerId { get; set; }
+    public Guid ContainerItemId { get; set; }
 
     public int Place { get; set; }
 
