@@ -15,14 +15,23 @@
 
 #define ARRAY_SIZE 8
 
-CY_ISR_PROTO(ISR_UART_rx_handler);
 int firstMessage[ARRAY_SIZE];
 int secondMessage[ARRAY_SIZE];
 bool firstMessageRecieved = false;
 
 
+CY_ISR_PROTO(ISR_UART_rx_handler);
 
 
-
+void writeUART()
+{
+    for(int i=0;i<8;++i)
+    {
+        if(firstMessage[i]==secondMessage[i])
+        {
+            UART_1_WriteTxData(firstMessage[i]);
+        }
+    }
+}
 */
 /* [] END OF FILE */
