@@ -14,14 +14,16 @@
 
 CY_ISR_PROTO(ISR_UART_rx_handler);
 CY_ISR_PROTO(timer_inter_handler);
+
 void handleByteReceived(uint8_t byteReceived);
 
 int main(void)
 {
     CyGlobalIntEnable; /* Enable global interrupts. */
     isr_uart_rx_StartEx(ISR_UART_rx_handler);
-    timer_isr_StartEx(timer_inter_handler);
+    
     UART_1_Start();
+    timer_isr_StartEx(timer_inter_handler);
     Timer_1_Enable();
     
     /* Place your initialization/startup code here (e.g. MyInst_Start()) */

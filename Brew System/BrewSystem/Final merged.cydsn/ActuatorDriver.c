@@ -23,7 +23,6 @@ int AMOUNT;
 
 CY_ISR(timer_inter_handler)
 {
-    DONE = true;
     closeValves();
     Timer_1_Stop();
 }
@@ -34,13 +33,11 @@ int pour()
     float timerVariabel = 24;
     float x = 156; // skal ændres når ventiler er blevet testet.
     
-    time = AMOUNT * x * timerVariabel;
+    time = AMOUNT * x * timerVariabel; // calculate open time.
     
-    Timer_1_Start();
-    
-    
-    
-    openValveNr(CONTAINER);
+    Timer_1_Start(); // Starts timer
+        
+    openValveNr(CONTAINER); // Open specific container
         
     Timer_1_WriteCounter(time); // makes sure timer counter is 0
     Timer_1_WritePeriod(time); // Writes periode to timer
@@ -58,18 +55,38 @@ static void openValveNr(int valveNumber)
 {
     switch(valveNumber)
     {
+        case 0: // valve 0
+        {
+            v0_Write(0);
+            break;
+        }
         
         case 1 : // Valve 1
         {
-            v1_Write(0);    
+            v1_Write(0);
+            break;
         }
         
+        case 2: // valve 2
+        {
+            v2_Write(0);
+            break;
+        }
+        
+        case 3: // valve 3
+        {
+            v3_Write(0);
+            break;
+        }
     }
 }
 
 void closeValves()
 {
+    v0_Write(1);
     v1_Write(1);
+    v2_Write(1);
+    v3_Write(1);
 }
 
 /* [] END OF FILE */

@@ -17,11 +17,12 @@
 #include "LiquidSensor.h"
 #include <stdbool.h>
 
+
 #define ARRAY_SIZE 8
 
-int firstMessage[ARRAY_SIZE];
-int secondMessage[ARRAY_SIZE];
-int slaveMessage[ARRAY_SIZE];
+uint8 firstMessage[ARRAY_SIZE];
+uint8 secondMessage[ARRAY_SIZE];
+uint8 slaveMessage[ARRAY_SIZE];
 bool firstMessageRecieved = false;
 bool lastIngr;
 
@@ -175,9 +176,52 @@ void handleByteReceived(uint8_t byteReceived)
             readMasterMess();
             pour();
         }
-        writeUart();
+        //writeUart();
+    }
+    case 'b' :
+    {
+        firstMessage[0] = 0;
+        firstMessage[1] = 0;
+        firstMessage[2] = 1;
+        firstMessage[3] = 0;
+        firstMessage[4] = 0;
+        firstMessage[5] = 1;
+        firstMessage[6] = 0;
+        firstMessage[7] = 1;
+        
+        secondMessage[0] = 0;
+        secondMessage[1] = 0;
+        secondMessage[2] = 1;
+        secondMessage[3] = 0;
+        secondMessage[4] = 0;
+        secondMessage[5] = 1;
+        secondMessage[6] = 0;
+        secondMessage[7] = 1;
     }
     break;
+    
+    case 'n' :
+    {
+        firstMessage[0] = 0;
+        firstMessage[1] = 0;
+        firstMessage[2] = 1;
+        firstMessage[3] = 0;
+        firstMessage[4] = 1;
+        firstMessage[5] = 1;
+        firstMessage[6] = 0;
+        firstMessage[7] = 1;
+        
+        secondMessage[0] = 0;
+        secondMessage[1] = 0;
+        secondMessage[2] = 1;
+        secondMessage[3] = 0;
+        secondMessage[4] = 1;
+        secondMessage[5] = 1;
+        secondMessage[6] = 0;
+        secondMessage[7] = 1;
+    }
+    break;
+    
     default:
     {
         
@@ -256,9 +300,7 @@ void writeUart()
             
             //UART_1_PutChar(firstMessage[i]);
             firstMessage[i]=0;
-            secondMessage[i]=0;
-            
-            CyDelay(1000);
+            secondMessage[i]=0;           
         }
     }
 }
@@ -296,19 +338,19 @@ void readMasterMess()
         flask += 2;
     }
     
-    if (firstMessage[7] == 1)
+    if (firstMessage[6] == 1)
     {
         maengde += 1;
     }
-    if (firstMessage[6] == 1)
+    if (firstMessage[5] == 1)
     {
         maengde += 2;
     } 
-    if (firstMessage[5] == 1)
+    if (firstMessage[4] == 1)
     {
         maengde += 4;
     }
-    if (firstMessage[4] == 1)
+    if (firstMessage[3] == 1)
     {
         maengde += 8;
     }
