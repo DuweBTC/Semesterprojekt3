@@ -44,6 +44,7 @@ private:
     // One Instance objects
     Ui::MainWindow *ui;
     DatabaseDriver dbDriver;
+    Account *accountPtr = &account;
     Account account;
     Recipe recipe;
     DrinkItem drinkItem;
@@ -58,6 +59,9 @@ private:
     std::list <ContainerItem> containerList;
     enum {NO_CARD, CARD};
     enum {NEW_USER, ALREADY_USER};
+    enum {SCAN_CARD_MENU, MAIN_MENU, NEW_USER_MENU, KONTO_MENU, KATALOG_MENU, ADD_DRINK_MENU, BALANCE_MENU, FAVORIT_MENU};
+    int WindowMenu = 0;
+    void setText(QString text);
 
 private slots:
     // Event handling programning
@@ -67,13 +71,19 @@ private slots:
     void newUserWindow();
     void on_buttonBalanceMenu_clicked();
     void on_pushKontoMenu_clicked();
+    void on_pushMainMenu_clicked();
+    void on_pushKatalogMenu_clicked();
+    void on_pushBalanceMenu_clicked();
+    void on_pushAddDrink_clicked();
+    void on_pushFavoritsMenu_clicked();
+    void on_pushInsertName_clicked();
+    void on_pushPut_clicked();
+    void on_pushGetAllKonto_clicked();
+    void on_pushDelete_clicked();
 
 //    void on_PostAccountButton_clicked();
 //    void on_GetAccountButton_clicked();
 
-    void DrinkButton();
-    void IngredientButton();
-    void ContainerButton();
-    void RecipeButton();
+
 };
 #endif // MAINWINDOW_H

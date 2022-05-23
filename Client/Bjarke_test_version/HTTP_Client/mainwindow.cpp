@@ -7,9 +7,10 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    ui->textStartScreen->setVisible(true);
 //   startscreen();
-    ui->textKontoMenu->setVisible(false);
+    //
+    WindowMenu = SCAN_CARD_MENU;
+    setText("Scan Card");
 
 
     // Initializes list object for latter use
@@ -29,14 +30,13 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::startscreen(){
-    ui->textStartScreen->setVisible(true);
-    ui->pushAddDrink->setVisible(false);
-    ui->pushBalanceMenu->setVisible(false);
-    ui->pushFavoritsMenu->setVisible(false);
-    ui->pushKatalogMenu->setVisible(false);
-    ui->pushKontoMenu->setVisible(false);
-    ui->textKontoInformation->setVisible(false);
-    ui->pushKontoMenu->setVisible(false);
+
+//    ui->pushAddDrink->hide();
+//    ui->pushBalanceMenu->hide();
+//    ui->pushFavoritsMenu->hide();
+//    ui->pushKatalogMenu->hide();
+//    ui->pushKontoMenu->hide();
+    //ui->TextBalance->hide();
 
 }
 
@@ -50,10 +50,11 @@ int MainWindow::scanStudentCard(){
         cardValue = 1;
 
         if (cardValue != 0){
-            ui->textStartScreen->setVisible(false);
-            Account *accountPtr = &account;
-            accountPtr = dbDriver.getAccount(QString::number(cardValue), accountPtr);
+            //ui->textStartScreen->hide();
+
+            dbDriver.getAccount(QString::number(cardValue), accountPtr);
             qDebug() << accountPtr->getName();
+
             if (account.getAccountId() == cardValue){
                 mainWindow();
             } else {
@@ -70,64 +71,117 @@ int MainWindow::scanStudentCard(){
 }
 
 void MainWindow::mainWindow(){
-    ui->pushAddDrink->setVisible(true);
-    ui->pushBalanceMenu->setVisible(true);
-    ui->pushFavoritsMenu->setVisible(true);
-    ui->pushKatalogMenu->setVisible(true);
-    ui->pushKontoMenu->setVisible(true);
+    WindowMenu = MAIN_MENU;
+    setText("Main Menu");
+    if (WindowMenu == MAIN_MENU){
+    ui->textInformation->show();
+    ui->pushMainMenu->show();
+    ui->pushAddDrink->show();
+    ui->pushBalanceMenu->show();
+    ui->pushFavoritsMenu->show();
+    ui->pushKatalogMenu->show();
+    ui->pushKontoMenu->show();
+    }
+
 }
 
 void MainWindow::newUserWindow(){
+    WindowMenu = NEW_USER_MENU;
+    setText("New User");
+    // Disable all button on menu
+    if (WindowMenu == NEW_USER_MENU){
+//    ui->textInformation->hide();
+//    ui->pushMainMenu->hide();
+//    ui->pushAddDrink->hide();
+//    ui->pushBalanceMenu->hide();
+//    ui->pushFavoritsMenu->hide();
+//    ui->pushKatalogMenu->hide();
+//    ui->pushKontoMenu->hide();
+    }
 
+    // UI to make a account
+    on_pushInsertName_clicked();
+}
+
+void MainWindow::on_pushMainMenu_clicked(){
+    mainWindow();
+}
+
+void MainWindow::on_pushKatalogMenu_clicked(){
+    setText("Drinks");
+}
+
+void MainWindow::on_pushBalanceMenu_clicked(){
+    setText("Change Balance");
+
+}
+
+void MainWindow::on_pushFavoritsMenu_clicked(){
+    setText("Favorit Menu");
+}
+
+void MainWindow::on_pushAddDrink_clicked(){
+    setText("Add Drink Menu");
 }
 
 void MainWindow::on_buttonBalanceMenu_clicked(){
+    ui->pushBalanceMenu->show();
+    ui->textInformation->setText("Konto Information: \nName: " + account.getName() + "\nBalance: " + QString::number(account.getBalance()) );
+}
 
+void MainWindow::on_pushPut_clicked()
+{
+    account.setAccountId((ui->textId->toPlainText()).toInt());
+    dbDriver.getAccount(QString::number(account.getAccountId()), accountPtr);
+    account.setBalance((ui->textInsertBalance->toPlainText()).toDouble());
+    qDebug() << account.getAccountId();
+    dbDriver.putAccount(&account);
+//    ui->pushInsertName->hide();
+//    ui->textInsertName->hide();
+    mainWindow();
 }
 
 void MainWindow::on_pushKontoMenu_clicked(){
-    ui->pushKontoMenu->setVisible(true);
+    setText("Konto Information");
     //makeAccountList(dbDriver.getAccountList());
 
 //    account = dbDriver.getAccount("1", account);
     qDebug() << account.getName();
-    ui->textKontoInformation->setText(account.getName() + "\n " + QString::number(account.getBalance()) );
-//    //Create an iterator of std::list
-//    std::list<Account>::iterator it;
+    ui->textInformation->setText("Konto Information: \nName: " + account.getName() + "\nBalance: " + QString::number(account.getBalance()) );
 
 
-//    for (it = accountList.begin(); it != accountList.end(); it++)
-//    {
-//        // Access the object through iterator
-//        ui->textKontoInformation->append("Name: " + it->getName());
-//        qDebug() << it->getAccountId();
-//    }
-
-//    account = dbDriver.getAccount("1");
-//    ui->textKontoInformation->setVisible(true);
-//    ui->textKontoInformation->append(account.getName() + "\n " + QString::number(account.getBalance()) );
 
 }
 
-void MainWindow::RecipeButton()
-{
-    //recipe = dbDriver.getRecipe();
+void MainWindow::on_pushGetAllKonto_clicked(){
+        makeAccountList(dbDriver.getAccountList());
+        //Create an iterator of std::list
+        std::list<Account>::iterator it;
+        ui->textInformation->setText("");
+
+        for (it = accountList.begin(); it != accountList.end(); it++)
+        {
+            // Access the object through iterator
+            ui->textInformation->append("Name: " + it->getName() + "\n");
+            qDebug() << it->getAccountId();
+        }
 }
 
-void MainWindow::DrinkButton()
-{
-    //drinkItem = dbDriver.getDrink();
+void MainWindow::on_pushInsertName_clicked(){
+    account.setName(ui->textInsertName->toPlainText());
+    account.setAccountId(1);
+    account.setBalance(0);
+    dbDriver.postAccount(&account);
+//    ui->pushInsertName->hide();
+//    ui->textInsertName->hide();
+    mainWindow();
 }
 
-void MainWindow::IngredientButton()
-{
-    //ingredientItem = dbDriver.getIngredient();
+void MainWindow::on_pushDelete_clicked(){
+    dbDriver.deleteAccount(ui->textId->toPlainText());
+    mainWindow();
 }
 
-void MainWindow::ContainerButton()
-{
-    //containerItem = dbDriver.getContainer();
-}
 
 void MainWindow::makeAccountList(QJsonArray accountJsonFormat){
     foreach (const QJsonValue &value, accountJsonFormat)
@@ -187,6 +241,12 @@ void MainWindow::makeIngredienttList(QJsonArray ingredientJsonFormat){
                                         json_ingredient_obj["Titel"].toString()));
 
     }
+}
+
+void MainWindow::setText(QString text){
+    ui->textMenu->setText(text);
+    ui->textMenu->setFontPointSize(36);
+    ui->textMenu->setAlignment(Qt::AlignCenter);
 }
 
 

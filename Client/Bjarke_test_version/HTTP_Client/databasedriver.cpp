@@ -109,6 +109,7 @@ Account* DatabaseDriver::getAccount(QString id, Account *account)
             account->setAccountId(json_account_obj["accountItemId"].toInt());
             account->setName(json_account_obj["name"].toString());
             account->setBalance(json_account_obj["balance"].toDouble());
+
         }
         delete reply;
     }
@@ -157,19 +158,23 @@ void DatabaseDriver::postAccount(Account *account)
 
 void DatabaseDriver::putAccount(Account *account)
 {
-    // "quit()" the event-loop, when the network request "finished()"
     QNetworkAccessManager *mgr = new QNetworkAccessManager;
-    // QObject::connect(&mgr, SIGNAL(finished(QNetworkReply*)), &eventLoop, SLOT(quit()));
-    QString URL = "http://localhost:5123/Account/" + QString::number(account->getAccountId());
+    const QString endpoint = "Account/";
+
     //  the HTTP request
-    const QUrl url(URL);
-    QNetworkRequest request(url);
+    QString URL = _url + endpoint + QString::number(account->getAccountId());
+    //const QUrl url(URL);
+    QNetworkRequest request(URL);
 
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
     QJsonObject account_local;
     account_local["Name"] = account->getName();
     account_local["Balance"] = account->getBalance();
     account_local["AccountId"] = account->getAccountId();
+
+    qDebug() << "Put: \nName: account->getName() \nBalance " +
+                QString::number(account->getBalance()) + "\nId: "
+                + QString::number(account->getAccountId());
 
     QJsonDocument doc(account_local);
     QByteArray data = doc.toJson();
