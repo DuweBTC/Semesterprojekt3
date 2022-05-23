@@ -26,7 +26,7 @@ public class DrinkController : ControllerBase
 
     // GET: api/Drink/5
     [HttpGet("{id}")]
-    public async Task<ActionResult<DrinkItem>> GetDrinkItem(string id)
+    public async Task<ActionResult<DrinkItem>> GetDrinkItem(int id)
     {
         var DrinkItem = await _context.DrinkItems.FindAsync(id);
 
@@ -42,7 +42,7 @@ public class DrinkController : ControllerBase
     [HttpPut("{id}")]
     public async Task<IActionResult> PutDrinkItem(int id, DrinkItem DrinkItem)
     {
-        if (id != DrinkItem.DrinkId)
+        if (id != DrinkItem.DrinkItemId)
         {
             return BadRequest();
         }
@@ -65,7 +65,7 @@ public class DrinkController : ControllerBase
             }
         }
 
-        return NoContent();
+        return Ok(DrinkItem);
     }
 
     // POST: api/Drink
@@ -77,7 +77,7 @@ public class DrinkController : ControllerBase
         _context.DrinkItems.Add(DrinkItem);
         await _context.SaveChangesAsync();
 
-        return CreatedAtAction(nameof(GetDrinkItem), new { id = DrinkItem.DrinkId }, DrinkItem);
+        return CreatedAtAction(nameof(GetDrinkItem), new { id = DrinkItem.DrinkItemId }, DrinkItem);
 
     }
 
@@ -94,13 +94,13 @@ public class DrinkController : ControllerBase
         _context.DrinkItems.Remove(DrinkItem);
         await _context.SaveChangesAsync();
 
-        return NoContent();
+        return Ok();
     }
 
 
     private bool DrinkItemExists(int id)
     {
-        return _context.DrinkItems.Any(e => e.DrinkId == id);
+        return _context.DrinkItems.Any(e => e.DrinkItemId == id);
     }
 
 

@@ -1,6 +1,12 @@
 # ReadMe 
 ## Setup Windoes, Mac or Linux
 
+### Windows 
+The way to make dotnet work on Windows is that you have to check out this [Website]](https://code.visualstudio.com/docs/languages/dotnet). You have to install these extension [1](https://dotnet.microsoft.com/en-us/download), [2](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) and [3](https://marketplace.visualstudio.com/items?itemName=Ionide.Ionide-fsharp), After that close the VS Code and then open it up again. To run it you have to change the terminal to be cmd and then you can run the command
+```bash
+dotnet run
+```
+
 ### Linux
 This about the setup and last we will show how we use the database. 
 On linux you first add the repository

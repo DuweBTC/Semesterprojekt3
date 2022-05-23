@@ -7,7 +7,7 @@ public class DrinkItem
 {
     public string Titel { get; set; } = default!;
 
-    public int DrinkId { get; set; }
+    public int DrinkItemId { get; set; }
 
     public string? Description { get; set; }
 

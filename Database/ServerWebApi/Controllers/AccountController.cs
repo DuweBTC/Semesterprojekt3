@@ -15,7 +15,9 @@ public class AccountController : ControllerBase
     {
         _context = context;
     }
-
+    /**
+     @ breif
+    */
     // GET: api/Account
     [HttpGet]
     public async Task<ActionResult<IEnumerable<AccountItem>>> GetAccountItem()
@@ -39,9 +41,9 @@ public class AccountController : ControllerBase
 
     //PUT: api/Account/5
     [HttpPut("{id}")]
-    public async Task<IActionResult> PutAccountItem(Guid id, AccountItem accountItem)
+    public async Task<IActionResult> PutAccountItem(string id, AccountItem accountItem)
     {
-        if (id != accountItem.AccountId)
+        if (id != accountItem.AccountItemId)
         {
             return BadRequest();
         }
@@ -64,7 +66,7 @@ public class AccountController : ControllerBase
             }
         }
 
-        return NoContent();
+        return Ok(accountItem);
     }
 
     // POST: api/Account
@@ -74,7 +76,7 @@ public class AccountController : ControllerBase
         _context.AccountItems.Add(accountItem);
         await _context.SaveChangesAsync();
 
-        return CreatedAtAction(nameof(GetAccountItem), new { id = accountItem.AccountId }, accountItem);
+        return CreatedAtAction(nameof(GetAccountItem), new { id = accountItem.AccountItemId }, accountItem);
 
     }
 
@@ -91,13 +93,13 @@ public class AccountController : ControllerBase
         _context.AccountItems.Remove(accountItem);
         await _context.SaveChangesAsync();
 
-        return NoContent();
+        return Ok();
     }
 
 
-    private bool AccountItemExists(Guid id)
+    private bool AccountItemExists(string id)
     {
-        return _context.AccountItems.Any(e => e.AccountId == id);
+        return _context.AccountItems.Any(e => e.AccountItemId == id);
     }
 
     // GET: api/Account/{id}/Balance
@@ -115,7 +117,7 @@ public class AccountController : ControllerBase
 
     //PUT: /Account/{id}/Balance/
     [HttpPut("{id}/Balance/")]
-    public async Task<IActionResult> PutAccountItemBalance(Guid id, double amount)
+    public async Task<IActionResult> PutAccountItemBalance(string id, double amount)
     {
         var accountItem = await _context.AccountItems.FindAsync(id);
         if (accountItem == null)
@@ -148,7 +150,7 @@ public class AccountController : ControllerBase
             }
         }
 
-        return NoContent();
+        return Ok(accountItem.Balance);
     }
 
 }
