@@ -18,6 +18,7 @@
 
 int firstMessage[ARRAY_SIZE];
 int secondMessage[ARRAY_SIZE];
+int slaveMessage[ARRAY_SIZE];
 bool firstMessageRecieved = false;
 CY_ISR_PROTO(ISR_UART_rx_handler);
 void handleByteReceived(uint8_t byteReceived);
