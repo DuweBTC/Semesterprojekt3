@@ -54,6 +54,13 @@ void handleByteReceived(uint8_t byteReceived)
         case 'b' :
         {
             pour();
+            setIngredient(1,2);
+            break;
+        }
+        case 'n' :
+        {
+            setIngredient(1, 10);
+            pour();
             break;
         }
     }
