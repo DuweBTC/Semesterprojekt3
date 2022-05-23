@@ -26,7 +26,7 @@ public class IngredientController : ControllerBase
 
     // GET: api/Ingredient/5
     [HttpGet("{id}")]
-    public async Task<ActionResult<IngredientItem>> GetIngredientItem(string id)
+    public async Task<ActionResult<IngredientItem>> GetIngredientItem(int id)
     {
         var IngredientItem = await _context.IngredientItems.FindAsync(id);
 
@@ -65,7 +65,7 @@ public class IngredientController : ControllerBase
             }
         }
 
-        return NoContent();
+        return Ok(IngredientItem);
     }
 
     // POST: api/Ingredient
@@ -94,7 +94,7 @@ public class IngredientController : ControllerBase
         _context.IngredientItems.Remove(IngredientItem);
         await _context.SaveChangesAsync();
 
-        return NoContent();
+        return Ok();
     }
 
 

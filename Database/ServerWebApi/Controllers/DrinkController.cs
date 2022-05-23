@@ -65,7 +65,7 @@ public class DrinkController : ControllerBase
             }
         }
 
-        return NoContent();
+        return Ok(DrinkItem);
     }
 
     // POST: api/Drink
@@ -94,7 +94,7 @@ public class DrinkController : ControllerBase
         _context.DrinkItems.Remove(DrinkItem);
         await _context.SaveChangesAsync();
 
-        return NoContent();
+        return Ok();
     }
 
 

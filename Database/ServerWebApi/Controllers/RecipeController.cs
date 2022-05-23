@@ -53,8 +53,8 @@ public class RecipeController : ControllerBase
         return CreatedAtAction(nameof(GetRecipeItem), new { ingredients = RecipeItem.Ingredient }, RecipeItem);
 
     }
-    /*
-        // DELETE: api/Recipe/5
+    //DELETE: api/Recipe/5
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteRecipeItem(int id)
         {
@@ -67,15 +67,15 @@ public class RecipeController : ControllerBase
             _context.RecipeItems.Remove(RecipeItem);
             await _context.SaveChangesAsync();
 
-            return NoContent();
+            return Ok();
         }
 
 
         private bool RecipeItemExists(int id)
         {
-            return _context.RecipeItems.Any(e => e.Id == id);
+            return _context.RecipeItems.Any(e => e.RecipeItemId == id);
         }
 
-    */
+
 }
 

@@ -64,7 +64,7 @@ public class ContainerController : ControllerBase
             }
         }
 
-        return NoContent();
+        return Ok(ContainerItem);
     }
 
     // POST: api/Container
@@ -91,7 +91,7 @@ public class ContainerController : ControllerBase
         _context.ContainerItems.Remove(ContainerItem);
         await _context.SaveChangesAsync();
 
-        return NoContent();
+        return Ok(ContainerItem);
     }
 
 

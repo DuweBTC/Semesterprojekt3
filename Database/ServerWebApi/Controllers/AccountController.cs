@@ -66,7 +66,7 @@ public class AccountController : ControllerBase
             }
         }
 
-        return NoContent();
+        return Ok(accountItem);
     }
 
     // POST: api/Account
@@ -93,7 +93,7 @@ public class AccountController : ControllerBase
         _context.AccountItems.Remove(accountItem);
         await _context.SaveChangesAsync();
 
-        return NoContent();
+        return Ok();
     }
 
 
@@ -150,7 +150,7 @@ public class AccountController : ControllerBase
             }
         }
 
-        return NoContent();
+        return Ok(accountItem.Balance);
     }
 
 }
