@@ -191,8 +191,10 @@ void writeUart()
         if(firstMessage[i]==secondMessage[i])
         {
             UART_1_WriteTxData(firstMessage[i]);
+            //UART_1_PutChar(firstMessage[i]);
             firstMessage[i]=0;
             secondMessage[i]=0;
+            CyDelay(1000);
         }
     }
 }
