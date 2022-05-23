@@ -30,12 +30,12 @@ CY_ISR(timer_inter_handler)
 int pour()
 {
     float time;
-    float timerVariabel = 0.00004267;
-    float x = 10; // skal ændres når ventiler er blevet testet.
+    float timerVariabel = 24;
+    float x = 156; // skal ændres når ventiler er blevet testet.
+    
+    time = AMOUNT * x * timerVariabel;
     
     DONE = false;
-    
-    time = timerVariabel * x; // Calculate time with amount
     
     Pour_Timer_WriteCounter(0); // makes sure timer counter is 0
     Pour_Timer_WritePeriod(time); // Writes periode to timer

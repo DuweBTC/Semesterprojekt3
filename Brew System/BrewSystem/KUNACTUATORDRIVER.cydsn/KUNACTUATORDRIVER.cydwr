@@ -243,7 +243,7 @@
   </Group>
   <Group key="Component">
     <Group key="v1">
-      <Data key="cy_boot" value="cy_boot_v6_0" />
+      <Data key="cy_boot" value="cy_boot_v6_10" />
       <Data key="Em_EEPROM_Dynamic" value="Em_EEPROM_Dynamic_v2_20" />
       <Data key="LIN_Dynamic" value="LIN_Dynamic_v5_0" />
     </Group>
@@ -251,9 +251,13 @@
   <Data key="DataVersionKey" value="2" />
   <Group key="DWRInstGuidMapping">
     <Group key="Pin">
-      <Data key="8d318d8b-cf7b-4b6b-b02c-ab1c5c49d0ba" value="LiquidSensorInput_1" />
+      <Data key="6db64547-0d6a-436c-ad0b-18fc7637d7cc" value="v4" />
+      <Data key="49b7647e-f352-4991-933b-28ece31e69fd" value="v2" />
+      <Data key="23686a04-83ae-4b89-b71e-0e37972e2638" value="v1" />
+      <Data key="1425177d-0d0e-4468-8bcc-e638e5509a9b" value="Rx_1" />
       <Data key="ce0cbaae-5e9e-4bdc-af73-508ec106bdf0" value="v1" />
-      <Data key="e851a3b9-efb8-48be-bbb8-b303b216c393" value="LiquidLED" />
+      <Data key="ed092b9b-d398-4703-be89-cebf998501f6" value="Tx_1" />
+      <Data key="ffa6965e-6b94-4506-88cc-b5f310f99ed3" value="v3" />
     </Group>
   </Group>
   <Group key="EEPROM">
@@ -3340,11 +3344,27 @@
     </Group>
   </Group>
   <Group key="Pin2">
+    <Group key="23686a04-83ae-4b89-b71e-0e37972e2638">
+      <Group key="0">
+        <Data key="Port Format" value="1,6" />
+      </Group>
+    </Group>
+    <Group key="1425177d-0d0e-4468-8bcc-e638e5509a9b">
+      <Group key="0">
+        <Data key="Port Format" value="12,6" />
+      </Group>
+    </Group>
     <Group key="ce0cbaae-5e9e-4bdc-af73-508ec106bdf0">
       <Group key="0">
         <Data key="Port Format" value="1,6" />
       </Group>
     </Group>
+    <Group key="ed092b9b-d398-4703-be89-cebf998501f6">
+      <Group key="0">
+        <Data key="Port Format" value="12,7" />
+      </Group>
+    </Group>
+    <Group key="UnAssigned Pins" />
   </Group>
   <Group key="PlaceDir">
     <Data key="count" value="0" />

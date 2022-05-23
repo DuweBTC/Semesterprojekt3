@@ -10,12 +10,11 @@
  * ========================================
 */
 
-
 #include "LiquidSensor.h"
 
 /* Prototyper */
-static void LiquidLEDOn();
-static void LiquidLEDoff();
+//static void LiquidLEDOn();
+//static void LiquidLEDoff();
 
 bool checkLiquid_1()
 {
@@ -23,14 +22,15 @@ bool checkLiquid_1()
     
     if (liquid == 1)
     {
-        LiquidLEDoff();
+        //LiquidLEDoff();
         return true;
     } else {
-        LiquidLEDOn();
+        //LiquidLEDOn();
         return false;
     }
 }
 
+/*
 static void LiquidLEDOn()
 {
     LiquidLED_Write(1); // Turn on warning LED
@@ -40,5 +40,5 @@ static void LiquidLEDoff()
 {
     LiquidLED_Write(0); // Turn off warning LED
 }
-
+*/
 /* [] END OF FILE */
