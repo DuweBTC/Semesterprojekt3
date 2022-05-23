@@ -25,7 +25,7 @@ public class ContainerController : ControllerBase
 
     // GET: api/Container/5
     [HttpGet("{id}")]
-    public async Task<ActionResult<ContainerItem>> GetContainerItem(string id)
+    public async Task<ActionResult<ContainerItem>> GetContainerItem(int id)
     {
         var ContainerItem = await _context.ContainerItems.FindAsync(id);
 
