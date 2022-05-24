@@ -3,18 +3,18 @@
 
 
 ## Probleformuleringen
-* [ ] Forklaring til rigtbillede mangler en for for database
-* [ ] Systemskitse udformet som rigt billede
-  * [ ] Task, hvis er det?
-  * [ ] Måske manger der en Bartender der på 
-  * [ ] Vi mangler en database af en form
+* [x] Forklaring til rigtbillede mangler en for for database
+* [x] Systemskitse udformet som rigt billede
+  * [x] Måske manger der en Bartender der på 
+  * [x] Task, hvis er det?
+  * [x] Vi mangler en database af en form
 
-* [ ] Det er indda skrevet ind i teksten understående rigtbillede, at vi bruger en server
+* [x] Det er indda skrevet ind i teksten understående rigtbillede, at vi bruger en server
 
-* [ ] MoSCoW
-  * [ ] Must have
-    * [ ] touch interface? er det for specifikt?
-    * [ ] Automaten skal kunne hente drinksopskrifter ved brug af en SQL database. Er det for specifikt?
+* [x] MoSCoW
+  * [x] Must have
+    * [x] touch interface? er det for specifikt? - Synes det er fint med det krav
+    * [x] Automaten skal kunne hente drinksopskrifter ved brug af en SQL database. Er det for specifikt? - Rettet til database
 
 
 ## Risikoanalyse
@@ -45,11 +45,11 @@
 
 
 ## Kravspecifikation
-* [ ] Mangler introduktion kravspecifiktaionen 
+* [x] Mangler introduktion kravspecifiktaionen 
 ### Aktør-kontekst diagram
-* [ ] Aktør beskrivelse
-  * [ ] Kunde Fjern den primære aktør i beskrivelse
-* [ ] Måske test til AC 
+* [x] Aktør beskrivelse
+  * [x] Kunde Fjern den primære aktør i beskrivelse
+* [x] Måske tekst til AC 
 ### Funktionelle Krav
 * [x] Beskrivelse
 * [x] User Stories
@@ -77,11 +77,11 @@
   * [ ] S.3 Testes
 
 ### Use case 
-  * [ ] Hvordan skal vi skrive use case? Use Case eller use case? det står blandet
-  * [ ] En læser alle use case igennem og godkender, mærkes med flueben
+  * [x] Hvordan skal vi skrive use case? Use Case eller use case? det står blandet
+  * [x] En læser alle use case igennem og godkender, mærkes med flueben
 
 ## Accepttestspecifikation 
-* [ ] Indledningen er for tynd her
+* [x] Indledningen er for tynd her
 * [x] UC1 
 * [x] UC1 exception
 * [x] UC2 er det ikke prækodition der står overstånde
@@ -126,8 +126,8 @@
 * [ ] Signalbeskrivlese mangler
 
 ### Software arkitektur
-* [ ] Indledning. Hvad er Software arkitektur? hvad bruges det til
-* [ ] Domænemodel indledning er for tynd
+* [x] Indledning. Hvad er Software arkitektur? hvad bruges det til
+* [x] Domænemodel indledning er for tynd
 * [ ] Domædemodel opdateres og recipe tilføjes
 
 #### Konceptuel klasse diagram 
@@ -145,7 +145,7 @@
 * [x] UC6
 
 #### Protokobeskrivelse
-* [ ] Indledning mangler
+* [x] Indledning mangler
 * [ ] UART protokol
 * [ ] HTTP protokol
 

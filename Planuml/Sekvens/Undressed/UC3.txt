@@ -11,14 +11,6 @@ participant "Sensor" as sensor
 
 frame UC3 [ADM]
 
-user->>client : Scan RFID
-activate client
-client->server : Card ID
-activate server
-server-->>client : User found
-deactivate server
-client->>user : Main menu
-deactivate client
 
 user->>client : Chooses drink
 activate client
