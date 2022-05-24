@@ -1,4 +1,6 @@
 # Dokumentation rettelser
+## (alt + c) giveer flueben [x] 
+
 
 ## Probleformuleringen
 * [ ] Forklaring til rigtbillede mangler en for for database
@@ -17,29 +19,30 @@
 
 ## Risikoanalyse
 * [x] Indledning 
-* [ ] Personlige risici
+ ### Personlige risici
   * [x] Indledning 
   * [x] Tabel 
   * [x] Beskrivelse til risici matrix
   * [x] risici matrix
   * [ ] Beskrivelse af scrum
-* [ ] Teknisk ricisi
+### Teknisk ricisi
   * [x] Indledning
   * [x] Tabel
   * [x] Beskrivelse til risici matrix
   * [x] risici matrix
-  * [ ] Teknisk Risici Nedbringelse
-    * [ ] Client hvad har I lavet i forsøg?
-    * [ ] Client Argument for/imod giver ikke menning
-    * [ ] Server Arduino er ikke bygget til Server
-    * [ ] Server test at kan modtage hvad? Ping
-    * [ ] PSoC hvordan tester det nogen form for kommunikation? Det er have noget der kan kommunikerere med clienten
-    * [ ] Sensor? Mangler vi ikke en liqued senser. 
-      * [ ] Lave en simpel test, og ser giver ikke menning, Skriv tester hvpr lang tid det tager for hver at registrer et glas eller hvad end I ønsker at teste
-    * [ ] Akuator - Forsøg: Teste hvilken af de forskellige akkuator der virker bedst - Skal skrives om
-    * [ ] beholderen, hvordan vil I teste det?
-    * [ ] RFID - hvordan testes der for hvor hurtigt? Vel bare en test om vi kan modtag et studiekort eller RFID-kort
-  * [ ] Der skal skrives ind i vurderingen at vi ikke ordenligt fik udfyldt disse test, hvormed overblikket faldt hurtigt fra hinanden
+###  Teknisk Risici Nedbringelse
+  * [ ] Client hvad har I lavet i forsøg?
+  * [ ] Client Argument for/imod giver ikke menning
+  * [ ] Server Arduino er ikke bygget til Server
+  * [ ] Server test at kan modtage hvad? Ping
+  * [ ] PSoC hvordan tester det nogen form for kommunikation? Det er have noget der kan kommunikerere med clienten
+  * [ ] Sensor? Mangler vi ikke en liqued senser. 
+    * [ ] Lave en simpel test, og ser giver ikke menning, Skriv tester hvpr lang tid det tager for hver at registrer et glas eller hvad end I ønsker at teste
+  * [ ] Akuator - Forsøg: Teste hvilken af de forskellige akkuator der virker bedst - Skal skrives om
+  * [ ] beholderen, hvordan vil I teste det?
+  * [ ] RFID - hvordan testes der for hvor hurtigt? Vel bare en test om vi kan modtag et studiekort eller RFID-kort
+* [ ] Der skal skrives ind i vurderingen at vi ikke ordenligt fik udfyldt disse test, hvormed overblikket faldt hurtigt fra hinanden
+
 
 ## Kravspecifikation
 * [ ] Mangler introduktion kravspecifiktaionen 
@@ -79,7 +82,71 @@
 
 ## Accepttestspecifikation 
 * [ ] Indledningen er for tynd her
+* [x] UC1 
+* [x] UC1 exception
+* [x] UC2 er det ikke prækodition der står overstånde
+* [ ] UC2 Hvordan godkendes opdateringen af penge? Bartender står ikke på testen
+* [x] UC2 - exception
+* [x] UC3
+* [x] UC4 
+* [x] UC5
+* [x] UC5 exception
+* [x] UC6
+* [x] UC6 exception
+  
+## Systemarkitektur
+* [x] Indledning
+### Hardware arkitektur
+* [ ] Overordnet Blokbeskrivelse
+  * [ ] Mangler 
+    * [ ] Motor beskrivelse se kommentar
+    * [ ] Brew Unit
+    * [ ] Mircocontroller
+    * [ ] Aktuatoren
+* [ ] Journal
+  * [ ] De kan findes henholdvis i bilagene:Bilag-X-Motor - HVor findes de og list dem alle
+  * [ ] Motor
+    * [ ] Bruger vi "Vi" i en rapport? hvis vi gør så okay ellers ret
+    * [ ] Hvorfor kunnne vi ikke bruger en mindre stærk? Kunne den så ikke rotererer med flaskerne. Det er et tomt argumment
+  * [ ] RFID hvor er den??????
+  * [ ] Vægt sensor hvor er konklusion for den?????
 
 
-## 
+* [ ] bdd fully opdateres
+* [ ] Skrive blokbeskrivelse 
+  * [ ] Alle navne skal stemme overens med bdd
+  * [ ] Motor
+    * [ ] Common GND med microcon-troller i signal giver ikke menning. Det er en kommentar
+* [ ] Indledning til ibd. Hvad er et ibd. Hvordan er det delt op
+* [ ] ibd opdateres
+* [ ] ibd skal navne passe med signalnavne fra bloksignal.........
+* [ ] Intro til Signalbeskrivlese
+* [ ] Signalbeskrivlese mangler
 
+### Software arkitektur
+* [ ] Indledning. Hvad er Software arkitektur? hvad bruges det til
+* [ ] Domænemodel indledning er for tynd
+#### Konceptuel klasse diagram 
+  * [ ] INdledning skal skrives om da vi ikke gør det på denne måde længere, men vi har tre systemer
+  * [ ] Mangler revipe på conceptual klassediagram
+  * [ ] Client - Fjern server og skriv dens reele navn, samme med brew system på UARTDriver eller noget
+  * [ ] Server - hvordan vil det virker og samme rettelser som før 
+  * [ ] Breswystem - navn som overstående. Har I drinks eller kun container?
+#### System sekvens diagram'
+* [x] UC1
+* [x] UC2
+* [ ] UC3 Fjern Mircocontroller og sensor og lav det omtil Brew System. Black box
+* [x] UC4
+* [x] UC5
+* [x] UC6
+
+#### Protokobeskrivelse
+* [ ] Indledning mangler
+* [ ] UART protokol
+* [ ] HTTP protokol
+* [ ] 
+### Deploiyment view
+* [ ] Der mangler ibd med softwarepackage på
+
+## Design
+  
