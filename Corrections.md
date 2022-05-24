@@ -168,7 +168,7 @@
 ### Software design
 * [ ] Indledningen 
 #### Server
-* [ ] Indledningen 
+* [x] Indledningen 
 * [ ] Skriv at vi har lavet en uddybende domain model, der beskriver relationerne og deres type for databasen
 * [x] Opdaterer class diagram   
 * [ ] Applikationssekvensdiagram for Program fjern UseHtttpsRedirectiuon()
