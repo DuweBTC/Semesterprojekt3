@@ -58,7 +58,6 @@ program->>app: UseSwagger()
 program->>app: UseSwaggerUI()
 end 
 
-program->>app: UseHttpsRedirection()
 program->>app: UseAuthorization()
 program->>app: MapControllers()
 program->>app: Run()
