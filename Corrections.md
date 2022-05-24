@@ -102,7 +102,7 @@
     * [x] Motor beskrivelse se kommentar
     * [x] Brew Unit
     * [x] Mircocontroller
-    * [ ] Aktuatoren
+    * [x] Aktuatoren
     * [ ] Weight sensor - tjekker for om der et glas ikke hvad der er i det. Den består ikke af en container og aktuakter og styrer ikke ventiler
     * [ ] Liquid Sensor
 * [ ] Journal
