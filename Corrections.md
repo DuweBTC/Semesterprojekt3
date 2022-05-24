@@ -100,9 +100,10 @@
 * [ ] Overordnet Blokbeskrivelse
   * [ ] Mangler 
     * [x] Motor beskrivelse se kommentar
-    * [ ] Brew Unit
-    * [ ] Mircocontroller
+    * [x] Brew Unit
+    * [x] Mircocontroller
     * [ ] Aktuatoren
+    * [ ] Weight sensor - tjekker for om der et glas ikke hvad der er i det. Den består ikke af en container og aktuakter og styrer ikke ventiler
 * [ ] Journal
   * [ ] De kan findes henholdvis i bilagene:Bilag-X-Motor - HVor findes de og list dem alle
   * [ ] Motor
