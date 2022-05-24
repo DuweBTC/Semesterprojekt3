@@ -171,9 +171,9 @@
 * [ ] Indledningen 
 #### Server
 * [x] Indledningen 
-* [ ] Skriv at vi har lavet en uddybende domain model, der beskriver relationerne og deres type for databasen
+* [x] Skriv at vi har lavet en uddybende domain model, der beskriver relationerne og deres type for databasen
 * [x] Opdaterer class diagram   
-* [ ] Applikationssekvensdiagram for Program fjern UseHtttpsRedirectiuon()
+* [x] Applikationssekvensdiagram for Program fjern UseHtttpsRedirectiuon()
 * [x] Sekvens diagrams
   * [x] Program
   * [x] Account get
