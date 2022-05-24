@@ -139,7 +139,7 @@
 #### System sekvens diagram'
 * [x] UC1
 * [x] UC2
-* [ ] UC3 Fjern Mircocontroller og sensor og lav det omtil Brew System. Black box
+* [x] UC3 Fjern Mircocontroller og sensor og lav det omtil Brew System. Black box
 * [x] UC4
 * [x] UC5
 * [x] UC6
@@ -168,7 +168,7 @@
   * [ ] Er der strøm til den? skal der angives noget her?
 
 ### Software design
-* [ ] Indledningen 
+* [x] Indledningen 
 #### Server
 * [x] Indledningen 
 * [x] Skriv at vi har lavet en uddybende domain model, der beskriver relationerne og deres type for databasen
@@ -247,7 +247,7 @@
 * [ ] Opdateret klasse diagram går i bilag og kun bruger det samlet klasse diagram, som hedder "cd Brew System [ADM]" dokumentationen - Michael ORD
 
 ## Implemnterings- & Modultest
-* [ ] Indledning 
+* [x] Indledning 
 ### Hardware
 * [ ] Indledning 
 * [ ] Modultest med f.eks. analog discory 
@@ -258,7 +258,8 @@
   * [ ] Motor
   
 ### Sofware 
-* [ ] Indledning
+* [x] Indledning - serverdel
+* [ ] Indledning - clientdel (i fortsættelse af den tekst der er skrevet - jeg ved ikke lige hvad I specifikt tester for -Myt)
 
 #### Server
 * [ ] Her linkes til opsætning af miljøer (RPI miljø f.eks.) 
@@ -286,7 +287,7 @@
 * [ ] Integartion med Server, Brew System og Client
 
 ## Accepttest
-* [ ] Indledning
+* [x] Indledning
 ### Testopstilling
 * [ ] Test af funktionelle krav
 * [ ] Test af ikke funktionelle krav
