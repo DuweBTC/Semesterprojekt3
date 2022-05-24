@@ -115,6 +115,12 @@
 
 
 * [ ] bdd fully opdateres
+  * [ ] Brew System
+    * [ ] Microcontroller
+    * [ ] Brew Unit
+    * [ ] Motor
+    * [ ] Liquid Sensor
+    * [ ] Container
 * [ ] Skrive blokbeskrivelse 
   * [ ] Alle navne skal stemme overens med bdd
   * [ ] Motor
