@@ -226,5 +226,28 @@
 #### Brew System
 * [ ] Indledning 
 ##### Applikationssekvensdiagram
-* [ ] 
+* [ ] Sekvensdiagram opdateres for de respektive navn, som er brugt i  class diagrammet. 
+  * [ ] UC3
+  * [ ] UC4
+* [ ] check UC3  - OpenValveNr(container) med de to efterføglende ting giver ikke menning
+* [ ] beskrivelse giver heller ikke menning
+* [ ] UC4 fjern boundary symbol
+* [ ] UC4 er UC3 ikke en prikondition. DEn skal kun beskrive forløbet for use casen.
+* [ ] Udivdet Brewsystem Klasse diagram for UC 3
+  * [ ] Indholder jeres domain ikke information???
+  * [ ] Det er ikke sådan vi tegner klassediagram syntax for fully dressed
+  * [ ] Er jeres funktion bool eller void eller hvad?
+* [ ] Det hedder fully dressed class diagram med lille fed skrift for "cd"
+* [ ] Opdateret klasse diagram går i bilag og kun bruger det samlet klasse diagram, som hedder "cd Brew System [ADM]" dokumentationen - Michael ORD
 
+## Implemnterings- & Modultest
+* [ ] Indledning 
+### Hardware
+* [ ] Indledning 
+* [ ] Modultest med f.eks. analog discory 
+  * [ ] RFID
+  * [ ] Akuator
+  * [ ] Liqued sensor
+  * [ ] wiegth sensor
+  * [ ] Motor
+  * [ ] 
