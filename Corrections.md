@@ -223,6 +223,10 @@
 * [ ] Flowchart for Main Menu state
   * [ ] Hvordan hænger det sammen med det forrige flowchart? Svar det gør det ikke
 
+#### Flowchart
+* [ ] Indledning
+* [ ] Oversigt over hele system
+
 #### Brew System
 * [ ] Indledning 
 ##### Applikationssekvensdiagram
@@ -250,4 +254,32 @@
   * [ ] Liqued sensor
   * [ ] wiegth sensor
   * [ ] Motor
-  * [ ] 
+  
+### Sofware 
+* [ ] Indledning
+
+#### Client
+* [ ] Her linkes til opsætning af miljøer (RPI miljø f.eks.) 
+* [ ] Implementering 
+* [ ] Integartion med raspberrry
+
+
+#### Server
+* [ ] Her linkes til opsætning af miljøer (RPI miljø f.eks.) 
+* [ ] Implementering 
+* [ ] Modultest Implementering
+* [ ] Integartion på rapsberry
+* [ ] Integration af RFID
+
+
+#### Brew System
+* [ ] Implementering 
+* [ ] Integartion af de forskellige hardware enhedder (sensor osv.) 
+
+#### Integartion af parralle systemer
+* [ ] Integartion med Server og Client
+* [ ] Integartion med Brew System og Client
+
+#### Systemtest
+* [ ] Integartion med Server, Brew System og Client
+
