@@ -99,7 +99,7 @@
 ### Hardware arkitektur
 * [ ] Overordnet Blokbeskrivelse
   * [ ] Mangler 
-    * [ ] Motor beskrivelse se kommentar
+    * [x] Motor beskrivelse se kommentar
     * [ ] Brew Unit
     * [ ] Mircocontroller
     * [ ] Aktuatoren
