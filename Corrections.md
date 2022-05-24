@@ -173,6 +173,7 @@
 * [ ] Opdaterer class diagram   
 * [ ] Applikationssekvensdiagram for Program fjern UseHtttpsRedirectiuon()
 * [x] Sekvens diagrams
+  * [x] Program
   * [x] Account get
   * [x] Account post
   * [x] Account put
@@ -193,3 +194,25 @@
   * [x] Recipe post
   * [x] Recipe put
   * [x] Recipe delelete
+* [ ] Klasse diagram opdateres
+* [ ] Metodebeskrivelse mangler der resten aaf funktionerne
+* [ ] Metodebeskivelse er vedhæftet hvor (Det færdige mockup er vedhæftet som bilag)
+
+#### Client
+* [x] Indledning
+##### Applikationsmodel 
+* [x] Indledning
+* [ ] Klasse diagram opdateres til de respektive navne
+* [ ] Sekvens diagram
+  * [ ] Indledning for tynd og giver ikke menning, derudover brug ref{fig:name} (Her ses det hvordan Client vil fungerer sammen med Use case 1. Dette ses på nedenstående billede)
+  * [ ] Sekvensdiagrammerne opdateres navne på
+  * [ ] UC1 - opdater til at være respektiv til vores kode
+  * [ ] UC2 - opdater til at være respektiv til vores kode
+  * [ ] UC3 - opdater til at være respektiv til vores kode
+  * [ ] UC4 - opdater til at være respektiv til vores kode
+  * [ ] UC5 - opdater til at være respektiv til vores kode
+  * [ ] UC5 gør billedet mindre, så det passer på siden
+  * [ ] UC6 - mangler
+* [ ] Opdateret klasse diagram går i bilag og kun bruger det sidste i dokumentationen - Michael ORD
+* [ ] Afsnit 6.4 og 6.5 og 6.5.1 giver ikke menning opdel det på en ordenligt måde
+* [ ] 
