@@ -32,15 +32,15 @@
   * [x] risici matrix
 ###  Teknisk Risici Nedbringelse
   * [ ] Client hvad har I lavet i forsøg?
-  * [ ] Client Argument for/imod giver ikke menning
-  * [ ] Server Arduino er ikke bygget til Server
-  * [ ] Server test at kan modtage hvad? Ping
-  * [ ] PSoC hvordan tester det nogen form for kommunikation? Det er have noget der kan kommunikerere med clienten
-  * [ ] Sensor? Mangler vi ikke en liqued senser. 
-    * [ ] Lave en simpel test, og ser giver ikke menning, Skriv tester hvpr lang tid det tager for hver at registrer et glas eller hvad end I ønsker at teste
-  * [ ] Akuator - Forsøg: Teste hvilken af de forskellige akkuator der virker bedst - Skal skrives om
-  * [ ] beholderen, hvordan vil I teste det?
-  * [ ] RFID - hvordan testes der for hvor hurtigt? Vel bare en test om vi kan modtag et studiekort eller RFID-kort
+  * [x] Client Argument for/imod giver ikke menning
+  * [x] Server Arduino er ikke bygget til Server
+  * [x] Server test at kan modtage hvad? Ping
+  * [x] PSoC hvordan tester det nogen form for kommunikation? Det er have noget der kan kommunikerere med clienten
+  * [x] Sensor? Mangler vi ikke en liqued senser. 
+    * [x] Lave en simpel test, og ser giver ikke menning, Skriv tester hvpr lang tid det tager for hver at registrer et glas eller hvad end I ønsker at teste
+  * [x] Akuator - Forsøg: Teste hvilken af de forskellige akkuator der virker bedst - Skal skrives om
+  * [x] beholderen, hvordan vil I teste det?
+  * [x] RFID - hvordan testes der for hvor hurtigt? Vel bare en test om vi kan modtag et studiekort eller RFID-kort
 * [ ] Der skal skrives ind i vurderingen at vi ikke ordenligt fik udfyldt disse test, hvormed overblikket faldt hurtigt fra hinanden
 
 
