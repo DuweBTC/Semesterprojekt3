@@ -108,7 +108,7 @@
   * [ ] Motor
     * [ ] Bruger vi "Vi" i en rapport? hvis vi gør så okay ellers ret
     * [ ] Hvorfor kunnne vi ikke bruger en mindre stærk? Kunne den så ikke rotererer med flaskerne. Det er et tomt argumment
-  * [ ] RFID hvor er den??????
+  * [x] RFID hvor er den??????
   * [ ] Vægt sensor hvor er konklusion for den?????
 
 
