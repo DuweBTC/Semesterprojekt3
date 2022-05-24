@@ -126,8 +126,10 @@
 ### Software arkitektur
 * [ ] Indledning. Hvad er Software arkitektur? hvad bruges det til
 * [ ] Domænemodel indledning er for tynd
+* [ ] Domædemodel opdateres og recipe tilføjes
+
 #### Konceptuel klasse diagram 
-  * [ ] INdledning skal skrives om da vi ikke gør det på denne måde længere, men vi har tre systemer
+  * [ ] Indledning skal skrives om da vi ikke gør det på denne måde længere, men vi har tre systemer
   * [ ] Mangler revipe på conceptual klassediagram
   * [ ] Client - Fjern server og skriv dens reele navn, samme med brew system på UARTDriver eller noget
   * [ ] Server - hvordan vil det virker og samme rettelser som før 
@@ -144,9 +146,50 @@
 * [ ] Indledning mangler
 * [ ] UART protokol
 * [ ] HTTP protokol
-* [ ] 
+
 ### Deploiyment view
 * [ ] Der mangler ibd med softwarepackage på
 
 ## Design
-  
+* [x] Indledning
+### Hardware design
+* [ ] Indledning er for tynd ogHAr er der brugt? 
+* [ ] Lav en liste, dan overblik for jer selv og andre
+* [ ] Brew System  
+  * [ ] Hvordan er sammenhængene mellem delene?
+  * [ ] Hvad for nogle porte I bruger PSoC og går det til ventil eller hvad
+  * [ ] Skriver I bruger 4 sensore (Derudover skal der bruges 4 stk sensore der kan teste om der er væske i beholderne)
+    * [ ] Hvor er det i forhold til arkitekturen
+* [ ] Client
+  * [ ] Alt mangler her
+* [ ] Server
+  * [ ] Er der strøm til den? skal der angives noget her?
+
+### Software design
+* [ ] Indledningen 
+#### Server
+* [ ] Indledningen 
+* [ ] Skriv at vi har lavet en uddybende domain model, der beskriver relationerne og deres type for databasen
+* [ ] Opdaterer class diagram   
+* [ ] Applikationssekvensdiagram for Program fjern UseHtttpsRedirectiuon()
+* [x] Sekvens diagrams
+  * [x] Account get
+  * [x] Account post
+  * [x] Account put
+  * [x] Account delelete
+  * [x] Container get
+  * [x] Container post
+  * [x] Container put
+  * [x] Container delelete
+  * [x] Drink get
+  * [x] Drink post
+  * [x] Drink put
+  * [x] Drink delelete
+  * [x] Ingredient get
+  * [x] Ingredient post
+  * [x] Ingredient put
+  * [x] Ingredient delelete
+  * [x] Recipe get
+  * [x] Recipe post
+  * [x] Recipe put
+  * [x] Recipe delelete
