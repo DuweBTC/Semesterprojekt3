@@ -1,4 +1,6 @@
 # Dokumentation rettelser
+## (alt + c) giveer flueben [x] 
+
 
 ## Probleformuleringen
 * [ ] Forklaring til rigtbillede mangler en for for database
@@ -40,6 +42,7 @@
   * [ ] beholderen, hvordan vil I teste det?
   * [ ] RFID - hvordan testes der for hvor hurtigt? Vel bare en test om vi kan modtag et studiekort eller RFID-kort
 * [ ] Der skal skrives ind i vurderingen at vi ikke ordenligt fik udfyldt disse test, hvormed overblikket faldt hurtigt fra hinanden
+
 
 ## Kravspecifikation
 * [ ] Mangler introduktion kravspecifiktaionen 
@@ -117,7 +120,33 @@
 * [ ] Indledning til ibd. Hvad er et ibd. Hvordan er det delt op
 * [ ] ibd opdateres
 * [ ] ibd skal navne passe med signalnavne fra bloksignal.........
-* [ ] 
+* [ ] Intro til Signalbeskrivlese
+* [ ] Signalbeskrivlese mangler
 
 ### Software arkitektur
+* [ ] Indledning. Hvad er Software arkitektur? hvad bruges det til
+* [ ] Domænemodel indledning er for tynd
+#### Konceptuel klasse diagram 
+  * [ ] INdledning skal skrives om da vi ikke gør det på denne måde længere, men vi har tre systemer
+  * [ ] Mangler revipe på conceptual klassediagram
+  * [ ] Client - Fjern server og skriv dens reele navn, samme med brew system på UARTDriver eller noget
+  * [ ] Server - hvordan vil det virker og samme rettelser som før 
+  * [ ] Breswystem - navn som overstående. Har I drinks eller kun container?
+#### System sekvens diagram'
+* [x] UC1
+* [x] UC2
+* [ ] UC3 Fjern Mircocontroller og sensor og lav det omtil Brew System. Black box
+* [x] UC4
+* [x] UC5
+* [x] UC6
 
+#### Protokobeskrivelse
+* [ ] Indledning mangler
+* [ ] UART protokol
+* [ ] HTTP protokol
+* [ ] 
+### Deploiyment view
+* [ ] Der mangler ibd med softwarepackage på
+
+## Design
+  
