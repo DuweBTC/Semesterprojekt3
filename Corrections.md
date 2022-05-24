@@ -197,8 +197,8 @@
   * [x] Recipe put
   * [x] Recipe delelete
 * [x] Klasse diagram opdateres
-* [ ] Metodebeskrivelse mangler der resten aaf funktionerne
-* [ ] Metodebeskivelse er vedhæftet hvor (Det færdige mockup er vedhæftet som bilag)
+* [x] Metodebeskrivelse mangler der resten aaf funktionerne
+* [x] Metodebeskivelse er vedhæftet hvor (Det færdige mockup er vedhæftet som bilag)
 
 #### Client
 * [x] Indledning
