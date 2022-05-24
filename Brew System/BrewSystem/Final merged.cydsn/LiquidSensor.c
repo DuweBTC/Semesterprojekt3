@@ -13,8 +13,34 @@
 #include "LiquidSensor.h"
 
 /* Prototyper */
-//static void LiquidLEDOn();
-//static void LiquidLEDoff();
+
+bool checkAllLiquid()
+{
+    bool liquidState = true;
+    
+    if (LiquidSensorInput_1_Read() == 0)
+    {
+        return false;
+    }
+    
+    /*
+    if (LiquidSensorInput_2_Read() == 0)
+    {
+        return false;
+    }
+    if (LiquidSensorInput_3_Read() == 0)
+    {
+        return false;
+    }
+    if (LiquidSensorInput_4_Read() == 0)
+    {
+        return false;
+    }
+    */
+    
+    return liquidState;
+     
+}
 
 bool checkLiquid_1()
 {
@@ -22,10 +48,41 @@ bool checkLiquid_1()
     
     if (liquid == 1)
     {
-        //LiquidLEDoff();
         return true;
     } else {
-        //LiquidLEDOn();
+        return false;
+    }
+}
+bool checkLiquid_2()
+{
+    int liquid = LiquidSensorInput_2_Read();
+    
+    if (liquid == 1)
+    {
+        return true;
+    } else {
+        return false;
+    }
+}
+bool checkLiquid_3()
+{
+    int liquid = LiquidSensorInput_3_Read();
+    
+    if (liquid == 1)
+    {
+        return true;
+    } else {
+        return false;
+    }
+}
+bool checkLiquid_4()
+{
+    int liquid = LiquidSensorInput_4_Read();
+    
+    if (liquid == 1)
+    {
+        return true;
+    } else {
         return false;
     }
 }

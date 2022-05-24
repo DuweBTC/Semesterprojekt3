@@ -1,0 +1,30 @@
+frame BrewSystem UC3 [ADM]
+
+
+participant Client
+participant BrewSystem
+participant ActuatorDriver
+participant LiquidSensor
+participant WeightSensor
+participant UART
+
+Client-->>UART: writeRx():
+
+BrewSystem->UART: UART_1_ReadRxData()
+activate BrewSystem
+UART-->BrewSystem: handleByteRecived(byteRecived)
+BrewSystem->BrewSystem: checkUart();
+opt if checkUart() == true
+activate ActuatorDriver
+BrewSystem->BrewSystem: readMasterMess()
+BrewSystem-->>ActuatorDriver: pour()
+ActuatorDriver->WeightSensor: checkForGlass();
+ActuatorDriver->LiquidSensor: checkAllLiquid();
+ActuatorDriver->ActuatorDriver: openValveNr(container)
+ActuatorDriver-->>ActuatorDriver: Wait for pour time
+ActuatorDriver->ActuatorDriver: closeValves()
+deactivate ActuatorDriver
+end
+BrewSystem->UART: writeUart()
+deactivate BrewSystem
+UART-->Client: UART_1_WriteTxData()

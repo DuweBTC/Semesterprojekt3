@@ -16,7 +16,7 @@
 
 /* Public Functions */
 void setIngredient(int _container, int _amount);
-int pour();
+void pour();
 
 /* Private Functions */
 

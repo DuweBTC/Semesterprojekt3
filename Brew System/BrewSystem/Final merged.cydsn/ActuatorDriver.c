@@ -11,6 +11,8 @@
 */
 
 #include "ActuatorDriver.h"
+#include "WeightSensor.h"
+#include "LiquidSensor.h"
 #include <stdbool.h>
 
 CY_ISR_PROTO(timer_inter_handler);
@@ -27,22 +29,25 @@ CY_ISR(timer_inter_handler)
     Timer_1_Stop();
 }
 
-int pour()
+void pour()
 {
     float time;
     float timerVariabel = 24;
-    float x = 156; // skal ændres når ventiler er blevet testet.
+    float x = 156; // skal ændres når ventiler er blevet testet.    
     
-    time = AMOUNT * x * timerVariabel; // calculate open time.
+    if (checkForGlass() == true && checkAllLiquid() == true)
+    {
     
-    Timer_1_Start(); // Starts timer
+        time = AMOUNT * x * timerVariabel; // calculate open time.
         
-    openValveNr(CONTAINER); // Open specific container
-        
-    Timer_1_WriteCounter(time); // makes sure timer counter is 0
-    Timer_1_WritePeriod(time); // Writes periode to timer
-
-    return 0; // Success
+        Timer_1_Start(); // Starts timer
+            
+        openValveNr(CONTAINER); // Open specific container
+            
+        Timer_1_WriteCounter(time); // makes sure timer counter is 0
+        Timer_1_WritePeriod(time); // Writes periode to timer
+    }
+    
 }
 
 void setIngredient(int _container, int _amount)

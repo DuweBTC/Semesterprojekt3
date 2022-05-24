@@ -27,6 +27,7 @@
 
 /* Public Functions */
 bool checkLiquid_1();
+bool checkAllLiquid();
 /* Private Functions */
 
 
