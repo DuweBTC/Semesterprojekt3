@@ -258,13 +258,13 @@
 ### Sofware 
 * [ ] Indledning
 
-#### Client
+#### Server
 * [ ] Her linkes til opsætning af miljøer (RPI miljø f.eks.) 
 * [ ] Implementering 
 * [ ] Integartion med raspberrry
 
 
-#### Server
+#### Client
 * [ ] Her linkes til opsætning af miljøer (RPI miljø f.eks.) 
 * [ ] Implementering 
 * [ ] Modultest Implementering
