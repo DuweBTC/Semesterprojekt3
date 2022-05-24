@@ -194,7 +194,7 @@
   * [x] Recipe post
   * [x] Recipe put
   * [x] Recipe delelete
-* [ ] Klasse diagram opdateres
+* [x] Klasse diagram opdateres
 * [ ] Metodebeskrivelse mangler der resten aaf funktionerne
 * [ ] Metodebeskivelse er vedhæftet hvor (Det færdige mockup er vedhæftet som bilag)
 
