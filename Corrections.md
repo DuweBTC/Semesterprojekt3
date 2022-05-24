@@ -170,7 +170,7 @@
 #### Server
 * [ ] Indledningen 
 * [ ] Skriv at vi har lavet en uddybende domain model, der beskriver relationerne og deres type for databasen
-* [ ] Opdaterer class diagram   
+* [x] Opdaterer class diagram   
 * [ ] Applikationssekvensdiagram for Program fjern UseHtttpsRedirectiuon()
 * [x] Sekvens diagrams
   * [x] Program
