@@ -147,7 +147,7 @@
 #### Protokobeskrivelse
 * [x] Indledning mangler
 * [ ] UART protokol
-* [ ] HTTP protokol
+* [x] HTTP protokol
 
 ### Deploiyment view
 * [ ] Der mangler ibd med softwarepackage på
@@ -262,7 +262,7 @@
 
 #### Server
 * [ ] Her linkes til opsætning af miljøer (RPI miljø f.eks.) 
-* [ ] Implementering 
+* [x] Implementering 
 * [ ] Integartion med raspberrry
 
 
