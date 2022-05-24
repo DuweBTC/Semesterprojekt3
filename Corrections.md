@@ -283,3 +283,12 @@
 #### Systemtest
 * [ ] Integartion med Server, Brew System og Client
 
+## Accepttest
+* [ ] Indledning
+### Testopstilling
+* [ ] Test af funktionelle krav
+* [ ] Test af ikke funktionelle krav
+
+
+## Litteraturliste
+* [ ] Mangler...
