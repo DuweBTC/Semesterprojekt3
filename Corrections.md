@@ -213,6 +213,18 @@
   * [ ] UC5 - opdater til at være respektiv til vores kode
   * [ ] UC5 gør billedet mindre, så det passer på siden
   * [ ] UC6 - mangler
+  * [ ] Det hedder fully dressed class diagram
 * [ ] Opdateret klasse diagram går i bilag og kun bruger det sidste i dokumentationen - Michael ORD
 * [ ] Afsnit 6.4 og 6.5 og 6.5.1 giver ikke menning opdel det på en ordenligt måde
+* [ ] Afsnit 6.5.2 giver proxy main menu menning?
+###### Flowchart
+* [ ] Flowchart for IDLE state get
+  * [ ]  I ikke fra Server inden i creater new account? ID-vaild, menes der ikke Id-Card is user. ID-vaild lyder saom kortet ikke er den rigtige type
+* [ ] Flowchart for Main Menu state
+  * [ ] Hvordan hænger det sammen med det forrige flowchart? Svar det gør det ikke
+
+#### Brew System
+* [ ] Indledning 
+##### Applikationssekvensdiagram
 * [ ] 
+
