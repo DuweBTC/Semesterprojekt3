@@ -13,7 +13,7 @@ public:
     DatabaseDriver();
     // For Account
     QJsonArray getAccountList();
-    Account *getAccount(QString id, Account *);
+    bool getAccount(QString id, Account *);
     void getAccountBalance(QString id, Account *account);
     void postAccount(Account *account);
     void putAccount(Account *account);

@@ -48,18 +48,22 @@ void Account::operator=(const Account &temp)
 
 void Account::addFavorits(DrinkItem drinkItem)
 {
-    favorits.push_back(drinkItem);
+    _favorits.push_back(drinkItem);
 }
 
 void Account::deleteFavorits(DrinkItem drinkItem)
 {
-    for (auto iterator = favorits.begin(); iterator != favorits.end(); iterator++)
+    for (auto iterator = _favorits.begin(); iterator != _favorits.end(); iterator++)
     {
         if (drinkItem == *iterator)
         {
-            favorits.remove(*iterator);
+            _favorits.remove(*iterator);
         }
     }
+}
+
+std::list<DrinkItem> Account::getFavorits(){
+    return _favorits;
 }
 
 Account::~Account()

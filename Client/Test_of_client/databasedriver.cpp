@@ -58,7 +58,7 @@ QJsonArray DatabaseDriver::getAccountList()
     return json_array;
 }
 
-Account *DatabaseDriver::getAccount(QString id, Account *account)
+bool DatabaseDriver::getAccount(QString id, Account *account)
 {
     // create custom temporary event loop on stack
     QEventLoop eventLoop;
@@ -104,9 +104,10 @@ Account *DatabaseDriver::getAccount(QString id, Account *account)
         // failure
         qDebug() << "Failure" << reply->errorString();
         delete reply;
+        return false;
     }
 
-    return account;
+    return true;
 }
 
 void DatabaseDriver::getAccountBalance(QString id, Account *account)
@@ -542,10 +543,10 @@ void DatabaseDriver::postDrink(DrinkItem *drink)
 
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
     QJsonObject drink_local;
-    drink_local["Titel"] = drink->getTitel();
-    drink_local["DrinkId"] = drink->getDrinkId();
-    drink_local["Description"] = drink->getDescription();
-    drink_local["Price"] = drink->getPrice();
+    drink_local["titel"] = drink->getTitel();
+    drink_local["dinkId"] = drink->getDrinkId();
+    drink_local["description"] = drink->getDescription();
+    drink_local["price"] = drink->getPrice();
 
     QJsonDocument doc(drink_local);
     QByteArray data = doc.toJson();

@@ -17,13 +17,14 @@ public:
     void operator=(const Account &temp);
     void addFavorits(DrinkItem);
     void deleteFavorits(DrinkItem);
+    std::list<DrinkItem> getFavorits();
     ~Account();
 
 private:
     QString _name;
     double _balance;
     int _accountId;
-    std::list<DrinkItem> favorits;
+    std::list<DrinkItem> _favorits;
 };
 
 #endif // ACCOUNT_H
