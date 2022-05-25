@@ -25,3 +25,12 @@ void Recipe::setRecipeItemId(int RecipeItemId)
 {
     _RecipeItemId = RecipeItemId;
 }
+
+void Recipe::setIngredient(const IngredientItem& temp){
+    _ingredient = temp;
+
+}
+
+IngredientItem Recipe::getIngredient() const{
+    return _ingredient;
+}

@@ -48,7 +48,8 @@ void DrinkItem::setPrice(double price)
     _price = price;
 }
 
-bool DrinkItem::operator==(const DrinkItem& rigthRef) const{
+bool DrinkItem::operator==(const DrinkItem &rigthRef) const
+{
     return ((_titel == rigthRef.getTitel()) &&
             (_drinkId == rigthRef.getDrinkId() &&
              _description == rigthRef.getDescription() &&

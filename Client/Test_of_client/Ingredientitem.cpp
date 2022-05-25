@@ -1,27 +1,36 @@
 #include "Ingredientitem.h"
 
-IngredientItem::IngredientItem(int IngredientItemId, QString Titel)
+IngredientItem::IngredientItem(int ingredientItemId, QString titel)
 {
-    setIngredientItemId(IngredientItemId);
-    setTitel(Titel);
+    setIngredientItemId(ingredientItemId);
+    setTitel(titel);
 }
 
 int IngredientItem::getIngredientItemId() const
 {
-    return _IngredientItemId;
+    return _ingredientItemId;
 }
 
-void IngredientItem::setIngredientItemId(int IngredientItemId)
+void IngredientItem::setIngredientItemId(int ingredientItemId)
 {
-    _IngredientItemId = IngredientItemId;
+    _ingredientItemId = ingredientItemId;
 }
 
 QString IngredientItem::getTitel() const
 {
-    return _Titel;
+    return _titel;
 }
 
-void IngredientItem::setTitel(QString Titel)
+void IngredientItem::setTitel(QString titel)
 {
-    _Titel = Titel;
+    _titel = titel;
+}
+
+void IngredientItem::operator=(const IngredientItem &temp){
+    _titel = temp.getTitel();
+    _ingredientItemId = temp.getIngredientItemId();
+}
+
+IngredientItem::~IngredientItem(){
+
 }

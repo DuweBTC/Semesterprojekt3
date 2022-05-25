@@ -16,7 +16,7 @@ public:
     void setDescription(QString Description);
     double getPrice() const;
     void setPrice(double Price);
-    bool operator==(const DrinkItem&) const;
+    bool operator==(const DrinkItem &) const;
 
 private:
     QString _titel;

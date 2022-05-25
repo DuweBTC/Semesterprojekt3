@@ -14,7 +14,7 @@ public:
     double getBalance() const;
     int getAccountId() const;
     void setAccountId(int AccountId);
-    void operator =(const Account &temp);
+    void operator=(const Account &temp);
     void addFavorits(DrinkItem);
     void deleteFavorits(DrinkItem);
     ~Account();

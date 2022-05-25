@@ -36,9 +36,9 @@ private:
     // Functions
     void makeAccountList(QJsonArray JsonFormat);
     void makeDrinkList(QJsonArray JsonFormat);
-    void makeRecipetList(QJsonArray JsonFormat);
+    void makeRecipeList(QJsonArray JsonFormat);
     void makeContainerList(QJsonArray JsonFormat);
-    void makeIngredienttList(QJsonArray tJsonFormat);
+    void makeIngredientList(QJsonArray tJsonFormat);
 
     // One Instance objects
     Ui::MainWindow *ui;
@@ -82,24 +82,52 @@ private:
 
 private slots:
     // Event handling programning
-    void startscreen();
+    void run();
     int scanStudentCard();
     void mainWindow();
     void newUserWindow();
-    void on_buttonBalanceMenu_clicked();
-    void on_pushKontoMenu_clicked();
     void on_pushMainMenu_clicked();
-    void on_pushKatalogMenu_clicked();
-    void on_pushBalanceMenu_clicked();
-    void on_pushAddDrink_clicked();
     void on_pushFavoritsMenu_clicked();
-    void on_pushInsertName_clicked();
-    void on_pushPut_clicked();
-    void on_pushGetAllKonto_clicked();
-    void on_pushDelete_clicked();
-    void on_pushIdBalance_clicked();
 
-    //    void on_PostAccountButton_clicked();
-    //    void on_GetAccountButton_clicked();
+    // Events for Account
+    void on_pushGetAccount_clicked();
+    void on_pushPostAccount_clicked();
+    void on_pushPutAccount_clicked();
+    void on_pushDeleteAccount_clicked();
+    void on_pushGetAllAccount_clicked();
+    void on_pushGetAccountBalance_clicked();
+    void on_pushPutAccountBalance_clicked();
+    void on_pushAddFavorits_clicked();
+    void on_pushDeleteFavorits_clicked();
+
+
+    // Events for Recipe
+    void on_pushGetRecipe_clicked();
+    void on_pushPostRecipe_clicked();
+    void on_pushPutRecipe_clicked();
+    void on_pushDeleteRecipe_clicked();
+    void on_pushGetAllRecipe_clicked();
+
+    // Events for Ingredient
+    void on_pushGetIngredient_clicked();
+    void on_pushPostIngredient_clicked();
+    void on_pushPutIngredient_clicked();
+    void on_pushDeleteIngredient_clicked();
+    void on_pushGetAllIngredient_clicked();
+
+    // Events for Drink
+    void on_pushGetDrink_clicked();
+    void on_pushPostDrink_clicked();
+    void on_pushPutDrink_clicked();
+    void on_pushDeleteDrink_clicked();
+    void on_pushGetAllDrink_clicked();
+
+    // Events for Container
+    void on_pushGetContainer_clicked();
+    void on_pushPostContainer_clicked();
+    void on_pushPutContainer_clicked();
+    void on_pushDeleteContaier_clicked();
+    void on_pushGetAllContainer_clicked();
+
 };
 #endif // MAINWINDOW_H

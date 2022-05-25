@@ -58,11 +58,11 @@ QJsonArray DatabaseDriver::getAccountList()
     return json_array;
 }
 
-Account* DatabaseDriver::getAccount(QString id, Account *account)
+Account *DatabaseDriver::getAccount(QString id, Account *account)
 {
     // create custom temporary event loop on stack
     QEventLoop eventLoop;
-    //Account account_local;
+    // Account account_local;
 
     // "quit()" thes event-loop, when the network request "finished()"
     QNetworkAccessManager mgr;
@@ -93,7 +93,7 @@ Account* DatabaseDriver::getAccount(QString id, Account *account)
         account->setBalance(json_account_obj["balance"].toDouble());
 
         // Debug
-        qDebug() << "Get Id " +json_account_obj["accountItemId"].toString();
+        qDebug() << "Get Id " + json_account_obj["accountItemId"].toString();
         qDebug() << "Get Name " + json_account_obj["name"].toString();
         qDebug() << "Get balance " + json_account_obj["balance"].toString();
 
@@ -113,7 +113,7 @@ void DatabaseDriver::getAccountBalance(QString id, Account *account)
 {
     // create custom temporary event loop on stack
     QEventLoop eventLoop;
-    //Account account_local;
+    // Account account_local;
 
     // "quit()" thes event-loop, when the network request "finished()"
     QNetworkAccessManager mgr;
@@ -121,7 +121,7 @@ void DatabaseDriver::getAccountBalance(QString id, Account *account)
     const QString endpoint = "Account/" + id + "/Balance";
 
     // the HTTP request
-    QNetworkRequest req(_url + endpoint );
+    QNetworkRequest req(_url + endpoint);
     qDebug() << _url + endpoint;
 
     QNetworkReply *reply = mgr.get(req);
@@ -140,7 +140,6 @@ void DatabaseDriver::getAccountBalance(QString id, Account *account)
         qDebug() << "Failure" << reply->errorString();
         delete reply;
     }
-
 }
 
 void DatabaseDriver::postAccount(Account *account)
@@ -149,13 +148,12 @@ void DatabaseDriver::postAccount(Account *account)
     QString endpoint = "Account/";
     QNetworkRequest request(_url + endpoint);
 
-
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
     QJsonObject jsonFormatAccount;
     jsonFormatAccount["accountItemId"] = QString::number(account->getAccountId());
     jsonFormatAccount["name"] = account->getName();
     jsonFormatAccount["balance"] = account->getBalance();
-    qDebug() << "POST Id JSON: " +jsonFormatAccount["accountItemId"].toString();
+    qDebug() << "POST Id JSON: " + jsonFormatAccount["accountItemId"].toString();
     qDebug() << "POST Name JSON: " + jsonFormatAccount["name"].toString();
     qDebug() << "POST balance JSON: " + jsonFormatAccount["balance"].toString();
 
@@ -183,7 +181,7 @@ void DatabaseDriver::putAccount(Account *account)
     QNetworkAccessManager *mgr = new QNetworkAccessManager;
     const QString endpoint = "Account/";
     QString URL = _url + endpoint + QString::number(account->getAccountId());
-    //const QUrl url(URL);
+    // const QUrl url(URL);
     QNetworkRequest request(URL);
     qDebug() << "id: " + QString::number(account->getAccountId());
     qDebug() << _url + endpoint + QString::number(account->getAccountId());
@@ -195,8 +193,7 @@ void DatabaseDriver::putAccount(Account *account)
     account_local["balance"] = account->getBalance();
 
     qDebug() << "Put: Name: " + account->getName() + " Balance " +
-                QString::number(account->getBalance()) + " Id: "
-                + QString::number(account->getAccountId());
+                    QString::number(account->getBalance()) + " Id: " + QString::number(account->getAccountId());
 
     QJsonDocument doc(account_local);
     QByteArray data = doc.toJson();
@@ -217,28 +214,19 @@ void DatabaseDriver::putAccount(Account *account)
         reply->deleteLater(); });
 }
 
-
-void DatabaseDriver::putAccountBalance(QString amount, Account *account)
+void DatabaseDriver::putAccountBalance(double amount, Account *account)
 {
     QNetworkAccessManager *mgr = new QNetworkAccessManager;
     const QString endpoint = "Account/";
-
-    QString URL = _url + endpoint + QString::number(account->getAccountId()) + "/" + amount;
-
-    //const QUrl url(URL);
+    // This is a query to PUT in Balance
+    QString URL = _url + endpoint + QString::number(account->getAccountId()) + "/Balance?amount=" +  QString::number(amount);
     QNetworkRequest request(URL);
-    qDebug() << "id: " + QString::number(account->getAccountId());
-    qDebug() << _url + endpoint + QString::number(account->getAccountId());
 
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
-    QJsonObject account_local;
-    account_local["accountItemId"] = QString::number(account->getAccountId());
-    account_local["name"] = account->getName();
-    account_local["balance"] = amount;
 
-    qDebug() << "Put: Name: " + account->getName() + " Balance " +
-                    QString::number(account->getBalance()) + " Id: "
-                    + QString::number(account->getAccountId());
+    // Dummy object only use is to call function
+    QJsonObject account_local;
+    account_local["amount"] = account->getBalance();
 
     QJsonDocument doc(account_local);
     QByteArray data = doc.toJson();
@@ -266,7 +254,7 @@ void DatabaseDriver::deleteAccount(QString index)
     // QObject::connect(&mgr, SIGNAL(finished(QNetworkReply*)), &eventLoop, SLOT(quit()));
 
     QString endpoint = "Account/";
-    QNetworkRequest request(_url + endpoint + index );
+    QNetworkRequest request(_url + endpoint + index);
 
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
 
@@ -347,14 +335,19 @@ Recipe DatabaseDriver::getRecipe(QString id)
         qDebug() << "Response:" << strReply;
         QJsonDocument jsonResponse = QJsonDocument::fromJson(strReply.toUtf8());
 
-        QJsonArray json_array = jsonResponse.array();
-        QJsonObject json_recipe_obj = QJsonValue(json_array).toObject();
+        QJsonObject json_recipe_obj = jsonResponse.object();
+        QJsonObject json_recipeIngredient_obj = json_recipe_obj.value("ingredient").toObject();
         // QJsonObject json_account_obj = json_obj.value("place").toObject();
-        qDebug() << json_recipe_obj["RecipeItemId"].toInt();
-        qDebug() << json_recipe_obj["Amount"].toDouble();
+        // debug
+        qDebug() << json_recipe_obj["recipeItemId"].toInt();
+        qDebug() << json_recipe_obj["amount"].toDouble();
+        qDebug() << json_recipeIngredient_obj["ingredientItemID"].toString();
+        qDebug() << json_recipeIngredient_obj["titel"].toString();
 
-        recipe_local.setRecipeItemId(json_recipe_obj["RecipeItemId"].toInt());
-        recipe_local.setAmount(json_recipe_obj["Amount"].toDouble());
+
+        recipe_local.setRecipeItemId(json_recipe_obj["recipeItemId"].toInt());
+        recipe_local.setIngredient(IngredientItem(json_recipeIngredient_obj["ingredientItemId"].toInt(), json_recipeIngredient_obj["titel"].toString()));
+        recipe_local.setAmount(json_recipe_obj["amount"].toDouble());
 
         delete reply;
     }
@@ -460,7 +453,7 @@ QJsonArray DatabaseDriver::getDrinkList()
     QJsonArray json_array;
 
     QNetworkAccessManager mgr;
-    QObject::connect(&mgr, SIGNAL(finished(QNetworkReply*)), &eventLoop, SLOT(quit()));
+    QObject::connect(&mgr, SIGNAL(finished(QNetworkReply *)), &eventLoop, SLOT(quit()));
 
     QString endpoint = "Drink/";
     QNetworkRequest request(_url + endpoint);
@@ -683,19 +676,13 @@ IngredientItem DatabaseDriver::getIngredient(QString id)
     {
 
         QString strReply = (QString)reply->readAll();
-
         // parse json
         qDebug() << "Response:" << strReply;
         QJsonDocument jsonResponse = QJsonDocument::fromJson(strReply.toUtf8());
 
-        QJsonArray json_array = jsonResponse.array();
-
-        foreach (const QJsonValue &value, json_array)
-        {
-            QJsonObject json_ingredient_local_obj = value.toObject();
-            ingredient_local.setIngredientItemId(json_ingredient_local_obj["IngredientItemId"].toInt());
-            ingredient_local.setTitel(json_ingredient_local_obj["Titel"].toString());
-        }
+        QJsonObject json_ingredient_obj = jsonResponse.object();
+        ingredient_local.setIngredientItemId(json_ingredient_obj["ingredientItemId"].toInt());
+        ingredient_local.setTitel(json_ingredient_obj["titel"].toString());
 
         delete reply;
     }
@@ -717,7 +704,7 @@ void DatabaseDriver::postIngredient(IngredientItem *Ingredient)
     // QObject::connect(&mgr, SIGNAL(finished(QNetworkReply*)), &eventLoop, SLOT(quit()));
 
     const QString endpoint = "Ingredient/";
-    QNetworkRequest request(_url + endpoint );
+    QNetworkRequest request(_url + endpoint);
 
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
     QJsonObject ingredient_local;
@@ -748,9 +735,9 @@ void DatabaseDriver::putIngredient(IngredientItem *ingredient)
 
     QNetworkAccessManager *mgr = new QNetworkAccessManager;
 
-   ;
-   const QString endpoint = "Ingredient/";
-   QNetworkRequest request(_url + endpoint + QString::number(ingredient->getIngredientItemId()));
+    ;
+    const QString endpoint = "Ingredient/";
+    QNetworkRequest request(_url + endpoint + QString::number(ingredient->getIngredientItemId()));
 
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
     QJsonObject ingredient_local;
@@ -813,7 +800,7 @@ QJsonArray DatabaseDriver::getContainerList()
     QObject::connect(&mgr, SIGNAL(finished(QNetworkReply *)), &eventLoop, SLOT(quit()));
 
     const QString endpoint = "Container/";
-    QNetworkRequest request(_url + endpoint );
+    QNetworkRequest request(_url + endpoint);
     QNetworkReply *reply = mgr.get(request);
     eventLoop.exec(); // blocks stack until "finished()" has been called
 
@@ -889,7 +876,7 @@ void DatabaseDriver::postContainer(ContainerItem *container)
     QNetworkAccessManager *mgr = new QNetworkAccessManager;
 
     const QString endpoint = "Container/";
-    QNetworkRequest request(_url + endpoint );
+    QNetworkRequest request(_url + endpoint);
 
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
     QJsonObject container_local;
@@ -953,7 +940,7 @@ void DatabaseDriver::deleteContainer(QString index)
     // QObject::connect(&mgr, SIGNAL(finished(QNetworkReply*)), &eventLoop, SLOT(quit()));
 
     const QString endpoint = "Container/";
-    QNetworkRequest request(_url + endpoint + index );
+    QNetworkRequest request(_url + endpoint + index);
 
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
 

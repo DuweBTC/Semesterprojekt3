@@ -6,15 +6,18 @@
 class IngredientItem
 {
 public:
-    IngredientItem(int IngredientItemId = 0, QString Titel = "");
+    IngredientItem(int ingredientItemId = 0, QString titel = "");
     int getIngredientItemId() const;
-    void setIngredientItemId(int IngredientItemId);
+    void setIngredientItemId(int ingredientItemId);
     QString getTitel() const;
-    void setTitel(QString Titel);
+    void setTitel(QString titel);
+    void operator=(const IngredientItem &temp);
+    ~IngredientItem();
+
 
 private:
-    int _IngredientItemId;
-    QString _Titel;
+    int _ingredientItemId;
+    QString _titel;
 };
 
 #endif // INGREDIENTITEM_H

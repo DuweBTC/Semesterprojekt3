@@ -39,25 +39,29 @@ void Account::setAccountId(int AccountId)
     _accountId = AccountId;
 }
 
-void Account::operator =(const Account &temp){
+void Account::operator=(const Account &temp)
+{
     _accountId = temp.getAccountId();
     _balance = temp.getBalance();
     _name = temp.getName();
 }
 
-void Account::addFavorits(DrinkItem drinkItem){
+void Account::addFavorits(DrinkItem drinkItem)
+{
     favorits.push_back(drinkItem);
 }
 
-void Account::deleteFavorits(DrinkItem drinkItem){
-    for (auto iterator = favorits.begin(); iterator != favorits.end(); iterator++ ){
-        if (drinkItem == *iterator){
+void Account::deleteFavorits(DrinkItem drinkItem)
+{
+    for (auto iterator = favorits.begin(); iterator != favorits.end(); iterator++)
+    {
+        if (drinkItem == *iterator)
+        {
             favorits.remove(*iterator);
         }
     }
 }
 
-
-Account::~Account(){
-
+Account::~Account()
+{
 }

@@ -12,11 +12,16 @@ public:
     void setContainerId(int ContainerId);
     int getPlace() const;
     void setPlace(int Place);
+    void operator=(ContainerItem &temp);
+    void setIngredient(const IngredientItem& temp);
+    IngredientItem getIngredient() const;
+    ~ContainerItem();
+
 
 private:
     int _ContainerId;
     int _Place;
-    IngredientItem* ingredient;
+    IngredientItem _ingredient;
 };
 
 #endif // CONTAINERITEM_H

@@ -13,11 +13,11 @@ public:
     DatabaseDriver();
     // For Account
     QJsonArray getAccountList();
-    Account* getAccount(QString id, Account *);
+    Account *getAccount(QString id, Account *);
     void getAccountBalance(QString id, Account *account);
     void postAccount(Account *account);
     void putAccount(Account *account);
-    void putAccountBalance(QString amount, Account *account);
+    void putAccountBalance(double amount, Account *account);
     void deleteAccount(QString index);
 
     // For Recipe
@@ -49,8 +49,8 @@ public:
     void deleteContainer(QString index);
 
 private:
-    //const QString _url = "http://localhost:5123/"; //PC
-    const QString _url = "http://10.77.77.77:5000/"; //RPI
+    const QString _url = "http://localhost:5123/"; //PC
+    //const QString _url = "http://10.77.77.77:5000/"; // RPI
 };
 
 #endif // DATABASEDRIVER_H

@@ -12,11 +12,13 @@ public:
     double getAmount() const;
     void setRecipeItemId(int RecipeItemId);
     int getRecipeItemId() const;
+    void setIngredient(const IngredientItem& temp);
+    IngredientItem getIngredient() const;
 
 private:
     int _RecipeItemId;
     double _Amount;
-    IngredientItem* ingredient;
+    IngredientItem _ingredient;
 };
 
 #endif // RECIPE_H

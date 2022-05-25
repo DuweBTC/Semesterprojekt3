@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "+doVhb8G+u2QkUbWxge812BwEDf3qXXn9JVo2LAMf2vn/zpJ8sXmzQC/QdLAP7jiuMKfzcihq7CjwiWWRm2HeA==",
+  "dgSpecHash": "ikMC89626z5CYLyWJ3GyUpOuwEvYJNIjt9AdaZVQfps9CTAqyYWe3CIom9yXBAD8tsVZlZJVwAMPTMOyd+8L8w==",
   "success": true,
   "projectFilePath": "/home/bjarke/Documents/repos/Semesterprojekt3/Database/ServerWebApi/ServerWebApi.csproj",
   "expectedPackageFiles": [
@@ -24,10 +24,7 @@
     "/home/bjarke/.nuget/packages/swashbuckle.aspnetcore.swaggerui/6.2.3/swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512",
     "/home/bjarke/.nuget/packages/system.collections.immutable/6.0.0/system.collections.immutable.6.0.0.nupkg.sha512",
     "/home/bjarke/.nuget/packages/system.diagnostics.diagnosticsource/6.0.0/system.diagnostics.diagnosticsource.6.0.0.nupkg.sha512",
-    "/home/bjarke/.nuget/packages/system.runtime.compilerservices.unsafe/6.0.0/system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
-    "/home/bjarke/.nuget/packages/microsoft.netcore.app.runtime.linux-arm/6.0.5/microsoft.netcore.app.runtime.linux-arm.6.0.5.nupkg.sha512",
-    "/home/bjarke/.nuget/packages/microsoft.aspnetcore.app.runtime.linux-arm/6.0.5/microsoft.aspnetcore.app.runtime.linux-arm.6.0.5.nupkg.sha512",
-    "/home/bjarke/.nuget/packages/microsoft.netcore.app.host.linux-arm/6.0.5/microsoft.netcore.app.host.linux-arm.6.0.5.nupkg.sha512"
+    "/home/bjarke/.nuget/packages/system.runtime.compilerservices.unsafe/6.0.0/system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
   ],
   "logs": []
 }
