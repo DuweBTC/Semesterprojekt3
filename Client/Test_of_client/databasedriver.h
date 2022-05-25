@@ -1,40 +1,56 @@
 #ifndef DATABASEDRIVER_H
-
-#include <QCoreApplication>
-#include <QDebug>
-#include <QApplication>
-#include <QNetworkAccessManager>
-#include <QNetworkRequest>
-#include <QNetworkReply>
-#include <QUrl>
-#include <QUrlQuery>
-#include <QVariant>
-#include <QJsonValue>
-#include <QJsonDocument>
-#include <QJsonObject>
-#include <QVariantMap>
-#include <QJsonArray>
-#include <QSslConfiguration>
-
+#define DATABASEDRIVER_H
 #include "account.h"
-//#include "mainwindow.h"
-
+#include "Recipe.h"
+#include "Drinkitem.h"
+#include "Ingredientitem.h"
+#include "Containeritem.h"
 #include <QObject>
 
 class DatabaseDriver
 {
 public:
     DatabaseDriver();
-    Account getAccount();
+    // For Account
+    QJsonArray getAccountList();
+    Account* getAccount(QString id, Account *);
+    void getAccountBalance(QString id, Account *account);
     void postAccount(Account *account);
     void putAccount(Account *account);
+    void putAccountBalance(QString amount, Account *account);
     void deleteAccount(QString index);
-    void finished(QNetworkReply *reply);
-    void sslErrors(QNetworkReply* reply, const QList<QSslError> & errors);
+
+    // For Recipe
+    QJsonArray getRecipeList();
+    Recipe getRecipe(QString id);
+    void postRecipe(Recipe *recipe);
+    void putRecipe(Recipe *recipe);
+    void deleteRecipe(QString index);
+
+    // For Drinkitem
+    QJsonArray getDrinkList();
+    DrinkItem getDrink(QString id);
+    void postDrink(DrinkItem *drink);
+    void putDrink(DrinkItem *drink);
+    void deleteDrink(QString index);
+
+    // For IngredientItem
+    QJsonArray getIngredientList();
+    IngredientItem getIngredient(QString id);
+    void postIngredient(IngredientItem *Ingredient);
+    void putIngredient(IngredientItem *Ingredient);
+    void deleteIngredient(QString index);
+
+    // For ContainerItem
+    QJsonArray getContainerList();
+    ContainerItem getContainer(QString id);
+    void postContainer(ContainerItem *container);
+    void putContainer(ContainerItem *container);
+    void deleteContainer(QString index);
+
 private:
-    const QString _url = "url";
-
+    //const QString _url = "http://localhost:5123/"; //PC
+    const QString _url = "http://10.77.77.77:5000/"; //RPI
 };
-
 
 #endif // DATABASEDRIVER_H

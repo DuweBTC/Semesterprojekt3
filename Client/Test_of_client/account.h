@@ -2,24 +2,28 @@
 #define ACCOUNT_H
 
 #include <QObject>
+#include "Drinkitem.h"
 
 class Account
 {
 public:
-    Account(QString AccountId = "", QString name = "", double balance = 0);
+    Account(int AccountId = 0, QString name = "", double balance = 0);
     void setName(QString name);
-    QString getName()const;
+    QString getName() const;
     void setBalance(double balance);
     double getBalance() const;
-    QString getAccountId()const;
+    int getAccountId() const;
+    void setAccountId(int AccountId);
+    void operator =(const Account &temp);
+    void addFavorits(DrinkItem);
+    void deleteFavorits(DrinkItem);
+    ~Account();
 
 private:
-    QString name_;
-    double balance_;
-    QString _accountId;
-
-
-
+    QString _name;
+    double _balance;
+    int _accountId;
+    std::list<DrinkItem> favorits;
 };
 
 #endif // ACCOUNT_H
