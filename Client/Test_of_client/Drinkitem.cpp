@@ -55,3 +55,11 @@ bool DrinkItem::operator==(const DrinkItem &rigthRef) const
              _description == rigthRef.getDescription() &&
              _price == rigthRef.getPrice()));
 }
+
+void DrinkItem::setRecipe(Recipe & ingredient){
+    _ingredients.push_back(ingredient);
+}
+
+std::list<Recipe> DrinkItem::getRecipe(){
+    return _ingredients;
+}

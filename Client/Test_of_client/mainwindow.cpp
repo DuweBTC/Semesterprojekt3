@@ -407,11 +407,22 @@ void MainWindow::on_pushGetAllDrink_clicked()
 }
 
 void MainWindow::on_pushPostDrink_clicked(){
-
+    setText("Post Drink");
+    drinkItem.setDrinkId((ui->textId->toPlainText()).toInt());
+    drinkItem.setDescription((ui->textInsertName->toPlainText()));
+    drinkItem.setTitel((ui->textInsertName->toPlainText()));
+    drinkItem.setPrice((ui->textInsertBalance->toPlainText()).toInt());
+    dbDriver.postDrink(&drinkItem);
 }
 
 void MainWindow::on_pushPutDrink_clicked(){
-
+    setText("Put Drink");
+    drinkItem.setDrinkId((ui->textId->toPlainText()).toInt());
+    drinkItem.setDescription((ui->textInsertName->toPlainText()));
+    drinkItem.setTitel(ui->textInsertName->toPlainText());
+    drinkItem.setPrice((ui->textInsertBalance->toPlainText()).toInt());
+    drinkItem.setRecipe(recipe);
+    dbDriver.putDrink(&drinkItem);
 }
 
 void MainWindow::on_pushDeleteDrink_clicked(){
@@ -419,6 +430,7 @@ void MainWindow::on_pushDeleteDrink_clicked(){
     drinkItem.setDrinkId((ui->textId->toPlainText()).toInt());
     dbDriver.putDrink(&drinkItem);
 }
+
 // GET Recipe
 //-------------------------------------------------------------------------------------
 void MainWindow::getRecipe(){

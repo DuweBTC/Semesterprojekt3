@@ -17,13 +17,15 @@ public:
     double getPrice() const;
     void setPrice(double Price);
     bool operator==(const DrinkItem &) const;
+    void setRecipe(Recipe & ingredient);
+    std::list<Recipe> getRecipe();
 
 private:
     QString _titel;
     int _drinkId;
     QString _description;
     double _price;
-    std::list<Recipe> ingredients;
+    std::list<Recipe> _ingredients;
 };
 
 #endif // DRINKITEM_H

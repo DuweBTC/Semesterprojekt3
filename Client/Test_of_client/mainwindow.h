@@ -79,13 +79,16 @@ private:
     };
     int WindowMenu = 0;
     void setText(QString text);
+    // CRUD Operation
+    void getRecipe();
 
 private slots:
     // Event handling programning
     void run();
-    int scanStudentCard();
+    int startscreen();
     void mainWindow();
     void newUserWindow();
+
     void on_pushMainMenu_clicked();
     void on_pushFavoritsMenu_clicked();
 
