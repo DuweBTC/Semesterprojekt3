@@ -23,18 +23,20 @@ void MainWindow::run()
     //    ui->pushKontoMenu->hide();
     // ui->TextBalance->hide();
 
-    for (;;){
-    setText("Scan Card");
-    // Initializes list object for latter use
-    //drinkList =
-    //    makeDrinkList(dbDriver.getDrinkList());
-    //    makeContainerList(dbDriver.getContainerList());
+//    for (;;){
+//        if (NO_CARD){
+            setText("Scan Card");
+            // Initializes list object for latter use
+            //drinkList =
+            //    makeDrinkList(dbDriver.getDrinkList());
+            //    makeContainerList(dbDriver.getContainerList());
 
-    // We have to make a event loop or idk how, but have a funktion to scan student card
-    // Initializes the RFID here
+            // We have to make a event loop or idk how, but have a funktion to scan student card
+            // Initializes the RFID here
 
-    startscreen();
-    }
+            startscreen();
+//        }
+//    }
 }
 
 // Event Scan card
