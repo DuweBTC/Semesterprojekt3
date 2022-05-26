@@ -112,7 +112,7 @@ void MainWindow::mainWindow()
     {
         ui->textInformation->show();
         ui->pushMainMenu->show();
-        ui->pushAddDrink->show();
+        ui->pushGetDrink->show();
         ui->pushGetAccountBalance->show();
         ui->pushFavoritsMenu->show();
         ui->pushGetDrink->show();
@@ -369,7 +369,7 @@ void MainWindow::on_pushPutContainer_clicked(){
     dbDriver.putIngredient(&ingredientItem);
 }
 
-void MainWindow::on_pushDeleteContaier_clicked(){
+void MainWindow::on_pushDeleteContainer_clicked(){
     setText("Delete Container");
     containerItem.setContainerId((ui->textId->toPlainText()).toInt());
     dbDriver.putContainer(&containerItem);

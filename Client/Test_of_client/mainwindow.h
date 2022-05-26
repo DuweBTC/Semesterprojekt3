@@ -129,7 +129,7 @@ private slots:
     void on_pushGetContainer_clicked();
     void on_pushPostContainer_clicked();
     void on_pushPutContainer_clicked();
-    void on_pushDeleteContaier_clicked();
+    void on_pushDeleteContainer_clicked();
     void on_pushGetAllContainer_clicked();
 
 };

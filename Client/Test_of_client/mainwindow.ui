@@ -27,7 +27,7 @@
      <string>Put Balance</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushAddDrink">
+   <widget class="QPushButton" name="pushPostDrink">
     <property name="geometry">
      <rect>
       <x>680</x>
@@ -274,7 +274,7 @@ p, li { white-space: pre-wrap; }
      <string>Delete Drink</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushGetAllDrinks">
+   <widget class="QPushButton" name="pushGetAllDrink">
     <property name="geometry">
      <rect>
       <x>680</x>
@@ -352,7 +352,7 @@ p, li { white-space: pre-wrap; }
      <string>Add Favorits</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pusDeleteFavorist">
+   <widget class="QPushButton" name="pushDeleteFavorits">
     <property name="geometry">
      <rect>
       <x>20</x>
