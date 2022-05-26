@@ -22,20 +22,26 @@ void MainWindow::run()
     //    ui->pushKatalogMenu->hide();
     //    ui->pushKontoMenu->hide();
     // ui->TextBalance->hide();
-    setText("Scan Card");
 
+    //    for (;;){
+    //        if (NO_CARD){
+    setText("Scan Card");
     // Initializes list object for latter use
+    // drinkList =
     //    makeDrinkList(dbDriver.getDrinkList());
     //    makeContainerList(dbDriver.getContainerList());
 
     // We have to make a event loop or idk how, but have a funktion to scan student card
     // Initializes the RFID here
-    scanStudentCard();
+
+    startscreen();
+    //        }
+    //    }
 }
 
 // Event Scan card
 //-------------------------------------------------------------------------------------
-int MainWindow::scanStudentCard()
+int MainWindow::startscreen()
 {
     int state = NO_CARD;
     int cardValue = 0;
@@ -50,26 +56,22 @@ int MainWindow::scanStudentCard()
         {
             // ui->textStartScreen->hide();
 
-            dbDriver.getAccount(QString::number(cardValue), accountPtr);
             qDebug() << accountPtr->getName();
 
-            if (account.getAccountId() == cardValue)
-            {
-                mainWindow();
-            }
-            else
+            // If there is no exiting account of that ID call window for new user
+            // Else call main window
+            if (!(dbDriver.getAccount(QString::number(cardValue), accountPtr)))
             {
                 newUserWindow();
             }
 
+            mainWindow();
             state = CARD;
         }
     }
 
     return cardValue;
 }
-
-
 // Event New User
 //------------------------------------------------------------------------------------
 void MainWindow::newUserWindow()
@@ -115,12 +117,10 @@ void MainWindow::mainWindow()
     }
 }
 
-
 void MainWindow::on_pushFavoritsMenu_clicked()
 {
     setText("Favorit Menu");
 }
-
 
 // Events for Account
 //------------------------------------------------------------------------------------
@@ -173,7 +173,6 @@ void MainWindow::on_pushPostAccount_clicked()
     mainWindow();
 }
 
-
 // PUT Account Balance
 void MainWindow::on_pushPutAccountBalance_clicked()
 {
@@ -211,14 +210,16 @@ void MainWindow::on_pushDeleteAccount_clicked()
 }
 
 // Add drink to Favorits
-void MainWindow::on_pushAddFavorits_clicked(){
+void MainWindow::on_pushAddFavorits_clicked()
+{
     dbDriver.getAccount(QString::number(account.getAccountId()), accountPtr);
     account.addFavorits(drinkItem);
     dbDriver.putAccount(accountPtr);
 }
 
 // Delete Drink from Favorits
-void MainWindow::on_pushDeleteFavorits_clicked(){
+void MainWindow::on_pushDeleteFavorits_clicked()
+{
     dbDriver.getAccount(QString::number(account.getAccountId()), accountPtr);
     account.deleteFavorits(drinkItem);
     dbDriver.putAccount(accountPtr);
@@ -227,36 +228,40 @@ void MainWindow::on_pushDeleteFavorits_clicked(){
 // Events for Ingredient
 //------------------------------------------------------------------------------------
 //  GET Ingredient
-void MainWindow::on_pushGetIngredient_clicked(){
+void MainWindow::on_pushGetIngredient_clicked()
+{
     setText("Get Ingredient");
     ingredientItem.setIngredientItemId((ui->textId->toPlainText()).toInt());
 
     ingredientItem = dbDriver.getIngredient(QString::number(ingredientItem.getIngredientItemId()));
-    ui->textInformation->setText("Ingredient Information: \nIngredient: " + ingredientItem.getTitel()
-                                 + "\nID: " + QString::number(ingredientItem.getIngredientItemId()));
+    ui->textInformation->setText("Ingredient Information: \nIngredient: " + ingredientItem.getTitel() + "\nID: " + QString::number(ingredientItem.getIngredientItemId()));
 }
 // POST Ingredient
-void MainWindow::on_pushPostIngredient_clicked(){
+void MainWindow::on_pushPostIngredient_clicked()
+{
     setText("Post Ingredient");
     ingredientItem.setIngredientItemId((ui->textId->toPlainText()).toInt());
     ingredientItem.setTitel(ui->textInsertName->toPlainText());
     dbDriver.postIngredient(&ingredientItem);
 }
 //  PUT Ingredient
-void MainWindow::on_pushPutIngredient_clicked(){
+void MainWindow::on_pushPutIngredient_clicked()
+{
     setText("Put Ingredient");
     ingredientItem.setIngredientItemId((ui->textId->toPlainText()).toInt());
     ingredientItem.setTitel(ui->textInsertName->toPlainText());
     dbDriver.putIngredient(&ingredientItem);
 }
 //  Delete Ingredient
-void MainWindow::on_pushDeleteIngredient_clicked(){
+void MainWindow::on_pushDeleteIngredient_clicked()
+{
     setText("Delete Ingredient");
     dbDriver.deleteIngredient(ui->textId->toPlainText());
     mainWindow();
 }
 // GET All Ingredients
-void MainWindow::on_pushGetAllIngredient_clicked(){
+void MainWindow::on_pushGetAllIngredient_clicked()
+{
     makeIngredientList(dbDriver.getIngredientList());
     // Create an iterator of std::list
     std::list<IngredientItem>::iterator it;
@@ -270,47 +275,46 @@ void MainWindow::on_pushGetAllIngredient_clicked(){
     }
 }
 
-
 // Events for Recipe
 //------------------------------------------------------------------------------------
-void MainWindow::on_pushGetRecipe_clicked(){
+void MainWindow::on_pushGetRecipe_clicked()
+{
     setText("Get Recipe");
     recipe.setRecipeItemId((ui->textId->toPlainText()).toInt());
 
     recipe = dbDriver.getRecipe(QString::number(recipe.getRecipeItemId()));
-    ui->textInformation->setText("Recipe Information: \nId: " + QString::number(recipe.getRecipeItemId())
-                                 + "\nAmount: " + QString::number(recipe.getAmount()) +
-                                 "\nIngredient titel: " + (recipe.getIngredient()).getTitel()
-                                 + "\nIngredient id:" +
+    ui->textInformation->setText("Recipe Information: \nId: " + QString::number(recipe.getRecipeItemId()) + "\nAmount: " + QString::number(recipe.getAmount()) +
+                                 "\nIngredient titel: " + (recipe.getIngredient()).getTitel() + "\nIngredient id:" +
                                  QString::number((recipe.getIngredient()).getIngredientItemId()));
 }
 
-void MainWindow::on_pushPostRecipe_clicked(){
+void MainWindow::on_pushPostRecipe_clicked()
+{
     setText("Post Recipe");
     recipe.setRecipeItemId((ui->textId->toPlainText()).toInt());
     recipe.setAmount((ui->textInsertBalance->toPlainText()).toDouble());
     recipe.setIngredient((ui->textInsertName->toPlainText()).toDouble());
     dbDriver.postRecipe(&recipe);
-
 }
 
-void MainWindow::on_pushPutRecipe_clicked(){
+void MainWindow::on_pushPutRecipe_clicked()
+{
     setText("Put Recipe");
     recipe.setRecipeItemId((ui->textId->toPlainText()).toInt());
     recipe.setAmount((ui->textInsertBalance->toPlainText()).toDouble());
     recipe.setIngredient((ui->textInsertName->toPlainText()).toDouble());
     dbDriver.putRecipe(&recipe);
-
 }
 
-void MainWindow::on_pushDeleteRecipe_clicked(){
+void MainWindow::on_pushDeleteRecipe_clicked()
+{
     setText("Delete Recipe");
     recipe.setRecipeItemId((ui->textId->toPlainText()).toInt());
     dbDriver.putRecipe(&recipe);
-
 }
 
-void MainWindow::on_pushGetAllRecipe_clicked(){
+void MainWindow::on_pushGetAllRecipe_clicked()
+{
     makeRecipeList(dbDriver.getRecipeList());
 
     // Create an iterator of std::list
@@ -328,51 +332,42 @@ void MainWindow::on_pushGetAllRecipe_clicked(){
 // Events for Container
 //------------------------------------------------------------------------------------
 // Get Container
-void MainWindow::on_pushGetContainer_clicked(){
-
-
+void MainWindow::on_pushGetContainer_clicked()
+{
 
     setText("Get Container");
     containerItem.setContainerId((ui->textId->toPlainText()).toInt());
     containerItem = dbDriver.getContainer(QString::number(containerItem.getContainerId()));
-    ui->textInformation->setText("Container information: \nContainer Place: " + QString::number(containerItem.getPlace())
-                                 + "\nID: " + QString::number(containerItem.getContainerId()));
-
+    ui->textInformation->setText("Container information: \nContainer Place: " + QString::number(containerItem.getPlace()) + "\nID: " + QString::number(containerItem.getContainerId()));
 }
 // Post Container
-void MainWindow::on_pushPostContainer_clicked(){
+void MainWindow::on_pushPostContainer_clicked()
+{
     setText("Post Container");
     containerItem.setContainerId((ui->textId->toPlainText()).toInt());
     containerItem.setPlace((ui->textInsertName->toPlainText()).toInt());
     dbDriver.postContainer(&containerItem);
-
-
 }
 // Put Container
-void MainWindow::on_pushPutContainer_clicked(){
+void MainWindow::on_pushPutContainer_clicked()
+{
     setText("Put Container");
-    /*containerItem.setContainerId((ui->textId->toPlainText()).toInt());
-    containerItem.setPlace((ui->textInsertName->toPlainText()).toInt());
-    dbDriver.putContainer(&containerItem);*/
-
     containerItem.setContainerId((ui->textId->toPlainText()).toInt());
     containerItem.setPlace((ui->textInsertName->toPlainText()).toInt());
     containerItem.setIngredient(IngredientItem((containerItem.getIngredient().getIngredientItemId()), ui->textInsertName->toPlainText()));
-    dbDriver.putIngredient(&ingredientItem);
-
-
-
-
+    dbDriver.putContainer(&containerItem);
 }
+
 // Delete Container
-void MainWindow::on_pushDeleteContaier_clicked(){
+void MainWindow::on_pushDeleteContaier_clicked()
+{
     setText("Delete Container");
     containerItem.setContainerId((ui->textId->toPlainText()).toInt());
     dbDriver.putContainer(&containerItem);
-
 }
 // Get All Container
-void MainWindow::on_pushGetAllContainer_clicked(){
+void MainWindow::on_pushGetAllContainer_clicked()
+{
     makeContainerList(dbDriver.getContainerList());
 
     // Create an iterator of std::list
@@ -384,16 +379,13 @@ void MainWindow::on_pushGetAllContainer_clicked(){
         // Access the object through iterator
         ui->textInformation->append("Place: " + QString::number(it->getPlace()) +
                                     "\nIngredient: " + (it->getIngredient()).getTitel() +
-                                    "\nIngredient id :" + QString::number((it->getIngredient()).getIngredientItemId())
-                                    );
+                                    "\nIngredient id :" + QString::number((it->getIngredient()).getIngredientItemId()));
         qDebug() << QString::number(it->getPlace());
     }
-
 }
 
 // Events for Drink
 //------------------------------------------------------------------------------------
-
 
 // Get Drink
 void MainWindow::on_pushGetDrink_clicked()
@@ -403,8 +395,6 @@ void MainWindow::on_pushGetDrink_clicked()
     drinkItem.setDrinkId((ui->textId->toPlainText()).toInt());
     drinkItem = dbDriver.getDrink(QString::number(drinkItem.getDrinkId()));
     ui->textInformation->setText("Drink Information \nDrink: " + drinkItem.getTitel() + "\nID: " + QString::number(drinkItem.getDrinkId()) + "\nDescription: " + drinkItem.getDescription() + "\nPrice: " + QString::number(drinkItem.getPrice()));
-
-
 }
 // Get all Drinks
 void MainWindow::on_pushGetAllDrink_clicked()
@@ -412,21 +402,18 @@ void MainWindow::on_pushGetAllDrink_clicked()
     setText("Drinks");
 }
 // Post Drink
-void MainWindow::on_pushPostDrink_clicked(){
+void MainWindow::on_pushPostDrink_clicked()
+{
     setText("Post Drink");
     drinkItem.setTitel(ui->textInsertName->toPlainText());
     drinkItem.setDrinkId((ui->textId->toPlainText()).toInt());
     drinkItem.setPrice((ui->textInsertBalance->toPlainText()).toDouble());
     dbDriver.postDrink(&drinkItem);
-
-    /*setText("Post Ingredient");
-    ingredientItem.setIngredientItemId((ui->textId->toPlainText()).toInt());
-    ingredientItem.setTitel(ui->textInsertName->toPlainText());
-    dbDriver.postIngredient(&ingredientItem);*/
-
 }
+
 // Put Drink
-void MainWindow::on_pushPutDrink_clicked(){
+void MainWindow::on_pushPutDrink_clicked()
+{
     setText("Put Drink");
     drinkItem.setTitel(ui->textInsertName->toPlainText());
     drinkItem.setDrinkId((ui->textId->toPlainText()).toInt());
@@ -434,15 +421,13 @@ void MainWindow::on_pushPutDrink_clicked(){
     dbDriver.putDrink(&drinkItem);
 }
 
-
 // Delete Drink
-void MainWindow::on_pushDeleteDrink_clicked(){
+void MainWindow::on_pushDeleteDrink_clicked()
+{
     setText("Delete Drink");
     dbDriver.deleteDrink(ui->textId->toPlainText());
     mainWindow();
-
 }
-
 
 // SECTION TO MAKE LIST OBJECTS
 //-----------------------------------------------------------------------------------
@@ -488,7 +473,6 @@ void MainWindow::makeRecipeList(QJsonArray recipeJsonFormat)
         qDebug() << "Recipe list " + QString::number((recipe.getIngredient()).getIngredientItemId());
         qDebug() << "Recipe list " + (recipe.getIngredient()).getTitel();
         recipeList.push_back(recipe);
-
     }
 }
 
@@ -502,7 +486,7 @@ void MainWindow::makeContainerList(QJsonArray containerJsonFormat)
         //                                        json_container_obj["containerItemId"].toInt(),
         //                                        json_container_obj["place"].toString(),
         //                                        json_container_obj["ingredientItem"].toObject()));
-        //containerList.push_back(ContainerItem(json_container_obj["ContainerItemId"].toInt()))
+        // containerList.push_back(ContainerItem(json_container_obj["ContainerItemId"].toInt()))
     }
 }
 
@@ -523,30 +507,3 @@ void MainWindow::setText(QString text)
     ui->textMenu->setFontPointSize(36);
     ui->textMenu->setAlignment(Qt::AlignCenter);
 }
-
-// void MainWindow::on_GetAccountButton_clicked(){
-//     account.setAccountId(1);
-//     //account = dbDriver.getAccount(QString::number(account.getAccountId()));
-//     makeAccountList(dbDriver.getAccountList());
-
-//    //Create an iterator of std::list
-//    std::list<Account>::iterator it;
-
-//    for (unsigned long i = 0; i < sizeof(accountList); i++){
-
-//    for (it = accountList.begin(); it != accountList.end(); it++)
-//    {
-//        // Access the object through iterator
-//        ui->textKontoInformation->append(it->getName());
-//        qDebug() << it->getAccountId();
-//    }
-//    }
-
-//}
-
-// void MainWindow::on_PostAccountButton_clicked(){
-//     account.setName("Duwe");
-//     account.setAccountId(1);
-//     account.setBalance(30000);
-//     dbDriver.postAccount(&account);
-// }
