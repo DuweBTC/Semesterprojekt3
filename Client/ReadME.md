@@ -170,19 +170,127 @@ chmod +x qt-opensource-linux-x64-5.12.3.run
 ```bash
 ./qt-opensource-linux-x64-5.12.3.run
 ```
-Note: That in Qt you need to have a account. You also need to check all of these thing off.
+Note: That in Qt you need to have a account. You also need to check all of these thing off and you add more modules if you want to.
 ![alt text](Pictures/Qt_installer.png "QT Installer")
 
+After the installation we have have to download the source code for Qt to build for the Pi.
+### On the Linux
+```bash
+cd ~/raspi
+```
+```bash
+it clone git://code.qt.io/qt/qtbase.git -b 5.12.3
+```
+After this we have to fix a broken mkspec for the Pi. The easiest way is just to replace the file. 
+```bash
+git clone https://github.com/LangtonsAnt/Qt5.12.3-RPi3-mkspec.git
+```
+```bash
+cp Qt5.12.3-RPi3-mkspec/qmake.conf qtbase/mkspecs/devices/linux-rasp-pi3-g++/
+```
+```bash
+cd qtbase
+```
+The next command will configure Qt ready for building. It will take around 5 - 10 minutes. 
+```bash
+
+```
+```bash
+./configure -release -egl -opengl es2 -device linux-rasp-pi3-g++ -device-option CROSS_COMPILE=~/raspi/tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/arm-linux-gnueabihf- -sysroot ~/raspi/sysroot -opensource -confirm-license -make libs -prefix /usr/local/qt5pi -extprefix ~/raspi/qt5pi -hostprefix ~/raspi/qt5 -v -no-use-gold-linker
+```
+**Terminal output for running QT**
+```bash
+Qt is now configured for building. Just run 'make'.
+Once everything is built, you must run 'make install'.
+Qt will be installed into '/home/bjarke/raspi/qt5pi'.
+```
+
+Once it finishes look at the **output**. You have to make sure there are no errors. If there are you have to reset the qtbase directory with the following command. 
+```bash
+git clean -dfx
+```
+Note: this will still keep the chanes you made to the makespec. 
 
 
+You will need to put sudo beforehand the terminal outputs commands, because it will be files from your Linux till Raspberry. It is not the Raspberry's files. 
+
+Now we can build Qt. This will build qmake, and all needed libraries as binaries, for the Raspberry Pi.
+
+First we check threads for compiling
+```bash
+sudo apt install htop
+```
+```bash
+htop
+```
+I got 8 threads. I i want to utilize the threads so i run the command
+
+```bash
+sudo make -j<CPU count>
+```
+Therefore i run 
+```bash
+sudo make -j8
+```
+
+Now to copy arcoss those libraries to the Pi
+```bash
+cd ~/raspi
+```
+```bash
+rsync -avz qt5pi pi@$PI_IP:/usr/local
+```
+Now we need to let the Pi know about these new libraries. So we need to run the following commands. 
+### On the Raspberry Pi
+```bash
+echo /usr/local/qt5pi/lib | sudo tee /etc/ld.so.conf.d/qt5pi.conf
+```
+```bash
+sudo ldconfig
+```
 
 
+## Building and debugging with Qt Creator
+Now you are able to build code and copy it across to the Pi with scp, but if you want to develope on the Pi, then you will want to add a kit in Qt to remotely upload compiled code to the Pi, and remotely debug. We have to install the gbd-multiarch to do this. 
+### On the Linux
+```bash
+sudo apt install -y gdb-multiarch
+```
+### On the Raspberry Pi
+```bash
+sudo apt install -y gdbserver
+```
+Now you have to configure the kit and the rest is in the [Heavy Bare Metal](http://heavybaremetal.com/index.php/blog/6-how-to-cross-compile-qt-5-for-raspberry-pi-3)'s guide.
 
 
-## Copy the Qt libraries over to the Pi
+## Change the Server Projekt to be able to cross 
+First create a project, there you choice to use both desktop and RPi compiler. Change what compiler you are using. After that edit the .pro file for the default rules for deployment to this. 
+```
+# Default rules for deployment.
+qnx: target.path = /tmp/$${TARGET}/bin
+else: unix:!android: target.path = /home/pi/$${TARGET}
+!isEmpty(target.path): INSTALLS += target
+```
 
-## Build a Qt example, and deploy and run it on the Pi
+After you build it, then go to the folder where you place the project in the terminal. Then use the command
+ ```bash
+ cd ..
+ ```
+ There you will find a folder
+ ```bash
+  cd build-"projectName"-RPi_3_QT_5_12_3_GCC-Debug
+ ```
+  ```bash
+  cd build-"RPiClient"-RPi_3_QT_5_12_3_GCC-Debug
+ ```
 
-## Change the Server Projekt to be able to cross compile
+ In that folder you will run a secure copy of the exetution filewith the command
+   ```bash
+scp ./file <Pi Username>"@<Pi IP Adress>:/home/<username>/
+ ```
+  ```bash
+scp ./RPiClient pi@10.77.77.77:/home/pi/
+ ```
 
-## Run the Server with Qt
+## Run the Raspberry with Qt
+On the we run the Client with going to the folder and the execute the file.
