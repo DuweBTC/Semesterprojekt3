@@ -73,6 +73,10 @@ public class AccountController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<AccountItem>> PostAccountItem(AccountItem accountItem)
     {
+        // if (AccountItemExists(accountItem.AccountItemId))
+        // {
+        //     return BadRequest();
+        // }
         _context.AccountItems.Add(accountItem);
         await _context.SaveChangesAsync();
 

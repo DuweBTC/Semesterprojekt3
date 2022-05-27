@@ -1,25 +1,31 @@
 {
   "format": 1,
   "restore": {
-    "/Users/my-thanh/Desktop/Github/Semesterprojekt3/Database/ServerWebApi/ServerWebApi.csproj": {}
+    "C:\\Users\\Bjark\\source\\repos\\Semesterprojekt3\\Database\\ServerWebApi\\ServerWebApi.csproj": {}
   },
   "projects": {
-    "/Users/my-thanh/Desktop/Github/Semesterprojekt3/Database/ServerWebApi/ServerWebApi.csproj": {
+    "C:\\Users\\Bjark\\source\\repos\\Semesterprojekt3\\Database\\ServerWebApi\\ServerWebApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/my-thanh/Desktop/Github/Semesterprojekt3/Database/ServerWebApi/ServerWebApi.csproj",
+        "projectUniqueName": "C:\\Users\\Bjark\\source\\repos\\Semesterprojekt3\\Database\\ServerWebApi\\ServerWebApi.csproj",
         "projectName": "ServerWebApi",
-        "projectPath": "/Users/my-thanh/Desktop/Github/Semesterprojekt3/Database/ServerWebApi/ServerWebApi.csproj",
-        "packagesPath": "/Users/my-thanh/.nuget/packages/",
-        "outputPath": "/Users/my-thanh/Desktop/Github/Semesterprojekt3/Database/ServerWebApi/obj/",
+        "projectPath": "C:\\Users\\Bjark\\source\\repos\\Semesterprojekt3\\Database\\ServerWebApi\\ServerWebApi.csproj",
+        "packagesPath": "C:\\Users\\Bjark\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Bjark\\source\\repos\\Semesterprojekt3\\Database\\ServerWebApi\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "/Users/my-thanh/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\Bjark\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -65,7 +71,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.202/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
         }
       }
     }

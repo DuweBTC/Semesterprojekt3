@@ -8,9 +8,4 @@ public class RecipeItem
     public IngredientItem? Ingredient { get; set; }
     public double Amount { get; set; }
 
-    // public RecipeItem(Ingredient ingredient, double amount)
-    // {
-    //     Ingredient = ingredient;
-    //     Amount = amount;
-    // }
 };
