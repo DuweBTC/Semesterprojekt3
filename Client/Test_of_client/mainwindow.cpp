@@ -270,8 +270,9 @@ void MainWindow::on_pushPutIngredient_clicked(){
 
 void MainWindow::on_pushDeleteIngredient_clicked(){
     setText("Delete Ingredient");
-    ingredientItem.setIngredientItemId((ui->textId->toPlainText()).toInt());
-    dbDriver.putIngredient(&ingredientItem);
+
+    dbDriver.deleteIngredient(ui->textId->toPlainText());
+    mainWindow();
 }
 
 void MainWindow::on_pushGetAllIngredient_clicked(){
@@ -291,31 +292,60 @@ void MainWindow::on_pushGetAllIngredient_clicked(){
 
 // Events for Recipe
 //------------------------------------------------------------------------------------
+// Get Recipe
 void MainWindow::on_pushGetRecipe_clicked(){
     setText("Get Recipe");
-    getRecipe();
-}
+    //getRecipe();
 
+    recipe.setRecipeItemId((ui->textId->toPlainText()).toInt());
+
+        recipe = dbDriver.getRecipe(QString::number(recipe.getRecipeItemId()));
+        ui->textInformation->setText("Recipe Information: \nId: " + QString::number(recipe.getRecipeItemId())
+                                     + "\nAmount: " + QString::number(recipe.getAmount()) +
+                                     "\nIngredient titel: " + (recipe.getIngredient()).getTitel()
+                                     + "\nIngredient id:" +
+                                     QString::number((recipe.getIngredient()).getIngredientItemId()));
+}
+// Post Recipe
 void MainWindow::on_pushPostRecipe_clicked(){
     setText("Post Recipe");
 
-    recipe.setRecipeItemId((recipeList.size() + 1));
+    /*recipe.setRecipeItemId((recipeList.size() + 1));
     recipe.setAmount((ui->textInsertName->toPlainText()).toDouble());
     recipe.setIngredient(IngredientItem((ingredientList.size() + 1), ui->textInsertName->toPlainText()));
-    dbDriver.postRecipe(&recipe);
+    dbDriver.postRecipe(&recipe);*/
+
+    recipe.setRecipeItemId((ui->textId->toPlainText()).toInt());
+        recipe.setAmount((ui->textInsertBalance->toPlainText()).toDouble());
+        recipe.setIngredient(IngredientItem(
+                                        (ui->textInsertBalance->toPlainText()).toInt(),
+                                        ui->textInsertName->toPlainText())
+                                    );
+        dbDriver.postRecipe(&recipe);
 }
 
 void MainWindow::on_pushPutRecipe_clicked(){
     setText("Put Recipe");
-    recipe.setRecipeItemId((ui->textId->toPlainText()).toInt());
+    /*recipe.setRecipeItemId((ui->textId->toPlainText()).toInt());
     recipe.setIngredient(IngredientItem((ingredientList.size() + 1), ui->textInsertName->toPlainText()));
-    dbDriver.putIngredient(&ingredientItem);
+    dbDriver.putIngredient(&ingredientItem);*/
+    recipe.setRecipeItemId((ui->textId->toPlainText()).toInt());
+        recipe.setAmount((ui->textInsertBalance->toPlainText()).toDouble());
+        recipe.setIngredient(IngredientItem(
+                                        (ui->textInsertBalance->toPlainText()).toInt(),
+                                        ui->textInsertName->toPlainText())
+                                    );
+        dbDriver.putRecipe(&recipe);
 }
 
 void MainWindow::on_pushDeleteRecipe_clicked(){
     setText("Delete Recipe");
-    recipe.setRecipeItemId((ui->textId->toPlainText()).toInt());
-    dbDriver.putRecipe(&recipe);
+    /*recipe.setRecipeItemId((ui->textId->toPlainText()).toInt());
+    dbDriver.putRecipe(&recipe);*/
+
+
+    dbDriver.deleteRecipe(ui->textId->toPlainText());
+    mainWindow();
 }
 
 void MainWindow::on_pushGetAllRecipe_clicked(){
@@ -328,53 +358,63 @@ void MainWindow::on_pushGetAllRecipe_clicked(){
     for (it = recipeList.begin(); it != recipeList.end(); it++)
     {
         // Access the object through iterator
-        ui->textInformation->append("Name: " + (it->getIngredient()).getTitel() + "\n");
-        qDebug() << it->getAmount();
+        /*ui->textInformation->append("Recipe: " + (it->getIngre()).getTitel() + "\n");
+        qDebug() << it->getAmount();*/
+        ui->textInformation->append("Recipe: " + QString::number(it->getRecipeItemId()) + "\nAmount: " + QString::number(it->getAmount()) +
+                                    "\nIngredient: " + (it->getIngredient()).getTitel() +
+                                    "\nIngredient id :" + QString::number((it->getIngredient()).getIngredientItemId())
+                                    );
     }
+
 }
 
 // Events for Container
 //------------------------------------------------------------------------------------
 void MainWindow::on_pushGetContainer_clicked(){
-    /*setText("Get Ingredient");
-    ingredientItem.setIngredientItemId((ui->textId->toPlainText()).toInt());
 
-    ingredientItem = dbDriver.getIngredient(QString::number(ingredientItem.getIngredientItemId()));
-    ui->textInformation->setText("Ingredient Information: \nName: " + ingredientItem.getTitel()
-                                 + "\nID: " + QString::number(ingredientItem.getIngredientItemId()));*/
     setText("Get Container");
     containerItem.setContainerId((ui->textId->toPlainText()).toInt());
-
-    ContainerItem containerTemp = dbDriver.getContainer(QString::number(containerItem.getContainerId()));
-    containerItem = containerTemp;
-
-    //containerItem = dbDriver.getContainer(QString::number(containerItem.getContainerId()));
-    ui->textInformation->setText("Container information: \nName: " + QString::number(containerItem.getContainerId()));
+    containerItem = dbDriver.getContainer(QString::number(containerItem.getContainerId()));
+    ui->textInformation->setText("Container information: \nName: " + QString::number(containerItem.getContainerId()) +
+                                  "\nPlace: " + QString::number(containerItem.getPlace())
+                                     + "\nIngredient: " + (containerItem.getIngredient()).getTitel()
+                                 );
 
 }
 
+// POST Container
 void MainWindow::on_pushPostContainer_clicked(){
     setText("Post Container");
     containerItem.setContainerId((ui->textId->toPlainText()).toInt());
     containerItem.setPlace((ui->textInsertName->toPlainText()).toInt());
+    containerItem.setIngredient(IngredientItem(
+                                    (ui->textInsertBalance->toPlainText()).toInt(),
+                                    ui->textInsertName->toPlainText())
+                                );
     dbDriver.postContainer(&containerItem);
 
 }
-
+// PUT Container
 void MainWindow::on_pushPutContainer_clicked(){
     setText("Put Container");
+    /*containerItem.setContainerId((ui->textId->toPlainText()).toInt());
+    containerItem.setPlace((ui->textInsertName->toPlainText()).toInt());
+    containerItem.setIngredient(IngredientItem((containerItem.getIngredient().getIngredientItemId()), ui->textInsertName->toPlainText()));*/
     containerItem.setContainerId((ui->textId->toPlainText()).toInt());
     containerItem.setPlace((ui->textInsertName->toPlainText()).toInt());
-    containerItem.setIngredient(IngredientItem((containerItem.getIngredient().getIngredientItemId()), ui->textInsertName->toPlainText()));
-    dbDriver.putIngredient(&ingredientItem);
-}
-
-void MainWindow::on_pushDeleteContainer_clicked(){
-    setText("Delete Container");
-    containerItem.setContainerId((ui->textId->toPlainText()).toInt());
+    containerItem.setIngredient(IngredientItem(
+                                    (ui->textInsertBalance->toPlainText()).toInt(),
+                                    ui->textInsertName->toPlainText())
+                                );
     dbDriver.putContainer(&containerItem);
 }
-
+// Delete Container
+void MainWindow::on_pushDeleteContainer_clicked(){
+    setText("Delete Container");
+    dbDriver.deleteContainer(ui->textId->toPlainText());
+    mainWindow();
+}
+// Get all Container
 void MainWindow::on_pushGetAllContainer_clicked(){
     makeContainerList(dbDriver.getContainerList());
 
@@ -385,7 +425,7 @@ void MainWindow::on_pushGetAllContainer_clicked(){
     for (it = containerList.begin(); it != containerList.end(); it++)
     {
         // Access the object through iterator
-        ui->textInformation->append("Place: " + QString::number(it->getPlace()) +
+        ui->textInformation->append("Place: " + QString::number(it->getPlace()) + "\nContainer id: " + QString::number(it->getContainerId()) +
                                     "\nIngredient: " + (it->getIngredient()).getTitel() +
                                     "\nIngredient id :" + QString::number((it->getIngredient()).getIngredientItemId())
                                     );
@@ -397,30 +437,57 @@ void MainWindow::on_pushGetAllContainer_clicked(){
 //------------------------------------------------------------------------------------
 
 
-
+// Get Drink
 void MainWindow::on_pushGetDrink_clicked()
 {
-    setText("Add Drink Menu");
-}
+    setText("Get Drink");
+    drinkItem.setDrinkId((ui->textId->toPlainText()).toInt());
+    drinkItem = dbDriver.getDrink(QString::number(drinkItem.getDrinkId()));
+    ui->textInformation->setText("Drink information: \nID: " + QString::number(drinkItem.getDrinkId()) +
+                                  "\nTitel: " + drinkItem.getTitel()
+                                 + "\nDescription: " + drinkItem.getDescription()
+                                 + "\nPrice: " + QString::number(drinkItem.getPrice())
+                                 );
 
+
+}
+// Get all Drinks
 void MainWindow::on_pushGetAllDrink_clicked()
 {
-    setText("Drinks");
-}
+    setText("Get all Drinks");
+    makeDrinkList(dbDriver.getDrinkList());
+    // Create an iterator of std::list
+    std::list<DrinkItem>::iterator it;
+    ui->textInformation->setText("");
 
+    for (it = drinkList.begin(); it != drinkList.end(); it++)
+    {
+        // Access the object through iterator
+        ui->textInformation->append("ID: " + QString::number(it->getDrinkId()) + "\nTitel: " + (it->getTitel()) +
+                                    "\nDescription: " + (it->getDescription()) +
+                                    "\nPrice: " + QString::number(it->getPrice())
+                                    );
+
+    }
+
+}
+// Post Drink
 void MainWindow::on_pushPostDrink_clicked(){
     setText("Post Drink");
     drinkItem.setDrinkId((ui->textId->toPlainText()).toInt());
-    drinkItem.setDescription((ui->textInsertName->toPlainText()));
+    drinkItem.setDescription((ui->textDescription->toPlainText()));
     drinkItem.setTitel((ui->textInsertName->toPlainText()));
     drinkItem.setPrice((ui->textInsertBalance->toPlainText()).toInt());
     dbDriver.postDrink(&drinkItem);
+
+
+
 }
 
 void MainWindow::on_pushPutDrink_clicked(){
     setText("Put Drink");
     drinkItem.setDrinkId((ui->textId->toPlainText()).toInt());
-    drinkItem.setDescription((ui->textInsertName->toPlainText()));
+    drinkItem.setDescription((ui->textDescription->toPlainText()));
     drinkItem.setTitel(ui->textInsertName->toPlainText());
     drinkItem.setPrice((ui->textInsertBalance->toPlainText()).toInt());
     drinkItem.setRecipe(recipe);
@@ -428,9 +495,11 @@ void MainWindow::on_pushPutDrink_clicked(){
 }
 
 void MainWindow::on_pushDeleteDrink_clicked(){
-    setText("Delete Container");
-    drinkItem.setDrinkId((ui->textId->toPlainText()).toInt());
-    dbDriver.putDrink(&drinkItem);
+    setText("Delete Drink");
+    dbDriver.deleteDrink((ui->textId->toPlainText()));
+    mainWindow();
+
+
 }
 
 // GET Recipe
@@ -467,10 +536,13 @@ void MainWindow::makeDrinkList(QJsonArray drinkJsonFormat)
     {
         QJsonObject json_drink_obj = value.toObject();
         // Make a account object to the accountList
-        drinkList.push_back(DrinkItem(json_drink_obj["RecipeItemId"].toString(),
-                                      json_drink_obj["Amount"].toInt(),
-                                      json_drink_obj["Amount"].toString(),
-                                      json_drink_obj["Amount"].toDouble()));
+
+        drinkList.push_back(DrinkItem(json_drink_obj["titel"].toString(),
+                            json_drink_obj["drinkItemId"].toInt(),
+                            json_drink_obj["description"].toString(),
+                            json_drink_obj["price"].toDouble()
+
+                ));
     }
 }
 
@@ -482,7 +554,7 @@ void MainWindow::makeRecipeList(QJsonArray recipeJsonFormat)
         // Make a account object to the accountList
 
         QJsonObject json_recipe_obj = value.toObject();
-        QJsonObject json_recipeIngredient_obj = json_recipe_obj.value("ingredient").toObject();
+        /*QJsonObject json_recipeIngredient_obj = json_recipe_obj.value("ingredient").toObject();
         // Make a account object to the accountList
         recipe.setRecipeItemId(json_recipe_obj["recipeItemId"].toInt());
         recipe.setIngredient(IngredientItem(json_recipeIngredient_obj["ingredientItemId"].toInt(), json_recipeIngredient_obj["titel"].toString()));
@@ -491,7 +563,9 @@ void MainWindow::makeRecipeList(QJsonArray recipeJsonFormat)
         qDebug() << "Recipe list " + QString::number(recipe.getAmount());
         qDebug() << "Recipe list " + QString::number((recipe.getIngredient()).getIngredientItemId());
         qDebug() << "Recipe list " + (recipe.getIngredient()).getTitel();
-        recipeList.push_back(recipe);
+        recipeList.push_back(recipe);*/
+        recipeList.push_back(Recipe(json_recipe_obj["recipeItemId"].toInt(),
+                                      json_recipe_obj["amount"].toDouble()));
 
     }
 }
@@ -507,6 +581,10 @@ void MainWindow::makeContainerList(QJsonArray containerJsonFormat)
         //                                        json_container_obj["containerItemId"].toInt(),
         //                                        json_container_obj["place"].toString(),
         //                                        json_container_obj["ingredientItem"].toObject()));
+
+        containerList.push_back(ContainerItem(json_container_obj["containerItemId"].toInt(),
+                                      json_container_obj["place"].toInt()));
+                                      //json_container_obj["ingredientItem"].toDouble()));
     }
 }
 
@@ -517,8 +595,8 @@ void MainWindow::makeIngredientList(QJsonArray ingredientJsonFormat)
     {
         QJsonObject json_ingredient_obj = value.toObject();
         // Make a account object to the accountList
-        ingredientList.push_back(IngredientItem(json_ingredient_obj["IngredientItemId"].toInt(),
-                                                json_ingredient_obj["Titel"].toString()));
+        ingredientList.push_back(IngredientItem(json_ingredient_obj["ingredientItemId"].toInt(),
+                                                json_ingredient_obj["titel"].toString()));
     }
 }
 

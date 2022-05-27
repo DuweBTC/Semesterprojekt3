@@ -371,8 +371,14 @@ void DatabaseDriver::postRecipe(Recipe *recipe)
 
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
     QJsonObject recipe_local;
-    recipe_local["RecipeItemId"] = recipe->getRecipeItemId();
-    recipe_local["Amount"] = recipe->getAmount();
+    QJsonObject ingredientJSON;
+    recipe_local["recipeItemId"] = recipe->getRecipeItemId();
+    recipe_local["amount"] = recipe->getAmount();
+    ingredientJSON["ingredientItemId"] = (recipe->getIngredient()).getIngredientItemId();
+    ingredientJSON["titel"] = (recipe->getIngredient().getTitel());
+    recipe_local["ingredient"] = ingredientJSON;
+
+
 
     QJsonDocument doc(recipe_local);
     QByteArray data = doc.toJson();
@@ -403,8 +409,12 @@ void DatabaseDriver::putRecipe(Recipe *recipe)
 
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
     QJsonObject recipe_local;
-    recipe_local["RecipeItemId"] = recipe->getRecipeItemId();
-    recipe_local["Amount"] = recipe->getAmount();
+    QJsonObject ingredientJSON;
+    recipe_local["recipeItemId"] = recipe->getRecipeItemId();
+    recipe_local["amount"] = recipe->getAmount();
+    ingredientJSON["ingredientItemId"] = (recipe->getIngredient()).getIngredientItemId();
+    ingredientJSON["titel"] = (recipe->getIngredient().getTitel());
+    recipe_local["ingredient"] = ingredientJSON;
 
     QJsonDocument doc(recipe_local);
     QByteArray data = doc.toJson();
@@ -507,19 +517,18 @@ DrinkItem DatabaseDriver::getDrink(QString id)
         qDebug() << "Response:" << strReply;
         QJsonDocument jsonResponse = QJsonDocument::fromJson(strReply.toUtf8());
 
-        QJsonArray json_array = jsonResponse.array();
+        QJsonObject json_drink_obj = jsonResponse.object();
 
-        QJsonObject json_drink_obj = QJsonValue(json_array).toObject();
         // QJsonObject json_account_obj = json_obj.value("place").toObject();
-        qDebug() << json_drink_obj["Titel"].toString();
-        qDebug() << json_drink_obj["DrinkId"].toInt();
-        qDebug() << json_drink_obj["Description"].toString();
-        qDebug() << json_drink_obj["Price"].toDouble();
+        qDebug() << json_drink_obj["titel"].toString();
+        qDebug() << json_drink_obj["drinkItemId"].toInt();
+        qDebug() << json_drink_obj["description"].toString();
+        qDebug() << json_drink_obj["price"].toDouble();
 
-        drink_local.setTitel(json_drink_obj["RecipeItemId"].toString());
-        drink_local.setDrinkId(json_drink_obj["Amount"].toInt());
-        drink_local.setDescription(json_drink_obj["Amount"].toString());
-        drink_local.setPrice(json_drink_obj["Amount"].toDouble());
+        drink_local.setTitel(json_drink_obj["titel"].toString());
+        drink_local.setDrinkId(json_drink_obj["drinkItemId"].toInt());
+        drink_local.setDescription(json_drink_obj["description"].toString());
+        drink_local.setPrice(json_drink_obj["price"].toDouble());
 
         delete reply;
     }
@@ -544,7 +553,7 @@ void DatabaseDriver::postDrink(DrinkItem *drink)
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
     QJsonObject drink_local;
     drink_local["titel"] = drink->getTitel();
-    drink_local["dinkId"] = drink->getDrinkId();
+    drink_local["drinkItemId"] = drink->getDrinkId();
     drink_local["description"] = drink->getDescription();
     drink_local["price"] = drink->getPrice();
 
@@ -575,10 +584,10 @@ void DatabaseDriver::putDrink(DrinkItem *drink)
 
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
     QJsonObject drink_local;
-    drink_local["Titel"] = drink->getTitel();
-    drink_local["DrinkId"] = drink->getDrinkId();
-    drink_local["Description"] = drink->getDescription();
-    drink_local["Price"] = drink->getPrice();
+    drink_local["titel"] = drink->getTitel();
+    drink_local["drinkItemId"] = drink->getDrinkId();
+    drink_local["description"] = drink->getDescription();
+    drink_local["price"] = drink->getPrice();
 
     QJsonDocument doc(drink_local);
     QByteArray data = doc.toJson();
@@ -600,7 +609,7 @@ void DatabaseDriver::putDrink(DrinkItem *drink)
 void DatabaseDriver::deleteDrink(QString index)
 {
     QNetworkAccessManager *mgr = new QNetworkAccessManager;
-    QString const URL = _url + "/Drink" + index;
+    QString const URL = _url + "Drink/" + index;
     const QUrl url(URL);
     QNetworkRequest request(url);
 
@@ -850,15 +859,16 @@ ContainerItem DatabaseDriver::getContainer(QString id)
         qDebug() << "Response:" << strReply;
         QJsonDocument jsonResponse = QJsonDocument::fromJson(strReply.toUtf8());
 
-        QJsonArray json_array = jsonResponse.array();
+        QJsonObject json_container_obj = jsonResponse.object();
+        QJsonObject json_ingredient_obj = json_container_obj.value("ingredient").toObject();
+        qDebug() << json_container_obj["containerItemId"].toString();
+        qDebug() << json_container_obj["place"].toInt();
 
-        QJsonObject json_container_local_obj = QJsonValue(json_array).toObject();
-        // QJsonObject json_account_obj = json_obj.value("place").toObject();
-        qDebug() << json_container_local_obj["ContainerId"].toString();
-        qDebug() << json_container_local_obj["Place"].toInt();
+        container_local.setContainerId(json_container_obj["containerItemId"].toInt());
+        container_local.setPlace(json_container_obj["place"].toInt());
+        container_local.setIngredient(IngredientItem(json_ingredient_obj["ingredientItemId"].toInt(),
+                                                        json_ingredient_obj["titel"].toString()));
 
-        container_local.setContainerId(json_container_local_obj["ContainerId"].toInt());
-        container_local.setPlace(json_container_local_obj["Place"].toInt());
 
         delete reply;
     }
@@ -881,11 +891,16 @@ void DatabaseDriver::postContainer(ContainerItem *container)
 
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
     QJsonObject container_local;
-    container_local["ContainerId"] = container->getContainerId();
-    container_local["Place"] = container->getPlace();
+    QJsonObject ingredientJSON;
+    container_local["containerItemId"] = container->getContainerId();
+    container_local["place"] = container->getPlace();
+    ingredientJSON["ingredientItemId"] = (container->getIngredient()).getIngredientItemId();
+    ingredientJSON["titel"] = (container->getIngredient().getTitel());
+    container_local["ingredient"] = ingredientJSON;
 
     QJsonDocument doc(container_local);
     QByteArray data = doc.toJson();
+    qDebug() << container_local;
     // or
     // QByteArray data("{\"Name\":\"account->getName()\",\"key2\":\"value2\"}");
     QNetworkReply *reply = mgr->post(request, data);
@@ -912,8 +927,13 @@ void DatabaseDriver::putContainer(ContainerItem *container)
 
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
     QJsonObject container_local;
-    container_local["ContainerId"] = container->getContainerId();
-    container_local["Place"] = container->getPlace();
+    QJsonObject ingredientJSON;
+    container_local["containerItemId"] = container->getContainerId();
+    container_local["place"] = container->getPlace();
+    ingredientJSON["ingredientItemId"] = (container->getIngredient()).getIngredientItemId();
+    ingredientJSON["titel"] = (container->getIngredient().getTitel());
+    container_local["ingredient"] = ingredientJSON;
+
 
     QJsonDocument doc(container_local);
     QByteArray data = doc.toJson();

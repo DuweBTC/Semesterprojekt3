@@ -29,7 +29,7 @@ public class DrinkContext : DbContext
             .Entity<DrinkItem>(
                 item =>
                 {
-                    item.HasKey("DrinkId");
+                    item.HasKey("DrinkItemId");
                 });
     }
 }

@@ -12,7 +12,7 @@ public:
     void setContainerId(int ContainerId);
     int getPlace() const;
     void setPlace(int Place);
-    void operator=(ContainerItem &temp);
+    void operator=(const ContainerItem &temp);
     void setIngredient(const IngredientItem& temp);
     IngredientItem getIngredient() const;
     ~ContainerItem();

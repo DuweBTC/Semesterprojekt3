@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "/home/bjarke/Documents/repos/Semesterprojekt3/Database/ServerWebApi/ServerWebApi.csproj": {}
+    "C:\\Users\\m-iQu\\OneDrive\\Skrivebord\\Skole\\Semesterprojekt3\\Database\\ServerWebApi\\ServerWebApi.csproj": {}
   },
   "projects": {
-    "/home/bjarke/Documents/repos/Semesterprojekt3/Database/ServerWebApi/ServerWebApi.csproj": {
+    "C:\\Users\\m-iQu\\OneDrive\\Skrivebord\\Skole\\Semesterprojekt3\\Database\\ServerWebApi\\ServerWebApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/bjarke/Documents/repos/Semesterprojekt3/Database/ServerWebApi/ServerWebApi.csproj",
+        "projectUniqueName": "C:\\Users\\m-iQu\\OneDrive\\Skrivebord\\Skole\\Semesterprojekt3\\Database\\ServerWebApi\\ServerWebApi.csproj",
         "projectName": "ServerWebApi",
-        "projectPath": "/home/bjarke/Documents/repos/Semesterprojekt3/Database/ServerWebApi/ServerWebApi.csproj",
-        "packagesPath": "/home/bjarke/.nuget/packages/",
-        "outputPath": "/home/bjarke/Documents/repos/Semesterprojekt3/Database/ServerWebApi/obj/",
+        "projectPath": "C:\\Users\\m-iQu\\OneDrive\\Skrivebord\\Skole\\Semesterprojekt3\\Database\\ServerWebApi\\ServerWebApi.csproj",
+        "packagesPath": "C:\\Users\\m-iQu\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\m-iQu\\OneDrive\\Skrivebord\\Skole\\Semesterprojekt3\\Database\\ServerWebApi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/bjarke/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\m-iQu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -65,7 +67,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.300/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
         }
       }
     }

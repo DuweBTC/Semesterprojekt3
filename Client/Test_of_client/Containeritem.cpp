@@ -26,7 +26,7 @@ void ContainerItem::setPlace(int Place)
     _Place = Place;
 }
 
-void ContainerItem::operator=(ContainerItem &temp){
+void ContainerItem::operator=(const ContainerItem &temp){
     _ContainerId = temp.getContainerId();
     _Place = temp.getPlace();
     _ingredient = temp.getIngredient();

@@ -5,9 +5,9 @@ using Ingredient.Model;
 //[Keyless]
 public class DrinkItem
 {
-    public string Titel { get; set; } = default!;
-
     public int DrinkItemId { get; set; }
+
+    public string Titel { get; set; } = default!;
 
     public string? Description { get; set; }
 
