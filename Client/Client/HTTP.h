@@ -13,7 +13,7 @@ class HTTP
 public:
     HTTP();
     // For Account
-    std::list<Account> getAccountList();
+    std::vector<Account> getAccountList();
     bool getAccount(QString id, Account *);
     void getAccountBalance(QString id, Account *account);
     void postAccount(Account *account);
@@ -44,7 +44,7 @@ public:
     void deleteIngredient(QString index);
 
     // For ContainerItem
-    QJsonArray getContainerList();
+    std::vector<ContainerItem> getContainerList();
     ContainerItem getContainer(QString id);
     void postContainer(ContainerItem *container);
     void putContainer(ContainerItem *container);

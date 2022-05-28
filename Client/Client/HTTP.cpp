@@ -19,9 +19,9 @@ HTTP::HTTP()
 {
 }
 
-std::list<Account> HTTP::getAccountList()
+std::vector<Account> HTTP::getAccountList()
 {
-    std::list<Account> accountList;
+    std::vector<Account> accountList;
 
     // create custom temporary event loop on stack
     QEventLoop eventLoop;
