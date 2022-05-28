@@ -21,7 +21,17 @@ public class DrinkController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<IEnumerable<DrinkItem>>> GetDrinkItem()
     {
-        return await _context.DrinkItems.Include(item => item.ingredients).ToListAsync();
+        return await _context.DrinkItems.Include(item => item.ingredients)
+        //                        .Where(item => item.ingredients
+        //                        .Any(y => y == IngredientItem))
+                                .ToListAsync();
+
+
+
+        //        var games = await db.Games
+        //                              .Include(x => x.categoryMain)
+        //                              .Where(x => x.categoryMain.Any(y => y == categoryId)
+        //                              .ToListAsync();
     }
 
     // GET: api/Drink/5
@@ -73,8 +83,11 @@ public class DrinkController : ControllerBase
     public async Task<ActionResult<DrinkItem>> PostDrinkItem(DrinkItem DrinkItem)
     {
 
+
         //var Ingredient = Tuple.Create(drinkItem.ingredients.Item1, drinkItem.ingredients.Item2));
+
         _context.DrinkItems.Add(DrinkItem);
+        //_context.DrinkItems.RecipeItem.Add(DrinkItem.RecipeItem);
         await _context.SaveChangesAsync();
 
         return CreatedAtAction(nameof(GetDrinkItem), new { id = DrinkItem.DrinkItemId }, DrinkItem);
@@ -97,6 +110,19 @@ public class DrinkController : ControllerBase
         return Ok();
     }
 
+    // GET: api/Drink/Amount
+    [HttpGet("/Drink/Amount")]
+    public async Task<ActionResult<IEnumerable<DrinkItem>>> GetDrinkAmount()
+    {
+
+        int numberOfDrinks = 0;
+        foreach (var items in _context.DrinkItems)
+        {
+            numberOfDrinks++;
+        }
+
+        return Ok(numberOfDrinks);
+    }
 
     private bool DrinkItemExists(int id)
     {

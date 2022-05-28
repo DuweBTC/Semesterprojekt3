@@ -20,14 +20,17 @@ public class ContainerController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<IEnumerable<ContainerItem>>> GetContainerItem()
     {
-        return await _context.ContainerItems.ToListAsync();
+        return await _context.ContainerItems.Include(item => item.Ingredient).ToListAsync();
+
     }
 
     // GET: api/Container/5
     [HttpGet("{id}")]
     public async Task<ActionResult<ContainerItem>> GetContainerItem(int id)
     {
-        var ContainerItem = await _context.ContainerItems.FindAsync(id);
+        var ContainerItem = await _context.ContainerItems
+                                        .Include(item => item.Ingredient)
+                                        .FirstOrDefaultAsync(item => item.ContainerItemId == id); ;
 
         if (ContainerItem == null)
         {
@@ -45,7 +48,7 @@ public class ContainerController : ControllerBase
         {
             return BadRequest();
         }
-
+        _context.Entry(ContainerItem.Ingredient).State = EntityState.Modified;
         _context.Entry(ContainerItem).State = EntityState.Modified;
 
         try
@@ -98,6 +101,21 @@ public class ContainerController : ControllerBase
     private bool ContainerItemExists(int id)
     {
         return _context.ContainerItems.Any(e => e.ContainerItemId == id);
+    }
+
+    // GET: api/Container/Amount
+    [HttpGet("/Container/Amount")]
+    public async Task<IActionResult> GetContainerAmount()
+    {
+
+        int numberOfContainers = 0;
+        foreach (var items in _context.ContainerItems)
+        {
+            numberOfContainers++;
+        }
+
+
+        return Ok(numberOfContainers);
     }
 
 }

@@ -29,7 +29,13 @@ public class DrinkContext : DbContext
             .Entity<DrinkItem>(
                 item =>
                 {
-                    item.HasKey("DrinkId");
+                    item.HasKey("DrinkItemId");
+
+                    //item.HasKey("RecipeItemId");
                 });
+        //modelBuilder.Entity().HasRequired(d => d.)
+        //.Entity<DrinkItem>().Map<RecipeItem>(m => m.Requeires("RecipeItemId".HasValue(1));)         
+
+        //.HasForeignKey<RecipeItem>(p => p.RecipeItemId); ;
     }
 }

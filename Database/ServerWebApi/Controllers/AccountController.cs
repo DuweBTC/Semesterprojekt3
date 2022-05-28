@@ -22,14 +22,27 @@ public class AccountController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<IEnumerable<AccountItem>>> GetAccountItem()
     {
-        return await _context.AccountItems.ToListAsync();
+
+        //return await _context.AccountItems
+        //                        .Include(item => item.Favourit).Include(item => item.Favourit.ingredients).Include(item => item.Favourit.ingredients.Ingredient)
+        //                        .ToListAsync();
+
+        return await _context.AccountItems
+                                .Include(item => item.Favourit).Include(item => item.Favourit.ingredients)
+                                .ToListAsync();
+
+
     }
 
     // GET: api/Account/5
     [HttpGet("{id}")]
     public async Task<ActionResult<AccountItem>> GetAccountItem(string id)
     {
-        var accountItem = await _context.AccountItems.FindAsync(id);
+        //var accountItem = await _context.AccountItems.FindAsync(id);
+        var accountItem = await _context.AccountItems
+                                            .Include(item => item.Favourit)
+                                            .Include(item => item.Favourit.ingredients)
+                                            .FirstOrDefaultAsync(item => item.AccountItemId == id);
 
         if (accountItem == null)
         {
@@ -47,7 +60,7 @@ public class AccountController : ControllerBase
         {
             return BadRequest();
         }
-
+        //_context.Entry(accountItem.Favourit.ingredients).State = EntityState.Modified;
         _context.Entry(accountItem).State = EntityState.Modified;
 
         try
@@ -155,6 +168,20 @@ public class AccountController : ControllerBase
         }
 
         return Ok(accountItem.Balance);
+    }
+
+    // GET: api/Account/Amount
+    [HttpGet("/Account/Amount")]
+    public async Task<ActionResult<IEnumerable<AccountItem>>> GetAccountAmount()
+    {
+
+        int numberOfAccounts = 0;
+        foreach (var items in _context.AccountItems)
+        {
+            numberOfAccounts++;
+        }
+
+        return Ok(numberOfAccounts);
     }
 
 }

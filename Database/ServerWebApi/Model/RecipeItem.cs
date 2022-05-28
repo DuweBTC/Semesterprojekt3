@@ -5,7 +5,7 @@ public class RecipeItem
 {
 
     public int RecipeItemId { get; set; }
-    public IngredientItem? Ingredient { get; set; }
+    public IngredientItem? IngredientItem { get; set; }
     public double Amount { get; set; }
 
 };

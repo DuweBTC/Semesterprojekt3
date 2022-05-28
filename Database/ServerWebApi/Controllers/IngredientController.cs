@@ -97,6 +97,20 @@ public class IngredientController : ControllerBase
         return Ok();
     }
 
+    // GET: api/Ingredient/Amount
+    [HttpGet("/Ingredient/Amount")]
+    public async Task<IActionResult> GetIngredientAmount()
+    {
+
+        int numberOfIngredients = 0;
+        foreach (var items in _context.IngredientItems)
+        {
+            numberOfIngredients++;
+        }
+
+        return Ok(numberOfIngredients);
+    }
+
 
     private bool IngredientItemExists(int id)
     {

@@ -7,6 +7,6 @@ public class AccountItem
     public string Name { get; set; } = String.Empty;
     public double Balance { get; set; }
 
-    //public DrinkItem? Favourit { get; set; }
+    public DrinkItem? Favourit { get; set; }
 
 }

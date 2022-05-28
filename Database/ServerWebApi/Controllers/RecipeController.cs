@@ -21,7 +21,7 @@ public class RecipeController : ControllerBase
     public async Task<ActionResult<IEnumerable<RecipeItem>>> GetRecipeItem()
     {
         return await _context.RecipeItems
-                                .Include(item => item.Ingredient)
+                                .Include(item => item.IngredientItem)
                                 .ToListAsync();
     }
 
@@ -30,7 +30,7 @@ public class RecipeController : ControllerBase
     public async Task<ActionResult<RecipeItem>> GetRecipeItem(int id)
     {
         var RecipeItem = await _context.RecipeItems
-                                            .Include(item => item.Ingredient)
+                                            .Include(item => item.IngredientItem)
                                             .FirstOrDefaultAsync(item => item.RecipeItemId == id);
 
         if (RecipeItem == null)
@@ -50,31 +50,45 @@ public class RecipeController : ControllerBase
         _context.RecipeItems.Add(RecipeItem);
         await _context.SaveChangesAsync();
 
-        return CreatedAtAction(nameof(GetRecipeItem), new { ingredients = RecipeItem.Ingredient }, RecipeItem);
+        return CreatedAtAction(nameof(GetRecipeItem), new { ingredients = RecipeItem.IngredientItem }, RecipeItem);
 
     }
     //DELETE: api/Recipe/5
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteRecipeItem(int id)
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteRecipeItem(int id)
+    {
+        var RecipeItem = await _context.RecipeItems.FindAsync(id);
+        if (RecipeItem == null)
         {
-            var RecipeItem = await _context.RecipeItems.FindAsync(id);
-            if (RecipeItem == null)
-            {
-                return NotFound();
-            }
-
-            _context.RecipeItems.Remove(RecipeItem);
-            await _context.SaveChangesAsync();
-
-            return Ok();
+            return NotFound();
         }
 
+        _context.RecipeItems.Remove(RecipeItem);
+        await _context.SaveChangesAsync();
 
-        private bool RecipeItemExists(int id)
+        return Ok();
+    }
+
+    // GET: api/Recipe/Amount
+    [HttpGet("/Recipe/Amount")]
+    public async Task<ActionResult<IEnumerable<RecipeItem>>> GetRecipeAmount()
+    {
+
+        int numberOfRecipes = 0;
+        foreach (var items in _context.RecipeItems)
         {
-            return _context.RecipeItems.Any(e => e.RecipeItemId == id);
+            numberOfRecipes++;
         }
+
+        return Ok(numberOfRecipes);
+    }
+
+
+    private bool RecipeItemExists(int id)
+    {
+        return _context.RecipeItems.Any(e => e.RecipeItemId == id);
+    }
 
 
 }
