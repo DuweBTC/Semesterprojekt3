@@ -22,7 +22,7 @@ public:
     void deleteAccount(QString index);
 
     // For Recipe
-    QJsonArray getRecipeList();
+    std::vector<Recipe> getRecipeList();
     Recipe getRecipe(QString id);
     void postRecipe(Recipe *recipe);
     void putRecipe(Recipe *recipe);
