@@ -468,9 +468,9 @@ void HTTP::deleteRecipe(QString index)
         reply->deleteLater(); });
 }
 
-std::list<DrinkItem> HTTP::getDrinkList()
+std::vector<DrinkItem> HTTP::getDrinkList()
 {
-    std::list<DrinkItem> drinkList;
+    std::vector<DrinkItem> drinkList;
     QEventLoop eventLoop;
     QJsonArray json_array;
 
