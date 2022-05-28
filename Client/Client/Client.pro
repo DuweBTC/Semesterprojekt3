@@ -12,12 +12,12 @@ CONFIG += c++11
 SOURCES += \
     Containeritem.cpp \
     Drinkitem.cpp \
+    HTTP.cpp \
     Ingredientitem.cpp \
     Recipe.cpp \
     account.cpp \
     adddrinkmenu.cpp \
     balancemenu.cpp \
-    databasedriver.cpp \
     drinksmenu.cpp \
     favorit.cpp \
     kontoinformation.cpp \
@@ -29,12 +29,12 @@ SOURCES += \
 HEADERS += \
     Containeritem.h \
     Drinkitem.h \
+    HTTP.h \
     Ingredientitem.h \
     Recipe.h \
     account.h \
     adddrinkmenu.h \
     balancemenu.h \
-    databasedriver.h \
     drinksmenu.h \
     favorit.h \
     kontoinformation.h \

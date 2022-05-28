@@ -3,7 +3,7 @@
 
 #include <QDialog>
 #include "mainwindow.h"
-#include "databasedriver.h"
+#include "HTTP.h"
 #include "Drinkitem.h"
 
 namespace Ui {
@@ -21,15 +21,16 @@ public:
 private slots:
     void on_pushButton_clicked();
 
-    void on_pushButtonConfirm_clicked();
+    void on_pushButtonBuyDrink_1_clicked();
 
-    void on_pushButtonConfirm_2_clicked();
+    void on_pushButtonBuyDrink_2_clicked();
 
 private:
     Ui::DrinksMenu *ui;
     DrinkItem drink;
-    void setText(QString text);
-    DatabaseDriver http;
+    void setText();
+    HTTP http;
+    std::vector<DrinkItem> drinkList;
 };
 
 #endif // DRINKSMENU_H

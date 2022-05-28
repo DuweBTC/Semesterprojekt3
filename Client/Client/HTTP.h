@@ -1,5 +1,6 @@
-#ifndef DATABASEDRIVER_H
-#define DATABASEDRIVER_H
+
+#ifndef HTTP_H
+#define HTTP_H
 #include "account.h"
 #include "Recipe.h"
 #include "Drinkitem.h"
@@ -7,13 +8,13 @@
 #include "Containeritem.h"
 #include <QObject>
 
-class DatabaseDriver
+class HTTP
 {
 public:
-    DatabaseDriver();
+    HTTP();
     // For Account
-    QJsonArray getAccountList();
-    Account *getAccount(QString id, Account *);
+    std::list<Account> getAccountList();
+    bool getAccount(QString id, Account *);
     void getAccountBalance(QString id, Account *account);
     void postAccount(Account *account);
     void putAccount(Account *account);
@@ -28,7 +29,7 @@ public:
     void deleteRecipe(QString index);
 
     // For Drinkitem
-    QJsonArray getDrinkList();
+    std::list<DrinkItem> getDrinkList();
     DrinkItem getDrink(QString id);
     void postDrink(DrinkItem *drink);
     void putDrink(DrinkItem *drink);
@@ -53,4 +54,4 @@ private:
     //const QString _url = "http://10.77.77.77:5000/"; // RPI
 };
 
-#endif // DATABASEDRIVER_H
+#endif // HTTP_H

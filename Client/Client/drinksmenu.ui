@@ -54,7 +54,7 @@
     <string>Main Menu</string>
    </property>
   </widget>
-  <widget class="QTextBrowser" name="textBrowserDrinkInformation">
+  <widget class="QTextBrowser" name="textBrowserDrinkInformation_1">
    <property name="geometry">
     <rect>
      <x>120</x>
@@ -64,7 +64,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButtonConfirm">
+  <widget class="QPushButton" name="pushButtonBuyDrink_1">
    <property name="geometry">
     <rect>
      <x>120</x>
@@ -92,7 +92,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButtonConfirm_2">
+  <widget class="QPushButton" name="pushButtonBuyDrink_2">
    <property name="geometry">
     <rect>
      <x>330</x>

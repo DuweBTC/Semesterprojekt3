@@ -2,7 +2,7 @@
 #define BALANCEMENU_H
 
 #include <QDialog>
-#include "databasedriver.h"
+#include "HTTP.h"
 #include "account.h"
 #include "mainwindow.h"
 
@@ -33,7 +33,7 @@ private:
     Ui::BalanceMenu *ui;
     double money;
     Account account;
-    DatabaseDriver http;
+    HTTP http;
     void setText(QString text);
 };
 

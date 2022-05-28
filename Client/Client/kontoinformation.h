@@ -4,7 +4,7 @@
 #include <QDialog>
 #include "mainwindow.h"
 #include "account.h"
-#include "databasedriver.h"
+#include "HTTP.h"
 
 namespace Ui {
 class KontoInformation;
@@ -25,7 +25,7 @@ private:
     Ui::KontoInformation *ui;
     Account account;
     void setText(QString text);
-    DatabaseDriver http;
+    HTTP http;
 };
 
 #endif // KONTOINFORMATION_H

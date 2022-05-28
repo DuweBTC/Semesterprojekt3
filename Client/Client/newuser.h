@@ -4,7 +4,7 @@
 #include <QDialog>
 #include "startup.h"
 #include "account.h"
-#include "databasedriver.h"
+#include "HTTP.h"
 
 namespace Ui {
 class NewUser;
@@ -24,7 +24,7 @@ private slots:
 private:
     Ui::NewUser *ui;
     Account account;
-    DatabaseDriver http;
+    HTTP http;
 };
 
 #endif // NEWUSER_H

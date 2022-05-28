@@ -1,4 +1,4 @@
-#include "databasedriver.h"
+#include "HTTP.h"
 #include <QCoreApplication>
 #include <QDebug>
 #include <QApplication>
@@ -15,12 +15,14 @@
 #include <QJsonArray>
 #include "mainwindow.h"
 
-DatabaseDriver::DatabaseDriver()
+HTTP::HTTP()
 {
 }
 
-QJsonArray DatabaseDriver::getAccountList()
+std::list<Account> HTTP::getAccountList()
 {
+    std::list<Account> accountList;
+
     // create custom temporary event loop on stack
     QEventLoop eventLoop;
     Account account_local;
@@ -45,6 +47,14 @@ QJsonArray DatabaseDriver::getAccountList()
         QJsonDocument jsonResponse = QJsonDocument::fromJson(strReply.toUtf8());
 
         json_array = jsonResponse.array();
+        foreach (const QJsonValue &value, json_array)
+            {
+                QJsonObject json_account_obj = value.toObject();
+                // Make a account object to the accountList
+                accountList.push_back(Account(json_account_obj["accountItemId"].toInt(),
+                                              json_account_obj["name"].toString(),
+                                              json_account_obj["balance"].toDouble()));
+            }
 
         delete reply;
     }
@@ -55,10 +65,10 @@ QJsonArray DatabaseDriver::getAccountList()
         delete reply;
     }
 
-    return json_array;
+    return accountList;
 }
 
-Account *DatabaseDriver::getAccount(QString id, Account *account)
+bool HTTP::getAccount(QString id, Account *account)
 {
     // create custom temporary event loop on stack
     QEventLoop eventLoop;
@@ -104,12 +114,13 @@ Account *DatabaseDriver::getAccount(QString id, Account *account)
         // failure
         qDebug() << "Failure" << reply->errorString();
         delete reply;
+        return false;
     }
 
-    return account;
+    return true;
 }
 
-void DatabaseDriver::getAccountBalance(QString id, Account *account)
+void HTTP::getAccountBalance(QString id, Account *account)
 {
     // create custom temporary event loop on stack
     QEventLoop eventLoop;
@@ -142,7 +153,7 @@ void DatabaseDriver::getAccountBalance(QString id, Account *account)
     }
 }
 
-void DatabaseDriver::postAccount(Account *account)
+void HTTP::postAccount(Account *account)
 {
     QNetworkAccessManager *mgr = new QNetworkAccessManager;
     QString endpoint = "Account/";
@@ -176,7 +187,7 @@ void DatabaseDriver::postAccount(Account *account)
         reply->deleteLater(); });
 }
 
-void DatabaseDriver::putAccount(Account *account)
+void HTTP::putAccount(Account *account)
 {
     QNetworkAccessManager *mgr = new QNetworkAccessManager;
     const QString endpoint = "Account/";
@@ -214,7 +225,7 @@ void DatabaseDriver::putAccount(Account *account)
         reply->deleteLater(); });
 }
 
-void DatabaseDriver::putAccountBalance(double amount, Account *account)
+void HTTP::putAccountBalance(double amount, Account *account)
 {
     QNetworkAccessManager *mgr = new QNetworkAccessManager;
     const QString endpoint = "Account/";
@@ -247,7 +258,7 @@ void DatabaseDriver::putAccountBalance(double amount, Account *account)
                          reply->deleteLater(); });
 }
 
-void DatabaseDriver::deleteAccount(QString index)
+void HTTP::deleteAccount(QString index)
 {
     // "quit()" the event-loop, when the network request "finished()"
     QNetworkAccessManager *mgr = new QNetworkAccessManager;
@@ -273,7 +284,7 @@ void DatabaseDriver::deleteAccount(QString index)
         reply->deleteLater(); });
 }
 
-QJsonArray DatabaseDriver::getRecipeList()
+QJsonArray HTTP::getRecipeList()
 {
     // create custom temporary event loop on stack
     QEventLoop eventLoop;
@@ -310,7 +321,7 @@ QJsonArray DatabaseDriver::getRecipeList()
     return json_array;
 }
 
-Recipe DatabaseDriver::getRecipe(QString id)
+Recipe HTTP::getRecipe(QString id)
 {
     // create custom temporary event loop on stack
     QEventLoop eventLoop;
@@ -361,7 +372,7 @@ Recipe DatabaseDriver::getRecipe(QString id)
     return recipe_local;
 }
 
-void DatabaseDriver::postRecipe(Recipe *recipe)
+void HTTP::postRecipe(Recipe *recipe)
 {
     QNetworkAccessManager *mgr = new QNetworkAccessManager;
 
@@ -370,8 +381,14 @@ void DatabaseDriver::postRecipe(Recipe *recipe)
 
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
     QJsonObject recipe_local;
-    recipe_local["RecipeItemId"] = recipe->getRecipeItemId();
-    recipe_local["Amount"] = recipe->getAmount();
+    QJsonObject ingredientJSON;
+    recipe_local["recipeItemId"] = recipe->getRecipeItemId();
+    recipe_local["amount"] = recipe->getAmount();
+    ingredientJSON["ingredientItemId"] = (recipe->getIngredient()).getIngredientItemId();
+    ingredientJSON["titel"] = (recipe->getIngredient().getTitel());
+    recipe_local["ingredient"] = ingredientJSON;
+
+
 
     QJsonDocument doc(recipe_local);
     QByteArray data = doc.toJson();
@@ -392,7 +409,7 @@ void DatabaseDriver::postRecipe(Recipe *recipe)
         reply->deleteLater(); });
 }
 
-void DatabaseDriver::putRecipe(Recipe *recipe)
+void HTTP::putRecipe(Recipe *recipe)
 {
 
     QNetworkAccessManager *mgr = new QNetworkAccessManager;
@@ -402,8 +419,12 @@ void DatabaseDriver::putRecipe(Recipe *recipe)
 
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
     QJsonObject recipe_local;
-    recipe_local["RecipeItemId"] = recipe->getRecipeItemId();
-    recipe_local["Amount"] = recipe->getAmount();
+    QJsonObject ingredientJSON;
+    recipe_local["recipeItemId"] = recipe->getRecipeItemId();
+    recipe_local["amount"] = recipe->getAmount();
+    ingredientJSON["ingredientItemId"] = (recipe->getIngredient()).getIngredientItemId();
+    ingredientJSON["titel"] = (recipe->getIngredient().getTitel());
+    recipe_local["ingredient"] = ingredientJSON;
 
     QJsonDocument doc(recipe_local);
     QByteArray data = doc.toJson();
@@ -424,7 +445,7 @@ void DatabaseDriver::putRecipe(Recipe *recipe)
         reply->deleteLater(); });
 }
 
-void DatabaseDriver::deleteRecipe(QString index)
+void HTTP::deleteRecipe(QString index)
 {
     QNetworkAccessManager *mgr = new QNetworkAccessManager;
 
@@ -447,8 +468,9 @@ void DatabaseDriver::deleteRecipe(QString index)
         reply->deleteLater(); });
 }
 
-QJsonArray DatabaseDriver::getDrinkList()
+std::list<DrinkItem> HTTP::getDrinkList()
 {
+    std::list<DrinkItem> drinkList;
     QEventLoop eventLoop;
     QJsonArray json_array;
 
@@ -469,6 +491,19 @@ QJsonArray DatabaseDriver::getDrinkList()
         QJsonDocument jsonResponse = QJsonDocument::fromJson(strReply.toUtf8());
         json_array = jsonResponse.array();
 
+        foreach (const QJsonValue &value, json_array)
+            {
+                QJsonObject json_drink_obj = value.toObject();
+                // Make a account object to the accountList
+
+                drinkList.push_back(DrinkItem(json_drink_obj["titel"].toString(),
+                                    json_drink_obj["drinkItemId"].toInt(),
+                                    json_drink_obj["description"].toString(),
+                                    json_drink_obj["price"].toDouble()
+
+                        ));
+            }
+
         delete reply;
     }
     else
@@ -477,10 +512,10 @@ QJsonArray DatabaseDriver::getDrinkList()
         qDebug() << "Failure" << reply->errorString();
         delete reply;
     }
-    return json_array;
+    return drinkList;
 }
 
-DrinkItem DatabaseDriver::getDrink(QString id)
+DrinkItem HTTP::getDrink(QString id)
 {
     // create custom temporary event loop on stack
     QEventLoop eventLoop;
@@ -506,9 +541,8 @@ DrinkItem DatabaseDriver::getDrink(QString id)
         qDebug() << "Response:" << strReply;
         QJsonDocument jsonResponse = QJsonDocument::fromJson(strReply.toUtf8());
 
-        QJsonArray json_array = jsonResponse.array();
+        QJsonObject json_drink_obj = jsonResponse.object();
 
-        QJsonObject json_drink_obj = QJsonValue(json_array).toObject();
         // QJsonObject json_account_obj = json_obj.value("place").toObject();
         qDebug() << json_drink_obj["titel"].toString();
         qDebug() << json_drink_obj["drinkItemId"].toInt();
@@ -532,7 +566,7 @@ DrinkItem DatabaseDriver::getDrink(QString id)
     return drink_local;
 }
 
-void DatabaseDriver::postDrink(DrinkItem *drink)
+void HTTP::postDrink(DrinkItem *drink)
 {
     // Account account_local;
     QNetworkAccessManager *mgr = new QNetworkAccessManager;
@@ -542,10 +576,10 @@ void DatabaseDriver::postDrink(DrinkItem *drink)
 
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
     QJsonObject drink_local;
-    drink_local["Titel"] = drink->getTitel();
-    drink_local["DrinkItemId"] = drink->getDrinkId();
-    drink_local["Description"] = drink->getDescription();
-    drink_local["Price"] = drink->getPrice();
+    drink_local["titel"] = drink->getTitel();
+    drink_local["drinkItemId"] = drink->getDrinkId();
+    drink_local["description"] = drink->getDescription();
+    drink_local["price"] = drink->getPrice();
 
     QJsonDocument doc(drink_local);
     QByteArray data = doc.toJson();
@@ -564,7 +598,7 @@ void DatabaseDriver::postDrink(DrinkItem *drink)
         reply->deleteLater(); });
 }
 
-void DatabaseDriver::putDrink(DrinkItem *drink)
+void HTTP::putDrink(DrinkItem *drink)
 {
     QNetworkAccessManager *mgr = new QNetworkAccessManager;
     QString URL = _url + "Drink/" + QString::number(drink->getDrinkId());
@@ -574,10 +608,10 @@ void DatabaseDriver::putDrink(DrinkItem *drink)
 
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
     QJsonObject drink_local;
-    drink_local["Titel"] = drink->getTitel();
-    drink_local["DrinkItemId"] = drink->getDrinkId();
-    drink_local["Description"] = drink->getDescription();
-    drink_local["Price"] = drink->getPrice();
+    drink_local["titel"] = drink->getTitel();
+    drink_local["drinkItemId"] = drink->getDrinkId();
+    drink_local["description"] = drink->getDescription();
+    drink_local["price"] = drink->getPrice();
 
     QJsonDocument doc(drink_local);
     QByteArray data = doc.toJson();
@@ -596,10 +630,10 @@ void DatabaseDriver::putDrink(DrinkItem *drink)
         reply->deleteLater(); });
 }
 
-void DatabaseDriver::deleteDrink(QString index)
+void HTTP::deleteDrink(QString index)
 {
     QNetworkAccessManager *mgr = new QNetworkAccessManager;
-    QString const URL = _url + "/Drink" + index;
+    QString const URL = _url + "Drink/" + index;
     const QUrl url(URL);
     QNetworkRequest request(url);
 
@@ -620,7 +654,7 @@ void DatabaseDriver::deleteDrink(QString index)
         reply->deleteLater(); });
 }
 
-QJsonArray DatabaseDriver::getIngredientList()
+QJsonArray HTTP::getIngredientList()
 {
     // create custom temporary event loop on stack
     QEventLoop eventLoop;
@@ -657,7 +691,7 @@ QJsonArray DatabaseDriver::getIngredientList()
     return json_array;
 }
 
-IngredientItem DatabaseDriver::getIngredient(QString id)
+IngredientItem HTTP::getIngredient(QString id)
 {
     // create custom temporary event loop on stack
     QEventLoop eventLoop;
@@ -696,7 +730,7 @@ IngredientItem DatabaseDriver::getIngredient(QString id)
     return ingredient_local;
 }
 
-void DatabaseDriver::postIngredient(IngredientItem *Ingredient)
+void HTTP::postIngredient(IngredientItem *Ingredient)
 {
     // "quit()" the event-loop, when the network request "finished()"
     // Account account_local;
@@ -730,7 +764,7 @@ void DatabaseDriver::postIngredient(IngredientItem *Ingredient)
         reply->deleteLater(); });
 }
 
-void DatabaseDriver::putIngredient(IngredientItem *ingredient)
+void HTTP::putIngredient(IngredientItem *ingredient)
 {
 
     QNetworkAccessManager *mgr = new QNetworkAccessManager;
@@ -763,7 +797,7 @@ void DatabaseDriver::putIngredient(IngredientItem *ingredient)
         reply->deleteLater(); });
 }
 
-void DatabaseDriver::deleteIngredient(QString index)
+void HTTP::deleteIngredient(QString index)
 {
     // "quit()" the event-loop, when the network request "finished()"
     QNetworkAccessManager *mgr = new QNetworkAccessManager;
@@ -789,7 +823,7 @@ void DatabaseDriver::deleteIngredient(QString index)
         reply->deleteLater(); });
 }
 
-QJsonArray DatabaseDriver::getContainerList()
+QJsonArray HTTP::getContainerList()
 {
     // create custom temporary event loop on stack
     QEventLoop eventLoop;
@@ -826,7 +860,7 @@ QJsonArray DatabaseDriver::getContainerList()
     return json_array;
 }
 
-ContainerItem DatabaseDriver::getContainer(QString id)
+ContainerItem HTTP::getContainer(QString id)
 {
     // create custom temporary event loop on stack
     QEventLoop eventLoop;
@@ -849,15 +883,16 @@ ContainerItem DatabaseDriver::getContainer(QString id)
         qDebug() << "Response:" << strReply;
         QJsonDocument jsonResponse = QJsonDocument::fromJson(strReply.toUtf8());
 
-        QJsonArray json_array = jsonResponse.array();
+        QJsonObject json_container_obj = jsonResponse.object();
+        QJsonObject json_ingredient_obj = json_container_obj.value("ingredient").toObject();
+        qDebug() << json_container_obj["containerItemId"].toString();
+        qDebug() << json_container_obj["place"].toInt();
 
-        QJsonObject json_container_local_obj = QJsonValue(json_array).toObject();
-        // QJsonObject json_account_obj = json_obj.value("place").toObject();
-        qDebug() << json_container_local_obj["containerItemId"].toInt();
-        qDebug() << json_container_local_obj["place"].toInt();
+        container_local.setContainerId(json_container_obj["containerItemId"].toInt());
+        container_local.setPlace(json_container_obj["place"].toInt());
+        container_local.setIngredient(IngredientItem(json_ingredient_obj["ingredientItemId"].toInt(),
+                                                        json_ingredient_obj["titel"].toString()));
 
-        container_local.setContainerId(json_container_local_obj["containerItemId"].toInt());
-        container_local.setPlace(json_container_local_obj["place"].toInt());
 
         delete reply;
     }
@@ -871,7 +906,7 @@ ContainerItem DatabaseDriver::getContainer(QString id)
     return container_local;
 }
 
-void DatabaseDriver::postContainer(ContainerItem *container)
+void HTTP::postContainer(ContainerItem *container)
 {
     QNetworkAccessManager *mgr = new QNetworkAccessManager;
 
@@ -880,11 +915,16 @@ void DatabaseDriver::postContainer(ContainerItem *container)
 
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
     QJsonObject container_local;
-    container_local["ContainerItemId"] = container->getContainerId();
-    container_local["Place"] = container->getPlace();
+    QJsonObject ingredientJSON;
+    container_local["containerItemId"] = container->getContainerId();
+    container_local["place"] = container->getPlace();
+    ingredientJSON["ingredientItemId"] = (container->getIngredient()).getIngredientItemId();
+    ingredientJSON["titel"] = (container->getIngredient().getTitel());
+    container_local["ingredient"] = ingredientJSON;
 
     QJsonDocument doc(container_local);
     QByteArray data = doc.toJson();
+    qDebug() << container_local;
     // or
     // QByteArray data("{\"Name\":\"account->getName()\",\"key2\":\"value2\"}");
     QNetworkReply *reply = mgr->post(request, data);
@@ -902,7 +942,7 @@ void DatabaseDriver::postContainer(ContainerItem *container)
         reply->deleteLater(); });
 }
 
-void DatabaseDriver::putContainer(ContainerItem *container)
+void HTTP::putContainer(ContainerItem *container)
 {
     QNetworkAccessManager *mgr = new QNetworkAccessManager;
 
@@ -911,8 +951,13 @@ void DatabaseDriver::putContainer(ContainerItem *container)
 
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
     QJsonObject container_local;
-    container_local["ContainerItemId"] = container->getContainerId();
-    container_local["Place"] = container->getPlace();
+    QJsonObject ingredientJSON;
+    container_local["containerItemId"] = container->getContainerId();
+    container_local["place"] = container->getPlace();
+    ingredientJSON["ingredientItemId"] = (container->getIngredient()).getIngredientItemId();
+    ingredientJSON["titel"] = (container->getIngredient().getTitel());
+    container_local["ingredient"] = ingredientJSON;
+
 
     QJsonDocument doc(container_local);
     QByteArray data = doc.toJson();
@@ -933,7 +978,7 @@ void DatabaseDriver::putContainer(ContainerItem *container)
         reply->deleteLater(); });
 }
 
-void DatabaseDriver::deleteContainer(QString index)
+void HTTP::deleteContainer(QString index)
 {
     // "quit()" the event-loop, when the network request "finished()"
     QNetworkAccessManager *mgr = new QNetworkAccessManager;

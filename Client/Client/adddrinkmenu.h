@@ -2,7 +2,7 @@
 #define ADDDRINKMENU_H
 
 #include <QDialog>
-#include "databasedriver.h"
+#include "HTTP.h"
 #include "Drinkitem.h"
 #include "mainwindow.h"
 
@@ -25,7 +25,7 @@ private slots:
 
 private:
     Ui::AddDrinkMenu *ui;
-    DatabaseDriver http;
+    HTTP http;
     DrinkItem drink;
 
 };

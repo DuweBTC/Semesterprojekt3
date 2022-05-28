@@ -5,7 +5,7 @@
 #include "newuser.h"
 #include "mainwindow.h"
 #include "account.h"
-#include "databasedriver.h"
+#include "HTTP.h"
 
 
 QT_BEGIN_NAMESPACE
@@ -21,7 +21,7 @@ public:
     ~StartUp();
 
     Account account;
-    DatabaseDriver http;
+    HTTP http;
 
 
 private slots:

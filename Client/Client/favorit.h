@@ -5,7 +5,7 @@
 #include <QDialog>
 #include "mainwindow.h"
 #include "account.h"
-#include "databasedriver.h"
+#include "HTTP.h"
 
 namespace Ui {
 class Favorit;
@@ -27,7 +27,7 @@ private:
     Ui::Favorit *ui;
     Account account;
     void setText(QString text);
-    DatabaseDriver http;
+    HTTP http;
 };
 
 #endif // FAVORIT_H

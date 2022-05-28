@@ -7,8 +7,8 @@ DrinksMenu::DrinksMenu(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    QString text = "\nDrink Name: " + drink.getTitel() + "\nDescription: " + drink.getDescription() + "\nPrice: " + QString::number(drink.getPrice()) + " kr" ;
-    setText(text);
+    drinkList = http.getDrinkList();
+    setText();
 
 }
 
@@ -24,42 +24,41 @@ void DrinksMenu::on_pushButton_clicked()
     MainWindow mainMenu;
     mainMenu.setModal(true);
     mainMenu.exec();
+
 }
 
-void DrinksMenu::setText(QString text)
-{
-    ui->textBrowserDrinkInformation->setText(text);
-    ui->textBrowserDrinkInformation->setFontPointSize(16);
-    ui->textBrowserDrinkInformation->setAlignment(Qt::AlignCenter);
 
-    ui->textBrowserDrinkInformation_2->setText(text);
+
+
+
+void DrinksMenu::on_pushButtonBuyDrink_1_clicked()
+{
+    http.postDrink(&drinkList[0]);
+}
+
+
+void DrinksMenu::on_pushButtonBuyDrink_2_clicked()
+{
+     http.postDrink(&drinkList[1]);
+}
+
+void DrinksMenu::setText()
+{
+    QString text[drinkList.size()];
+    int textItems = 0;
+
+    for (auto iterator = drinkList.begin(); iterator != drinkList.end(); iterator++)
+    {
+        text[textItems] = "\nDrink Name: " + iterator->getTitel() + "\nDescription: "
+                            + iterator->getDescription() + "\nPrice: " + QString::number(iterator->getPrice()) + " kr" ;
+        textItems++;
+    }
+
+    ui->textBrowserDrinkInformation_1->setText(text[0]);
+    ui->textBrowserDrinkInformation_1->setFontPointSize(16);
+    ui->textBrowserDrinkInformation_1->setAlignment(Qt::AlignCenter);
+
+    ui->textBrowserDrinkInformation_2->setText(text[1]);
     ui->textBrowserDrinkInformation_2->setFontPointSize(16);
     ui->textBrowserDrinkInformation_2->setAlignment(Qt::AlignCenter);
 }
-
-
-
-void DrinksMenu::on_pushButtonConfirm_clicked()
-{
-    //http.getDrink(QString::number(Drink.getDrinkId()),&Drink);
-    drink.setTitel("Test");
-    drink.setDescription("bla bla");
-    //drink.getDrinkId(http.getDrinkListAmount());
-    drink.setPrice(100);
-   //http.getDrink(QString::number(drink.getDrinkId()),&drink);
-    Recipe first(1,1);
-    Recipe second(1,1);
-    drink.setRecipe(first);
-    drink.setRecipe(second);
-    http.postDrink(&drink);
-
-
-}
-
-
-void DrinksMenu::on_pushButtonConfirm_2_clicked()
-{
-     //http.getDrink(QString::number(Drink.getDrinkId()),&Drink);
-
-}
-
