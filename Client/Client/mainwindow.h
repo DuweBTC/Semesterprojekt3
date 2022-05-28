@@ -6,6 +6,7 @@
 #include "balancemenu.h"
 #include "drinksmenu.h"
 #include "adddrinkmenu.h"
+#include "favorit.h"
 
 
 namespace Ui {
@@ -28,6 +29,8 @@ private slots:
     void on_pushButtonDrinkMenu_clicked();
 
     void on_pushButtonNewDrinkMenu_clicked();
+
+    void on_pushButtonFarvorits_clicked();
 
 private:
     Ui::MainWindow *ui;

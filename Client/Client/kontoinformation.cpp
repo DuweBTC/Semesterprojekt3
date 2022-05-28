@@ -9,7 +9,7 @@ KontoInformation::KontoInformation(QWidget *parent, Account accountOld) :
     account = accountOld;
     http.getAccount(QString::number(account.getAccountId()), &account);
 
-    QString text = "Name: " + account.getName() + "\nBalance: " + QString::number(account.getBalance());
+    QString text = "\nName: " + account.getName() + "\nBalance: " + QString::number(account.getBalance());
     setText(text);
 }
 

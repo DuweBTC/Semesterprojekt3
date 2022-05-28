@@ -15,7 +15,7 @@ class NewUser : public QDialog
     Q_OBJECT
 
 public:
-    explicit NewUser(QWidget *parent = nullptr, Account account = ("d", 2, 2));
+    explicit NewUser(QWidget *parent = nullptr, Account account = ("d", 3, 3));
     ~NewUser();
 
 private slots:

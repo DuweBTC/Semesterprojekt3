@@ -19,6 +19,7 @@ SOURCES += \
     balancemenu.cpp \
     databasedriver.cpp \
     drinksmenu.cpp \
+    favorit.cpp \
     kontoinformation.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -35,6 +36,7 @@ HEADERS += \
     balancemenu.h \
     databasedriver.h \
     drinksmenu.h \
+    favorit.h \
     kontoinformation.h \
     mainwindow.h \
     newuser.h \
@@ -44,6 +46,7 @@ FORMS += \
     adddrinkmenu.ui \
     balancemenu.ui \
     drinksmenu.ui \
+    favorit.ui \
     kontoinformation.ui \
     mainwindow.ui \
     newuser.ui \

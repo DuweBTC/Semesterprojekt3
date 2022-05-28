@@ -48,3 +48,12 @@ void MainWindow::on_pushButtonNewDrinkMenu_clicked()
     addDrinkMenu.exec();
 }
 
+
+void MainWindow::on_pushButtonFarvorits_clicked()
+{
+    hide();
+    Favorit favorit;
+    favorit.setModal(true);
+    favorit.exec();
+}
+

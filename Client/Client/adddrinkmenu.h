@@ -4,6 +4,7 @@
 #include <QDialog>
 #include "databasedriver.h"
 #include "Drinkitem.h"
+#include "mainwindow.h"
 
 namespace Ui {
 class AddDrinkMenu;
@@ -19,6 +20,8 @@ public:
 
 private slots:
     void on_pushButtonAddDrink_clicked();
+
+    void on_pushButton_clicked();
 
 private:
     Ui::AddDrinkMenu *ui;

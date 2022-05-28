@@ -15,7 +15,7 @@ class KontoInformation : public QDialog
     Q_OBJECT
 
 public:
-    explicit KontoInformation(QWidget *parent = nullptr, Account account = ("d", 2, 2));
+    explicit KontoInformation(QWidget *parent = nullptr, Account account = ("d", 3, 3));
     ~KontoInformation();
 
 private slots:

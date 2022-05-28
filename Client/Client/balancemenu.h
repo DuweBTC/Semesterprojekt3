@@ -4,6 +4,7 @@
 #include <QDialog>
 #include "databasedriver.h"
 #include "account.h"
+#include "mainwindow.h"
 
 namespace Ui {
 class BalanceMenu;
@@ -14,7 +15,7 @@ class BalanceMenu : public QDialog
     Q_OBJECT
 
 public:
-    explicit BalanceMenu(QWidget *parent = nullptr, Account account = ("d", 2, 2));
+    explicit BalanceMenu(QWidget *parent = nullptr, Account account = ("d", 3, 3));
     ~BalanceMenu();
 
 private slots:
@@ -25,6 +26,8 @@ private slots:
     void on_pushButtonMoneyMinus10_clicked();
     void on_pushButtonMoneyMinus1_clicked();
     void on_pushButtonConfirm_clicked();
+
+    void on_pushButton_clicked();
 
 private:
     Ui::BalanceMenu *ui;

@@ -18,9 +18,9 @@ StartUp::~StartUp()
 
 void StartUp::on_pushButtonCardScan_clicked()
 {
-    int placeHolderForStudentCard = 21431241;
+    int placeHolderForStudentCard = 3;
     if (user == NEW_USER){
-        account.setAccountId(placeHolderForStudentCard);
+        account.setAccountId(placeHolderForStudentCard); // Account id = studient ID Card
         hide();
         NewUser newUserMenu(nullptr, account);
         newUserMenu.setModal(true);

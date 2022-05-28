@@ -29,3 +29,12 @@ void AddDrinkMenu::on_pushButtonAddDrink_clicked()
    http.postDrink(&drink);
 }
 
+
+void AddDrinkMenu::on_pushButton_clicked()
+{
+    hide();
+    MainWindow mainMenu;
+    mainMenu.setModal(true);
+    mainMenu.exec();
+}
+
