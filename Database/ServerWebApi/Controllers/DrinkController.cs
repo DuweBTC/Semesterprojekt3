@@ -85,7 +85,7 @@ public class DrinkController : ControllerBase
 
 
         //var Ingredient = Tuple.Create(drinkItem.ingredients.Item1, drinkItem.ingredients.Item2));
-
+        // _context.DrinkItems.ingredients.Add(DrinkItem.ingredients);
         _context.DrinkItems.Add(DrinkItem);
         //_context.DrinkItems.RecipeItem.Add(DrinkItem.RecipeItem);
         await _context.SaveChangesAsync();
