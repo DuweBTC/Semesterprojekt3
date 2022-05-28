@@ -44,11 +44,19 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "FluentMigrator.Runner.SQLite": {
+              "target": "Package",
+              "version": "[3.3.2, )"
+            },
             "Microsoft.Data.Sqlite.Core": {
               "target": "Package",
               "version": "[6.0.4, )"
             },
             "Microsoft.EntityFrameworkCore.InMemory": {
+              "target": "Package",
+              "version": "[6.0.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
               "target": "Package",
               "version": "[6.0.4, )"
             },
