@@ -284,8 +284,9 @@ void HTTP::deleteAccount(QString index)
         reply->deleteLater(); });
 }
 
-QJsonArray HTTP::getRecipeList()
+std::vector<Recipe> HTTP::getRecipeList()
 {
+    std::vector<Recipe> recipeList;
     // create custom temporary event loop on stack
     QEventLoop eventLoop;
     QJsonArray json_array;
@@ -308,7 +309,16 @@ QJsonArray HTTP::getRecipeList()
         qDebug() << "Response:" << strReply;
         QJsonDocument jsonResponse = QJsonDocument::fromJson(strReply.toUtf8());
         json_array = jsonResponse.array();
+        foreach (const QJsonValue &value, json_array)
+            {
+                // Make a account object to the accountList
 
+                QJsonObject json_recipe_obj = value.toObject();
+
+                recipeList.push_back(Recipe(json_recipe_obj["recipeItemId"].toInt(),
+                                              json_recipe_obj["amount"].toDouble()));
+
+            }
         delete reply;
     }
     else
@@ -318,7 +328,7 @@ QJsonArray HTTP::getRecipeList()
         delete reply;
     }
 
-    return json_array;
+    return recipeList;
 }
 
 Recipe HTTP::getRecipe(QString id)
@@ -566,6 +576,42 @@ DrinkItem HTTP::getDrink(QString id)
     return drink_local;
 }
 
+int HTTP::getDrinkAmount()
+{
+
+    // create custom temporary event loop on stack
+    QEventLoop eventLoop;
+    // Account account_local;
+
+    // "quit()" thes event-loop, when the network request "finished()"
+    QNetworkAccessManager mgr;
+    QObject::connect(&mgr, SIGNAL(finished(QNetworkReply *)), &eventLoop, SLOT(quit()));
+    const QString endpoint = "Drink/Amount";
+
+    // the HTTP request
+    QNetworkRequest req(_url + endpoint);
+    qDebug() << _url + endpoint;
+
+    QNetworkReply *reply = mgr.get(req);
+    eventLoop.exec(); // blocks stack until "finished()" has been called
+
+    if (reply->error() == QNetworkReply::NoError)
+    {
+
+        int amountOfDrinks = (((QString)reply->readAll()).toInt());
+
+        delete reply;
+        return amountOfDrinks;
+    }
+    else
+    {
+        // failure
+        qDebug() << "Failure" << reply->errorString();
+        delete reply;
+    }
+    return 0;
+}
+
 void HTTP::postDrink(DrinkItem *drink)
 {
     // Account account_local;
@@ -654,8 +700,9 @@ void HTTP::deleteDrink(QString index)
         reply->deleteLater(); });
 }
 
-QJsonArray HTTP::getIngredientList()
+std::vector<IngredientItem> HTTP::getIngredientList()
 {
+    std::vector<IngredientItem> ingredientList;
     // create custom temporary event loop on stack
     QEventLoop eventLoop;
     QJsonArray json_array;
@@ -678,7 +725,13 @@ QJsonArray HTTP::getIngredientList()
         qDebug() << "Response:" << strReply;
         QJsonDocument jsonResponse = QJsonDocument::fromJson(strReply.toUtf8());
         json_array = jsonResponse.array();
-
+        foreach (const QJsonValue &value, json_array)
+            {
+                QJsonObject json_ingredient_obj = value.toObject();
+                // Make a account object to the accountList
+                ingredientList.push_back(IngredientItem(json_ingredient_obj["ingredientItemId"].toInt(),
+                                                        json_ingredient_obj["titel"].toString()));
+            }
         delete reply;
     }
     else
@@ -688,7 +741,7 @@ QJsonArray HTTP::getIngredientList()
         delete reply;
     }
 
-    return json_array;
+    return ingredientList;
 }
 
 IngredientItem HTTP::getIngredient(QString id)
@@ -823,8 +876,9 @@ void HTTP::deleteIngredient(QString index)
         reply->deleteLater(); });
 }
 
-QJsonArray HTTP::getContainerList()
+std::vector<ContainerItem> HTTP::getContainerList()
 {
+    std::vector<ContainerItem> containerList;
     // create custom temporary event loop on stack
     QEventLoop eventLoop;
     QJsonArray json_array;
@@ -848,6 +902,21 @@ QJsonArray HTTP::getContainerList()
         QJsonDocument jsonResponse = QJsonDocument::fromJson(strReply.toUtf8());
         json_array = jsonResponse.array();
 
+        foreach (const QJsonValue &value, json_array)
+            {
+                QJsonObject json_container_obj = value.toObject();
+                QJsonObject json_ingredient_obj = json_container_obj["ingredient"].toObject();
+                // Make a account object to the container and of ingredient and push ingredint into container
+
+                ContainerItem container(json_container_obj["containerItemId"].toInt(),
+                                                              json_container_obj["place"].toInt());
+
+                container.setIngredient(IngredientItem(json_ingredient_obj["ingredientItemId"].
+                                                                toInt(), json_ingredient_obj["titel"].toString()));
+                containerList.push_back(container);
+
+            }
+
         delete reply;
     }
     else
@@ -857,7 +926,7 @@ QJsonArray HTTP::getContainerList()
         delete reply;
     }
 
-    return json_array;
+    return containerList;
 }
 
 ContainerItem HTTP::getContainer(QString id)

@@ -29,14 +29,15 @@ public:
     void deleteRecipe(QString index);
 
     // For Drinkitem
-    std::list<DrinkItem> getDrinkList();
+    std::vector<DrinkItem> getDrinkList();
     DrinkItem getDrink(QString id);
+    int getDrinkAmount();
     void postDrink(DrinkItem *drink);
     void putDrink(DrinkItem *drink);
     void deleteDrink(QString index);
 
     // For IngredientItem
-    QJsonArray getIngredientList();
+    std::vector<IngredientItem> getIngredientList();
     IngredientItem getIngredient(QString id);
     void postIngredient(IngredientItem *Ingredient);
     void putIngredient(IngredientItem *Ingredient);
