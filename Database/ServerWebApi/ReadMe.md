@@ -66,6 +66,7 @@ The IP-adress for the Server is:
 https://{host}:{port}/{Endpoint}/{Action]
 https://10.77.77.77:5001/Account
 
+
 Endpoint: 
 * Account
 * Drink
@@ -74,3 +75,24 @@ Endpoint:
 
 Action on the Acouont is /Account/{id} or /Account/{id}/Balance
 See more under [Web API Decription](https://github.com/DuweBTC/Semesterprojekt3/blob/main/Database/API-beskrivelse/index1.html) and download the html file and then render it.
+
+
+##SQL database setup
+Setup for SQLite3 on a RPI
+```bash
+pi@raspberrypi:~ $ sudo apt install sqlite3
+```
+Creating tables 
+```bash
+pi@raspberrypi:~ $ sqlite3 3semesterdatabase.db 
+sqlite> CREATE TABLE AccountItem(AccountId STRING, 
+Name STRING, Balance DOUBLE, Favourit DrinkItem);
+```
+Showing tables and selecting items
+```bash
+sqlite> .tables 
+AccountItem  ContainerItem   DrinkItem  IngredientItem  
+RecipeItem 
+sqlite> SELECT * FROM AccountItem;
+1|My-Thanh Thi Le|1.0e+22|Rom og cola
+```
