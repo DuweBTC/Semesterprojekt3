@@ -77,7 +77,7 @@ Action on the Acouont is /Account/{id} or /Account/{id}/Balance
 See more under [Web API Decription](https://github.com/DuweBTC/Semesterprojekt3/blob/main/Database/API-beskrivelse/index1.html) and download the html file and then render it.
 
 
-##SQL database setup
+## SQL database setup
 Setup for SQLite3 on a RPI
 ```bash
 pi@raspberrypi:~ $ sudo apt install sqlite3
