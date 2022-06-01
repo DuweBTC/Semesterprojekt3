@@ -14,12 +14,14 @@ Brew System is made up of modules. These modules and their overall functions is 
 #### Public Function
 | Function name | Return type | Parameters | Function decription |
 |---------------|------------|------------|------------------|
-| openValveNr | void | int valveNumber | The purpos of this function is to open a valve, specified in the parameter. |
-| CloseValve | void | | The purpos of this function is to close the valves. |
+| Pour | void | | This function is the function that controlls the pouring of a drink. It looks for if there is a glass placed and if there is liquid in the containers. if there is. it calculates how much time it the valves needs to be open, and then opens them for that amount of time using a timer component. |
+| setIngredient| void | int container, int amount | This function assings a value to two global variabels, the first for the container number that liquid needs to come out of, the second for the amount of liquid needed. |
 
-#### Private Functions
+#### Static Functions
 | Function name | Return type | Parameters | Function decription |
 |---------------|------------|------------|------------------|
+| openValveNr | void | int valveNumber | The purpos of this function is to open a valve, specified in the parameter. |
+| CloseValves | void | | The purpos of this function is to close all the valves. |
 
 ### Hardware
 The hardware used for ActuatorDriver is 4 x WPM422 - Water Valve, 8mm, 8bar, 12V, Velleman. This is valves, that you can open if you give them 12V and 0.4A. When power is applied to them, they open, so that liquid can flow though them. When power is not applied they are closed, therefore they are what's called normally closed.
@@ -29,12 +31,15 @@ The hardware used for ActuatorDriver is 4 x WPM422 - Water Valve, 8mm, 8bar, 12V
 #### Public Functions
 | Function name | Return type | Parameters | Function decription |
 |---------------|------------|------------|------------------|
-| checkLiquid | bool | | The purpos of this function is to look for whetere or not there is liquid in the containers. | 
-#### Private Functions
+| checkAllLiquid | bool |w | The purpos of this function is to look for whetere or not there is liquid in all the containers at once. | 
+| checkLiquid_1 | bool | | The purpos of this function is to look for whetere or not there is liquid in container 1. | 
+| checkLiquid_2 | bool | | The purpos of this function is to look for whetere or not there is liquid in container 2. | 
+| checkLiquid_3 | bool | | The purpos of this function is to look for whetere or not there is liquid in container 3. | 
+| checkLiquid_4 | bool | | The purpos of this function is to look for whetere or not there is liquid in container 4. | 
+#### Static Functions
 | Function name | Return type | Parameters | Function decription |
 |---------------|------------|------------|------------------|
-| LiquidLEDOn | void | | This function turns on a warning LED to indicate that there is an empty container. |
-| LiquidLEDoff | void | | This function turns off the warning LED. | 
+|||||
 
 ### Hardware
 The hardware used for Liquid sensor is a Non-contact Liquid Level Sensor XKC Y25-T12V SKU SEN0204. For 4 containers there should be used 4 of those sensors (for the project, there is used one, as they are pricy, and you can prove the concept for testing purpos with only one).
@@ -44,8 +49,9 @@ The hardware used for Liquid sensor is a Non-contact Liquid Level Sensor XKC Y25
 #### Public Functions
 | Function name | Return type | Parameters | Function decription |
 |---------------|------------|------------|------------------|
+| checkForGlass | bool | | this function uses the weight hardware component to messure wether or not there is a glass placed on it. If there is a glass it returns true, of there isn't it returns false |
 
-#### Private Functions
+#### Static Functions
 | Function name | Return type | Parameters | Function decription |
 |---------------|------------|------------|------------------|
 
