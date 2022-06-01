@@ -4,7 +4,7 @@
 
 namespace ServerWebApi.Migrations.Recipe
 {
-    public partial class AddRecipeToDatabase : Migration
+    public partial class IntitialCreateRecipe : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

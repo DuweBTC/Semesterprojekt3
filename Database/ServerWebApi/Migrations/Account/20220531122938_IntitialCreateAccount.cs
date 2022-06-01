@@ -2,9 +2,9 @@
 
 #nullable disable
 
-namespace ServerWebApi.Migrations
+namespace ServerWebApi.Migrations.Account
 {
-    public partial class AddAccountToDatabase : Migration
+    public partial class IntitialCreateAccount : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

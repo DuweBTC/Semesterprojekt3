@@ -2,9 +2,9 @@
 
 #nullable disable
 
-namespace ServerWebApi.Migrations.Drink
+namespace ServerWebApi.Migrations
 {
-    public partial class AddDrinkToDatabase : Migration
+    public partial class IntitialCreateDrink : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

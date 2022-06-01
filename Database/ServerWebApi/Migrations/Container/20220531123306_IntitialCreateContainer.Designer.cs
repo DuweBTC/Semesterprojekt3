@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ServerWebApi.Migrations.Container
 {
     [DbContext(typeof(ContainerContext))]
-    [Migration("20220528195757_AddContainerToDatabase")]
-    partial class AddContainerToDatabase
+    [Migration("20220531123306_IntitialCreateContainer")]
+    partial class IntitialCreateContainer
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

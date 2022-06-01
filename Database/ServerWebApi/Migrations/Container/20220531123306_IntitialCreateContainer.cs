@@ -4,7 +4,7 @@
 
 namespace ServerWebApi.Migrations.Container
 {
-    public partial class AddContainerToDatabase : Migration
+    public partial class IntitialCreateContainer : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

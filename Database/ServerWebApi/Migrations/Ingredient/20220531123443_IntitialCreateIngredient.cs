@@ -4,7 +4,7 @@
 
 namespace ServerWebApi.Migrations.Ingredient
 {
-    public partial class AddIngredientToDatabase : Migration
+    public partial class IntitialCreateIngredient : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

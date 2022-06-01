@@ -9,19 +9,27 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
-builder.Services.AddDbContext<AccountContext>(opt =>
-    opt.UseSqlite("DefaultConnection"));
-builder.Services.AddDbContext<DrinkContext>(opt =>
-    opt.UseSqlite("DefaultConnection"));
-builder.Services.AddDbContext<ContainerContext>(opt =>
-    opt.UseSqlite("DefaultConnection"));
-builder.Services.AddDbContext<RecipeContext>(opt =>
-    opt.UseSqlite("DefaultConnection"));
-builder.Services.AddDbContext<IngredientContext>(opt =>
-    opt.UseSqlite("DefaultConnection"));
+var connection = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.
+    AddDbContext<AccountContext>(opt => opt.UseSqlite(connection)).
+    AddDbContext<DrinkContext>(opt => opt.UseSqlite(connection)).
+    AddDbContext<ContainerContext>(opt => opt.UseSqlite(connection)).
+    AddDbContext<RecipeContext>(opt => opt.UseSqlite(connection)).
+    AddDbContext<IngredientContext>(opt => opt.UseSqlite(connection));
+
+// builder.Services.AddDbContext<AccountContext>(opt =>
+//     opt.UseInMemoryDatabase("Account"));
+// builder.Services.AddDbContext<DrinkContext>(opt =>
+//     opt.UseInMemoryDatabase("Drink"));
+// builder.Services.AddDbContext<ContainerContext>(opt =>
+//     opt.UseInMemoryDatabase("Container"));
+// builder.Services.AddDbContext<RecipeContext>(opt =>
+// opt.UseInMemoryDatabase("Recipe"));
+// builder.Services.AddDbContext<IngredientContext>(opt =>
+// opt.UseInMemoryDatabase("Ingredient"));
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-//builder.Services.AddSwaggerGen();
+// builder.Services.AddSwaggerGen();
 
 WebApplication app = builder.Build();
 
@@ -29,7 +37,8 @@ WebApplication app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
-    
+    // app.UseSwagger();
+    // app.UseSwaggerUI();
 }
 
 //app.UseHttpsRedirection();

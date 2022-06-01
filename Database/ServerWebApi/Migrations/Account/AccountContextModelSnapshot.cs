@@ -3,18 +3,16 @@ using System;
 using AccountApi.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace ServerWebApi.Migrations
+namespace ServerWebApi.Migrations.Account
 {
     [DbContext(typeof(AccountContext))]
-    [Migration("20220528202035_AddAccountToDatabase_v1")]
-    partial class AddAccountToDatabase_v1
+    partial class AccountContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.4");

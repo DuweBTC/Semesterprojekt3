@@ -54,6 +54,14 @@ After that you can run the Server with the command
 ```bash
 dotnet ServerWebApi.dll
 ```
+## Publish it to Pi
+On the PC run the following command
+```bash
+dotnet publish -r linux-arm
+```
+After that copy it over
+```bash
+```
 
 ## Run it on PC
 You are in the ServerWebApi folder and the the following command

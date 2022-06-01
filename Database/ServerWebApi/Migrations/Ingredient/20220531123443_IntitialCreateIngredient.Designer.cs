@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ServerWebApi.Migrations.Ingredient
 {
     [DbContext(typeof(IngredientContext))]
-    [Migration("20220528202104_AddIngredientToDatabase_v1")]
-    partial class AddIngredientToDatabase_v1
+    [Migration("20220531123443_IntitialCreateIngredient")]
+    partial class IntitialCreateIngredient
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

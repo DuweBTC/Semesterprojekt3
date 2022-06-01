@@ -2,7 +2,6 @@
 /home/bjarke/Documents/repos/Semesterprojekt3/Database/ServerWebApi/bin/Debug/net6.0/linux-arm/publish/appsettings.Development.json
 /home/bjarke/Documents/repos/Semesterprojekt3/Database/ServerWebApi/bin/Debug/net6.0/linux-arm/publish/appsettings.json
 /home/bjarke/Documents/repos/Semesterprojekt3/Database/ServerWebApi/bin/Debug/net6.0/linux-arm/publish/ServerWebApi.dll
-/home/bjarke/Documents/repos/Semesterprojekt3/Database/ServerWebApi/bin/Debug/net6.0/linux-arm/publish/ServerWebApi.deps.json
 /home/bjarke/Documents/repos/Semesterprojekt3/Database/ServerWebApi/bin/Debug/net6.0/linux-arm/publish/ServerWebApi.runtimeconfig.json
 /home/bjarke/Documents/repos/Semesterprojekt3/Database/ServerWebApi/bin/Debug/net6.0/linux-arm/publish/ServerWebApi.pdb
 /home/bjarke/Documents/repos/Semesterprojekt3/Database/ServerWebApi/bin/Debug/net6.0/linux-arm/publish/Microsoft.CSharp.dll
@@ -314,10 +313,19 @@
 /home/bjarke/Documents/repos/Semesterprojekt3/Database/ServerWebApi/bin/Debug/net6.0/linux-arm/publish/libhostpolicy.so
 /home/bjarke/Documents/repos/Semesterprojekt3/Database/ServerWebApi/bin/Debug/net6.0/linux-arm/publish/libmscordaccore.so
 /home/bjarke/Documents/repos/Semesterprojekt3/Database/ServerWebApi/bin/Debug/net6.0/linux-arm/publish/libmscordbi.so
+/home/bjarke/Documents/repos/Semesterprojekt3/Database/ServerWebApi/bin/Debug/net6.0/linux-arm/publish/Microsoft.Data.Sqlite.dll
 /home/bjarke/Documents/repos/Semesterprojekt3/Database/ServerWebApi/bin/Debug/net6.0/linux-arm/publish/Microsoft.EntityFrameworkCore.dll
 /home/bjarke/Documents/repos/Semesterprojekt3/Database/ServerWebApi/bin/Debug/net6.0/linux-arm/publish/Microsoft.EntityFrameworkCore.Abstractions.dll
 /home/bjarke/Documents/repos/Semesterprojekt3/Database/ServerWebApi/bin/Debug/net6.0/linux-arm/publish/Microsoft.EntityFrameworkCore.InMemory.dll
+/home/bjarke/Documents/repos/Semesterprojekt3/Database/ServerWebApi/bin/Debug/net6.0/linux-arm/publish/Microsoft.EntityFrameworkCore.Relational.dll
+/home/bjarke/Documents/repos/Semesterprojekt3/Database/ServerWebApi/bin/Debug/net6.0/linux-arm/publish/Microsoft.EntityFrameworkCore.Sqlite.dll
+/home/bjarke/Documents/repos/Semesterprojekt3/Database/ServerWebApi/bin/Debug/net6.0/linux-arm/publish/Microsoft.Extensions.DependencyModel.dll
 /home/bjarke/Documents/repos/Semesterprojekt3/Database/ServerWebApi/bin/Debug/net6.0/linux-arm/publish/Microsoft.OpenApi.dll
+/home/bjarke/Documents/repos/Semesterprojekt3/Database/ServerWebApi/bin/Debug/net6.0/linux-arm/publish/SQLitePCLRaw.batteries_v2.dll
+/home/bjarke/Documents/repos/Semesterprojekt3/Database/ServerWebApi/bin/Debug/net6.0/linux-arm/publish/SQLitePCLRaw.core.dll
+/home/bjarke/Documents/repos/Semesterprojekt3/Database/ServerWebApi/bin/Debug/net6.0/linux-arm/publish/SQLitePCLRaw.provider.e_sqlite3.dll
 /home/bjarke/Documents/repos/Semesterprojekt3/Database/ServerWebApi/bin/Debug/net6.0/linux-arm/publish/Swashbuckle.AspNetCore.Swagger.dll
 /home/bjarke/Documents/repos/Semesterprojekt3/Database/ServerWebApi/bin/Debug/net6.0/linux-arm/publish/Swashbuckle.AspNetCore.SwaggerGen.dll
 /home/bjarke/Documents/repos/Semesterprojekt3/Database/ServerWebApi/bin/Debug/net6.0/linux-arm/publish/Swashbuckle.AspNetCore.SwaggerUI.dll
+/home/bjarke/Documents/repos/Semesterprojekt3/Database/ServerWebApi/bin/Debug/net6.0/linux-arm/publish/libe_sqlite3.so
+/home/bjarke/Documents/repos/Semesterprojekt3/Database/ServerWebApi/bin/Debug/net6.0/linux-arm/publish/ServerWebApi.deps.json
